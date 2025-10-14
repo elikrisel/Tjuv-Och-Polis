@@ -31,7 +31,6 @@ public class Place
             {
                 if (row == 0 || row == Rows - 1 || col == 0 || col == Columns - 1)
                 {
-                    //Console.Write(" ");
                     MapGrid[row, col] = Border;
                 }
                 else
@@ -39,8 +38,6 @@ public class Place
                     MapGrid[row, col] = ' ';
                 }
             }
-
-            //Console.WriteLine();
         }
     }
 
