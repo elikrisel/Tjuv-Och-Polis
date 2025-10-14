@@ -1,0 +1,22 @@
+namespace Tjuv_Och_Polis_Group_Project;
+
+public class Place
+{
+    public int Rows { get; set; }
+    public int Columns { get; set; }
+    public string[,] MapGrid { get; set; }
+
+    public char Border { get; set; } //HA FLER SENARE
+    
+    //DELAY
+    //public int DelayTimer { get; set; }
+
+    public Place(int rows, int columns, string[,] mapGrid, char border)
+    {
+        Rows = rows;
+        Columns = columns;
+        MapGrid = mapGrid;
+        Border = border;
+    }
+    
+}
