@@ -8,8 +8,8 @@ class Program
         int rows = 10;
         int cols = 10;
         string[,] mapGrid = new string[rows, cols];
-
-        City city = new City(rows, cols, mapGrid, '=');
+        char border = '=';
+        City city = new City(rows, cols, mapGrid, border);
         
         city.Layout();
 
