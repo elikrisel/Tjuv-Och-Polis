@@ -4,20 +4,23 @@ class Program
 {
     static void Main(string[] args)
     {
-
         int rows = 10;
         int cols = 10;
         string[,] mapGrid = new string[rows, cols];
-        char border = ' ';
+        string border = ".";
         ConsoleColor color = ConsoleColor.White;
 
         City city = new City(rows, cols, mapGrid, border, color);
+
+        city.GenerateLayout();
+        while (true)
+        {
+            Console.SetCursorPosition(0, 0);
+            city.PrintLayout();
+            Console.ReadKey(true);
+        }
         
-        city.Layout();
 
-
-
-
-        Console.ReadKey(true);
+        
     }
 }
