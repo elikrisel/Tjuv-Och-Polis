@@ -4,19 +4,25 @@ class Program
 {
     static void Main(string[] args)
     {
-        int rows = 10;
-        int cols = 10;
-        char[,] mapGrid = new char[rows, cols];
+        int cityRows = 25;
+        int cityCols = 25;
+        int prisonRows = 10;
+        int prisonCols = 10;
+        char[,] cityGrid = new char[cityRows, cityCols];
+        char[,] prisonGrid = new char[prisonRows, prisonCols];
         char border = '.';
         ConsoleColor color = ConsoleColor.White;
 
-        City city = new City(rows, cols, mapGrid, border, color);
+        City city = new City(cityRows, cityCols, cityGrid, border, color);
+        Prison prison = new Prison(prisonRows, prisonCols, prisonGrid, border, color);
 
-        city.GenerateLayout();
+        ((Place)city).GenerateLayout();
+        ((Place)prison).GenerateLayout();
         while (true)
         {
             Console.SetCursorPosition(0, 0);
-            city.PrintLayout();
+            ((Place)city).PrintLayout();
+            ((Place)prison).PrintLayout();
             Console.ReadKey(true);
         }
         
