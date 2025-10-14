@@ -5,13 +5,27 @@ class Program
     static void Main(string[] args)
     {
 
-        Console.WriteLine("Hello from Kristofer ------ branch test");
-        
-        Console.WriteLine("Hello Third world");
+        int rows = 10;
+        int cols = 10;
+        int[,] mapGrid = new int[rows, cols];
 
-        Console.WriteLine("Hello from Jonas! ------------------ Branch test");
+        for(int row  = 0; row < rows; row++)
+        {
+            for(int col = 0; col < cols; col++)
+            {
+                if(row == 0 || row == rows -1 || col == 0 || col == cols -1) 
+                {
+                    Console.Write("=");
+                }
+                else
+                {
+                    Console.Write(" ");
+                }
+                
+            }
+            Console.WriteLine();
+        } 
 
-        Console.WriteLine("Hello from Alexandra");
         
     }
 }
