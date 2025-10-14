@@ -6,4 +6,24 @@ class City : Place
     {
         
     }
+
+    public void Layout()
+    {
+        for (int row = 0; row < Rows; row++)
+        {
+            for (int col = 0; col < Columns; col++)
+            {
+                if (row == 0 || row == Rows - 1 || col == 0 || col == Columns - 1)
+                {
+                    Console.Write(Border);
+                }
+                else
+                {
+                    Console.Write(" ");
+                }
+
+            }
+            Console.WriteLine();
+        }
+    }
 }

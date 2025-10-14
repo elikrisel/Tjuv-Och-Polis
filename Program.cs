@@ -7,24 +7,11 @@ class Program
 
         int rows = 10;
         int cols = 10;
-        int[,] mapGrid = new int[rows, cols];
+        string[,] mapGrid = new string[rows, cols];
 
-        for(int row  = 0; row < rows; row++)
-        {
-            for(int col = 0; col < cols; col++)
-            {
-                if(row == 0 || row == rows -1 || col == 0 || col == cols -1) 
-                {
-                    Console.Write("=");
-                }
-                else
-                {
-                    Console.Write(" ");
-                }
-                
-            }
-            Console.WriteLine();
-        } 
+        City city = new City(rows, cols, mapGrid, '=');
+        
+        city.Layout();
 
         
     }
