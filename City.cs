@@ -39,6 +39,7 @@ class City : Place
                 if (MapGrid[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
+                    Console.ForegroundColor = Color;
                     Console.Write($" {MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
