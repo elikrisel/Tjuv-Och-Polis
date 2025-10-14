@@ -4,6 +4,8 @@ class City : Place
 {
     public City(int rows, int columns, char[,] mapGrid, char border, ConsoleColor color) : base(rows, columns, mapGrid, border, color)
     {
+        Rows = 10;
+        Columns = 25;
     }
 
     
