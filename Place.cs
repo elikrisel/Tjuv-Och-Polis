@@ -8,15 +8,19 @@ public class Place
 
     public char Border { get; set; } //HA FLER SENARE
     
+    public ConsoleColor Color { get; set; }
+
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Place(int rows, int columns, string[,] mapGrid, char border)
+    public Place(int rows, int columns, string[,] mapGrid, char border, ConsoleColor color)
     {
         Rows = rows;
         Columns = columns;
         MapGrid = mapGrid;
         Border = border;
+        Color = color;
     }
+
     
 }

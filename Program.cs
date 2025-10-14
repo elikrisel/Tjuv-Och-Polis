@@ -8,11 +8,16 @@ class Program
         int rows = 10;
         int cols = 10;
         string[,] mapGrid = new string[rows, cols];
-        char border = '=';
-        City city = new City(rows, cols, mapGrid, border);
+        char border = ' ';
+        ConsoleColor color = ConsoleColor.White;
+
+        City city = new City(rows, cols, mapGrid, border, color);
         
         city.Layout();
 
-        
+
+
+
+        Console.ReadKey(true);
     }
 }
