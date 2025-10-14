@@ -22,8 +22,8 @@ public class Place
         Color = color;
     }
     
-     public void GenerateLayout()
-     {
+    public void GenerateLayout()
+    {
 
         for (int row = 0; row < Rows; row++)
         {
@@ -40,6 +40,7 @@ public class Place
             }
         }
     }
+
 
     public void PrintLayout()
     {
@@ -63,7 +64,38 @@ public class Place
             Console.WriteLine();
         }
     }
-    
 
-    
+
+    public void PrintLayout(int posX, int posY, Person citizen)
+    {
+        for (int row = 0; row < Rows; row++)
+        {
+            for (int col = 0; col < Columns; col++)
+            {
+                if (MapGrid[row, col] == Border)
+                {
+                    Console.BackgroundColor = Color;
+                    Console.ForegroundColor = Color;
+                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.ResetColor();
+                }
+                else if (row == posX && col == posY) // WASD player movement : OBS INGA BOUNDRIES CRASHAR PROGRAMMET UTANFÖR ARRAYN
+                {
+                    MapGrid[posX, posY] = citizen.Character;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    MapGrid[posX, posY] = ' ';
+                    Console.Write($" {MapGrid[row, col]} ");
+                }
+            }
+
+            Console.WriteLine();
+        }
+    }
+
 }
