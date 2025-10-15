@@ -28,7 +28,7 @@ class Program
 
         int posX = 1;
         int posY = 1;
-        Citizen citizen = new Citizen("Jonas", "Medborgare", new int[posX, posY], 'M');
+        Citizen citizen = new Citizen("Jonas", "Medborgare", 1,1, 'M');
 
         
 

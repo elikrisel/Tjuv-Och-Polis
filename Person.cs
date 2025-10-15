@@ -19,11 +19,11 @@ public class Person
 
     public char Character { get; set; }
 
-    public Person(string name, string description, int[,] coordinationSystem,int startX,int startY, char character)
+    public Person(string name, string description,int startX,int startY, char character)
     {
         Name = name;
         Description = description;
-        CoordinationSystem = coordinationSystem;
+        CoordinationSystem = new int[startX, startY];
         Character = character;
         X = startX;
         Y = startY;
