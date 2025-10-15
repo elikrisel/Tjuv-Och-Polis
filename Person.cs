@@ -16,7 +16,6 @@ public class Person
     //public bool InAction { get; set; } // OM DE ÄR PÅ SAMMA PLATS?
 
     public List<string> InventorySystem { get; set; }
-
     public char Character { get; set; }
 
     public Person(string name, string description,int startX,int startY, char character)

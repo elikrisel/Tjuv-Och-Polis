@@ -28,10 +28,10 @@ class Program
 
         int posX = -1;
         int posY = -1;
-        Citizen citizen = new Citizen("Jonas", "Medborgare", 10,10, 'M');
+        Citizen citizen = new Citizen("Jonas", "Medborgare", 1,1, 'M');
         List<Person> persons = new List<Person>();
         persons.Add(citizen);
-        persons.Add(new Citizen("Kristofer", "Medborgare", 13,13,'M'));
+        persons.Add(new Citizen("Kristofer", "Medborgare", 5,5,'M'));
         persons.Add(new Citizen("Alexandra", "Medborgare", 8,8,'M'));
         
 
@@ -125,8 +125,14 @@ class Program
             // }
             #endregion
             
-            //citizen.Move(city);
+            foreach (Person person in persons)
+            {
+                person.Move(city);
+            }
+            
             Console.ReadKey(true);
+            
+            city.GenerateLayout();
             
         }
     }

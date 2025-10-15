@@ -117,22 +117,23 @@ public class Map
                         if (persons[i].X == row && persons[i].Y == col)
                         {
                             MapGrid[row, col] = persons[i].Character;
-                            Console.BackgroundColor = ConsoleColor.Red;
+                            //Console.BackgroundColor = ConsoleColor.Red;
                             Console.ForegroundColor = ConsoleColor.Red;
                             
-                        }
-                        else
+                        }  
+                        else if(MapGrid[row, col] != persons[i].Character)
                         {
+                            
                             MapGrid[row, col] = ' ';
                                   
                         }
                         
-                        Console.Write($"{MapGrid[row, col]} ");
-                        Console.ResetColor();       
                         
                     }
                     
-                            
+                    Console.Write($"{MapGrid[row, col]} ");
+                           
+
                     
                 }
                 
