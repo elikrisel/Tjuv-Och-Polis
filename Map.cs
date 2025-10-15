@@ -1,6 +1,6 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-public class Place
+public class Map
 {
     public int Rows { get; set; }
     public int Columns { get; set; }
@@ -13,7 +13,7 @@ public class Place
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Place(int rows, int columns, char[,] mapGrid, char border, ConsoleColor color)
+    public Map(int rows, int columns, char[,] mapGrid, char border, ConsoleColor color)
     {
         Rows = rows;
         Columns = columns;
@@ -65,7 +65,7 @@ public class Place
         }
     }
 
-    // virtual / override för jail
+    // virtual / override fï¿½r jail
     public virtual void PrintLayout(int posX, int posY, Person citizen, bool inJail)
     {
         for (int row = 0; row < Rows; row++)
