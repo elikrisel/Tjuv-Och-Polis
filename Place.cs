@@ -52,12 +52,12 @@ public class Place
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.Write($"{MapGrid[row, col]} ");
                 }
             }
 
@@ -76,7 +76,7 @@ public class Place
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
                 else if (row == posX && col == posY) // WASD player movement : OBS INGA BOUNDRIES CRASHAR PROGRAMMET UTANFÖR ARRAYN
@@ -84,13 +84,13 @@ public class Place
                     MapGrid[posX, posY] = citizen.Character;
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
                 else
                 {
                     MapGrid[posX, posY] = ' ';
-                    Console.Write($" {MapGrid[row, col]} ");
+                    Console.Write($"{MapGrid[row, col]} ");
                 }
             }
 

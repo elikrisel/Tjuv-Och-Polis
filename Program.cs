@@ -31,8 +31,9 @@ class Program
         Citizen citizen = new Citizen("Jonas", "Medborgare", new int[posX, posY], 'M');
 
 
-        ((Place)city).GenerateLayout();
-        ((Place)prison).GenerateLayout();
+
+        city.GenerateLayout();
+        prison.GenerateLayout();
 
          //cityGrid[posX, posY] = citizen.Character;
 
@@ -42,21 +43,36 @@ class Program
         while (true)
         {
             Console.SetCursorPosition(0, 0);
+            // Innan start sätter vi grundboarders på respektive PLACE
+
+            // Sätt respektive PLACE till tomma celler
+
+            // **Kalla på respektive PERSONS MOVE metoder
+
+            // Sätt dit alla PERSONS på sina POSITIONS
+
+            // Printar ut PLACES
 
             //((Place)city).PrintLayout();
-            ((Place)city).PrintLayout(posX, posY, citizen);
-            ((Place)prison).PrintLayout();
+            city.PrintLayout(posX, posY, citizen);
+            prison.PrintLayout();
+
+
+
+
+
+
 
 
             ConsoleKeyInfo key = Console.ReadKey(true);
 
             switch (key.Key)
             {
-                case ConsoleKey.W: posX--; break;
-                case ConsoleKey.S: posX++; break;
+                case ConsoleKey.W: posX--; if (posX == 0) posX = cityRows - 2 ; break;
+                case ConsoleKey.S: posX++; if (posX == cityRows - 1) posX = 1; break;
                 //case ConsoleKey.S: Console.WriteLine(citizen.CoordinationSystem[0,0]); break;
-                case ConsoleKey.A: posY--; break;
-                case ConsoleKey.D: posY++; break;
+                case ConsoleKey.A: posY--; if (posY == 0) posY = cityCols - 2; break;
+                case ConsoleKey.D: posY++; if (posY == cityCols - 1) posY = 1; break;
             }
 
             //Console.ReadKey(true);
