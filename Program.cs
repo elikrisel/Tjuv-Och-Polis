@@ -35,10 +35,10 @@ class Program
         city.GenerateLayout();
         prison.GenerateLayout();
 
-         //cityGrid[posX, posY] = citizen.Character;
+        //cityGrid[posX, posY] = citizen.Character;
 
 
-
+        bool inJail = false;
         Console.CursorVisible = false;
         while (true)
         {
@@ -54,10 +54,10 @@ class Program
             // Printar ut PLACES
 
             //((Place)city).PrintLayout();
-            city.PrintLayout(posX, posY, citizen);
+
+            city.PrintLayout(posX, posY, citizen, inJail);
             prison.PrintLayout();
-
-
+            //prison.PrintLayout(posX, posY, citizen, inJail);
 
 
 
@@ -68,11 +68,24 @@ class Program
 
             switch (key.Key)
             {
-                case ConsoleKey.W: posX--; if (posX == 0) posX = cityRows - 2 ; break;
+                case ConsoleKey.W: posX--; if (posX == 0) posX = cityRows - 2 ; break; // !inJail på alla ifsatser
                 case ConsoleKey.S: posX++; if (posX == cityRows - 1) posX = 1; break;
                 //case ConsoleKey.S: Console.WriteLine(citizen.CoordinationSystem[0,0]); break;
                 case ConsoleKey.A: posY--; if (posY == 0) posY = cityCols - 2; break;
                 case ConsoleKey.D: posY++; if (posY == cityCols - 1) posY = 1; break;
+                case ConsoleKey.J: inJail = !inJail; Console.Clear(); break;
+                case ConsoleKey.R:
+                    {
+                        switch (Random.Shared.Next(0, 5))
+                        {
+                            case 0: posX--; if (posX == 0) posX = cityRows - 2 ; break;
+                            case 1: posX++; if (posX == cityRows - 1) posX = 1; break;
+                            case 2: posY--; if (posY == 0) posY = cityCols - 2; break;
+                            case 3: posY++; if (posY == cityCols - 1) posY = 1; break;
+                            case 4: break;
+                        }
+                        break;
+                    }
             }
 
             //Console.ReadKey(true);

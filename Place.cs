@@ -65,8 +65,8 @@ public class Place
         }
     }
 
-
-    public void PrintLayout(int posX, int posY, Person citizen)
+    // virtual / override för jail
+    public virtual void PrintLayout(int posX, int posY, Person citizen, bool inJail)
     {
         for (int row = 0; row < Rows; row++)
         {
@@ -79,7 +79,7 @@ public class Place
                     Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
-                else if (row == posX && col == posY) // WASD player movement : OBS INGA BOUNDRIES CRASHAR PROGRAMMET UTANFÖR ARRAYN
+                else if (row == posX && col == posY && !inJail) // WASD player movement : OBS INGA BOUNDRIES CRASHAR PROGRAMMET UTANFÖR ARRAYN
                 {
                     MapGrid[posX, posY] = citizen.Character;
                     Console.BackgroundColor = ConsoleColor.Red;
