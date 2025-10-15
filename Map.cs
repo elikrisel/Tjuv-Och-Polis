@@ -97,5 +97,38 @@ public class Map
             Console.WriteLine();
         }
     }
+    public virtual void PrintLayout(Person citizen)
+    {
+        for (int row = 0; row < Rows; row++)
+        {
+            for (int col = 0; col < Columns; col++)
+            {
+                if (MapGrid[row, col] == Border)
+                {
+                    Console.BackgroundColor = Color;
+                    Console.ForegroundColor = Color;
+                    Console.Write($"{MapGrid[row, col]} ");
+                    Console.ResetColor();
+                }
+                else if (row == citizen.X && col == citizen.Y) // TODO: Lägga in för att hålla koll om Thief är !InJail
+                {
+                    MapGrid[row, col] = citizen.Character;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{MapGrid[row, col]} ");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    MapGrid[row, col] = ' ';
+                    Console.Write($"{MapGrid[row, col]} ");
+                }
+            }
+
+            Console.WriteLine();
+        }
+    }
+    
+    
 
 }

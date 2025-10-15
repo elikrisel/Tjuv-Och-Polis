@@ -26,9 +26,9 @@ class Program
         City city = new City(cityRows, cityCols, cityGrid, border, color);
         Prison prison = new Prison(prisonRows, prisonCols, prisonGrid, border, color);
 
-        int posX = 1;
-        int posY = 1;
-        Citizen citizen = new Citizen("Jonas", "Medborgare", 1,1, 'M');
+        int posX = -1;
+        int posY = -1;
+        Citizen citizen = new Citizen("Jonas", "Medborgare", 10,10, 'M');
 
         
 
@@ -58,14 +58,18 @@ class Program
 
             if (!debugList)
             {
-                city.PrintLayout(posX, posY, citizen, inJail);
+                //city.PrintLayout(posX, posY, citizen, inJail);
+                city.PrintLayout(citizen);
                 //prison.PrintLayout();
-                prison.PrintLayout(posX, posY, citizen, inJail);
-                Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
+                //prison.PrintLayout(posX, posY, citizen, inJail);
+                
+                //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
+                //Console.WriteLine($"{citizen.Name} Position: [{citizen.X,2},{citizen.Y,2}]");
             }
             else
             {
-                Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
+                //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
+                Console.WriteLine($"{citizen.Name} Position: [{citizen.X,2},{citizen.Y,2}]");
             }
 
 
@@ -115,7 +119,7 @@ class Program
                         break;
                     }
             }
-
+            citizen.Move(city);
             //Console.ReadKey(true);
 
         }
