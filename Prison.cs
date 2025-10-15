@@ -19,7 +19,7 @@ class Prison : Place
                     Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
-                else if (row == posX && col == posY && inJail) // WASD player movement : OBS INGA BOUNDRIES CRASHAR PROGRAMMET UTANFÖR ARRAYN
+                else if (row == posX && col == posY && inJail) 
                 {
                     MapGrid[row, col] = citizen.Character;
                     Console.BackgroundColor = ConsoleColor.Red;

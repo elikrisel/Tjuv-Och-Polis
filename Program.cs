@@ -6,7 +6,7 @@ class Program
     {
         #region City variables
         int cityRows = 15;
-        int cityCols = 15;
+        int cityCols = 25;
         char[,] cityGrid = new char[cityRows, cityCols];
         #endregion
 
@@ -70,9 +70,22 @@ class Program
 
 
 
-
-
-
+            #region TESTING: Random inputs med thread.sleep
+            //switch (Random.Shared.Next(0, 9))
+            //{
+            //    case 0: posX--; if (posX == 0) posX = cityRows - 2; break;
+            //    case 1: posX++; if (posX == cityRows - 1) posX = 1; break;
+            //    case 2: posY--; if (posY == 0) posY = cityCols - 2; break;
+            //    case 3: posY++; if (posY == cityCols - 1) posY = 1; break;
+            //    case 4: posX--; if (posX == 0) posX = cityRows - 2; posY--; if (posY == 0) posY = cityCols - 2; break;
+            //    case 5: posX--; if (posX == 0) posX = cityRows - 2; posY++; if (posY == cityCols - 1) posY = 1; break;
+            //    case 6: posX++; if (posX == cityRows - 1) posX = 1; posY--; if (posY == 0) posY = cityCols - 2; break;
+            //    case 7: posX++; if (posX == cityRows - 1) posX = 1; posY++; if (posY == cityCols - 1) posY = 1; break;
+            //    case 8: Console.WriteLine("Didnt move"); break;
+            //}
+            //int test = 500;
+            //Thread.Sleep(test);
+            #endregion
 
             ConsoleKeyInfo key = Console.ReadKey(true);
 
@@ -89,7 +102,7 @@ class Program
                     {
                         switch (Random.Shared.Next(0, 9))
                         {
-                            case 0: posX--; if (posX == 0) posX = cityRows - 2 ; break;
+                            case 0: posX--; if (posX == 0) posX = cityRows - 2; break;
                             case 1: posX++; if (posX == cityRows - 1) posX = 1; break;
                             case 2: posY--; if (posY == 0) posY = cityCols - 2; break;
                             case 3: posY++; if (posY == cityCols - 1) posY = 1; break;
