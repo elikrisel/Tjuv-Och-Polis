@@ -30,7 +30,7 @@ class Program
         int posY = 1;
         Citizen citizen = new Citizen("Jonas", "Medborgare", new int[posX, posY], 'M');
 
-
+        
 
         city.GenerateLayout();
         prison.GenerateLayout();
@@ -59,8 +59,8 @@ class Program
             if (!debugList)
             {
                 city.PrintLayout(posX, posY, citizen, inJail);
-                prison.PrintLayout();
-                //prison.PrintLayout(posX, posY, citizen, inJail);
+                //prison.PrintLayout();
+                prison.PrintLayout(posX, posY, citizen, inJail);
                 Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
             }
             else
@@ -74,35 +74,30 @@ class Program
 
 
 
-                ConsoleKeyInfo key = Console.ReadKey(true);
+            ConsoleKeyInfo key = Console.ReadKey(true);
 
             switch (key.Key)
             {
-                case ConsoleKey.W: posX--; if (posX == 0) posX = cityRows - 2 ; break; // !inJail på alla ifsatser
+                case ConsoleKey.W: posX--; if (posX == 0) posX = cityRows - 2; break; // !inJail på alla ifsatser
                 case ConsoleKey.S: posX++; if (posX == cityRows - 1) posX = 1; break;
-                //case ConsoleKey.S: Console.WriteLine(citizen.CoordinationSystem[0,0]); break;
                 case ConsoleKey.A: posY--; if (posY == 0) posY = cityCols - 2; break;
                 case ConsoleKey.D: posY++; if (posY == cityCols - 1) posY = 1; break;
+
                 case ConsoleKey.J: inJail = !inJail; Console.Clear(); break;
                 case ConsoleKey.L: debugList = !debugList; Console.Clear(); break;
                 case ConsoleKey.R:
                     {
-                        switch (Random.Shared.Next(0, 4))
+                        switch (Random.Shared.Next(0, 9))
                         {
-                            //case 0: posX--; if (posX == 0) posX = cityRows - 2 ; break;
-                            //case 1: posX++; if (posX == cityRows - 1) posX = 1; break;
-                            //case 2: posY--; if (posY == 0) posY = cityCols - 2; break;
-                            //case 3: posY++; if (posY == cityCols - 1) posY = 1; break;
-                            case 0: posX--; if (posX == 0) posX = cityRows - 2; posY--; if (posY == 0) posY = cityCols - 2; break; // Lämnar ett M längst ner i höger hörn
-                            case 1: posX--; if (posX == 0) posX = cityRows - 2; posY++; if (posY == cityCols - 1) posY = 1; break;
-                            case 2: posX++; if (posX == cityRows - 1) posX = 1; posY--; if (posY == 0) posY = cityCols - 2; break;
-                            case 3: posX++; if (posX == cityRows - 1) posX = 1; posY++; if (posY == cityCols - 1) posY = 1; break;
-
-                            //case 0: posX--; if (posX == 0) posX = cityRows - 2; posY--; if (posY == 0) posY = cityCols - 2; break;
-                            //case 1: posX--; if (posX == 0) posX = cityRows - 2; posY++; if (posX == cityRows - 1) posX = 1; break;
-                            //case 2: posX++; if (posX == cityRows - 1) posX = 1; posY++; if (posX == cityRows - 1) posX = 1; break;
-                            //case 3: posX++; if (posX == cityRows - 1) posX = 1; posY--; if (posY == 0) posY = cityCols - 2; break;
-                            //case 8: Console.WriteLine("Didnt move"); break;
+                            case 0: posX--; if (posX == 0) posX = cityRows - 2 ; break;
+                            case 1: posX++; if (posX == cityRows - 1) posX = 1; break;
+                            case 2: posY--; if (posY == 0) posY = cityCols - 2; break;
+                            case 3: posY++; if (posY == cityCols - 1) posY = 1; break;
+                            case 4: posX--; if (posX == 0) posX = cityRows - 2; posY--; if (posY == 0) posY = cityCols - 2; break;
+                            case 5: posX--; if (posX == 0) posX = cityRows - 2; posY++; if (posY == cityCols - 1) posY = 1; break;
+                            case 6: posX++; if (posX == cityRows - 1) posX = 1; posY--; if (posY == 0) posY = cityCols - 2; break;
+                            case 7: posX++; if (posX == cityRows - 1) posX = 1; posY++; if (posY == cityCols - 1) posY = 1; break;
+                            case 8: Console.WriteLine("Didnt move"); break;
                         }
                         break;
                     }

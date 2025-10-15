@@ -21,7 +21,7 @@ class Prison : Place
                 }
                 else if (row == posX && col == posY && inJail) // WASD player movement : OBS INGA BOUNDRIES CRASHAR PROGRAMMET UTANFÖR ARRAYN
                 {
-                    MapGrid[posX, posY] = citizen.Character;
+                    MapGrid[row, col] = citizen.Character;
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"{MapGrid[row, col]} ");
@@ -29,7 +29,7 @@ class Prison : Place
                 }
                 else
                 {
-                    MapGrid[posX, posY] = ' ';
+                    MapGrid[row, col] = ' ';
                     Console.Write($"{MapGrid[row, col]} ");
                 }
             }
