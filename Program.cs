@@ -55,7 +55,8 @@ class Program
             // Printar ut PLACES
 
             //((Place)city).PrintLayout();
-
+                        
+            
             if (!debugList)
             {
                 //city.PrintLayout(posX, posY, citizen, inJail);
@@ -90,7 +91,7 @@ class Program
             //int test = 500;
             //Thread.Sleep(test);
             #endregion
-
+            #region TESTING : WASD movement for debug
             ConsoleKeyInfo key = Console.ReadKey(true);
 
             switch (key.Key)
@@ -119,6 +120,8 @@ class Program
                         break;
                     }
             }
+            #endregion
+            
             citizen.Move(city);
             //Console.ReadKey(true);
 

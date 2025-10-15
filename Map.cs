@@ -110,7 +110,7 @@ public class Map
                     Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
-                else if (row == citizen.X && col == citizen.Y) // TODO: Lägga in för att hålla koll om Thief är !InJail
+                else if (row == citizen.X && col == citizen.Y) //TODO: Lägga in för att hålla koll om Thief är !InJail
                 {
                     MapGrid[row, col] = citizen.Character;
                     Console.BackgroundColor = ConsoleColor.Red;
