@@ -117,23 +117,31 @@ public class Map
                         if (persons[i].X == row && persons[i].Y == col)
                         {
                             MapGrid[row, col] = persons[i].Character;
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            
                         }
-                        else
+                        else if (MapGrid[row, col] != 'M' && MapGrid[row, col] != 'T' && MapGrid[row, col] != 'P') // Fixa PERSON CHAR & COLOR
                         {
                             MapGrid[row, col] = ' ';
-                                  
                         }
-                        
-                        Console.Write($"{MapGrid[row, col]} ");
-                        Console.ResetColor();       
-                        
+                    }
+
+                    if (MapGrid[row, col] == 'M') // Fixa Citizen CHAR & COLOR
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    else if (MapGrid[row, col] == 'T') // Fixa Thief CHAR & COLOR
+                    {
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else if (MapGrid[row, col] == 'P') // Fixa Police CHAR & COLOR
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Blue;
                     }
                     
-                            
-                    
+                    Console.Write($"{MapGrid[row, col]} ");
+                    Console.ResetColor();
                 }
                 
                

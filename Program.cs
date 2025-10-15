@@ -18,47 +18,41 @@ class Program
 
         #region Other variables
         char border = '.';
-        ConsoleColor color = ConsoleColor.White;
-        #endregion
-
-        
-
-        City city = new City(cityRows, cityCols, cityGrid, border, color);
-        Prison prison = new Prison(prisonRows, prisonCols, prisonGrid, border, color);
-
+        ConsoleColor borderColor = ConsoleColor.White;
+        bool inJail = false;
+        bool debugList = false;
+        Console.CursorVisible = false;
         int posX = -1;
         int posY = -1;
+        #endregion
+
+
+
+        City city = new City(cityRows, cityCols, cityGrid, border, borderColor);
+        Prison prison = new Prison(prisonRows, prisonCols, prisonGrid, border, borderColor);
+        
+
+
         Citizen citizen = new Citizen("Jonas", "Medborgare", 10,10, 'M');
         List<Person> persons = new List<Person>();
         persons.Add(citizen);
-        persons.Add(new Citizen("Kristofer", "Medborgare", 13,13,'M'));
-        persons.Add(new Citizen("Alexandra", "Medborgare", 8,8,'M'));
-        
+        persons.Add(new Tjuv("Kristofer", "Tjuv", 13,13,'T'));
+        persons.Add(new Police("Alexandra", "Polis", 8,8,'P'));
+
+
 
         city.GenerateLayout();
         prison.GenerateLayout();
 
-        //cityGrid[posX, posY] = citizen.Character;
-
-
-        bool inJail = false;
-        bool debugList = false;
-        Console.CursorVisible = false;
         while (true)
         {
             Console.SetCursorPosition(0, 0);
             // Innan start sätter vi grundboarders på respektive PLACE
-
             // Sätt respektive PLACE till tomma celler
-
             // **Kalla på respektive PERSONS MOVE metoder
-
             // Sätt dit alla PERSONS på sina POSITIONS
-
             // Printar ut PLACES
 
-            //((Place)city).PrintLayout();
-                        
             
             if (!debugList)
             {
@@ -73,7 +67,10 @@ class Program
             else
             {
                 //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
-                Console.WriteLine($"{citizen.Name} Position: [{citizen.X,2},{citizen.Y,2}]");
+                foreach (Person person in persons)
+                {
+                    Console.WriteLine($"{person.Description} : {person.Name} position: [{person.X,2},{person.Y,2}]");
+                }
             }
 
 
@@ -125,9 +122,20 @@ class Program
             // }
             #endregion
             
-            //citizen.Move(city);
-            Console.ReadKey(true);
+            foreach (Person person in persons)
+            {
+                person.Move(city);
+            }
+
+            ConsoleKeyInfo debugListkey = Console.ReadKey(true);
+            if (debugListkey.Key == ConsoleKey.L)
+            {
+                debugList = !debugList;
+                Console.Clear();
+            }
             
+
+            city.GenerateLayout(); // Rensar cityMap till tom layout. Kanske bör skapa separat metod för
         }
     }
 }
