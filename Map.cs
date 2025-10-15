@@ -97,7 +97,7 @@ public class Map
             Console.WriteLine();
         }
     }
-    public virtual void PrintLayout(Person citizen)
+    public virtual void PrintLayout(List<Person> persons)
     {
         for (int row = 0; row < Rows; row++)
         {
@@ -110,19 +110,49 @@ public class Map
                     Console.Write($"{MapGrid[row, col]} ");
                     Console.ResetColor();
                 }
-                else if (row == citizen.X && col == citizen.Y) //TODO: Lägga in för att hålla koll om Thief är !InJail
-                {
-                    MapGrid[row, col] = citizen.Character;
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
-                }
                 else
                 {
-                    MapGrid[row, col] = ' ';
-                    Console.Write($"{MapGrid[row, col]} ");
+                    for (int i = 0; i < persons.Count; i++)
+                    {
+                        if (persons[i].X == row && persons[i].Y == col)
+                        {
+                            MapGrid[row, col] = persons[i].Character;
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            
+                        }
+                        else
+                        {
+                            MapGrid[row, col] = ' ';
+                                  
+                        }
+                        
+                        Console.Write($"{MapGrid[row, col]} ");
+                        Console.ResetColor();       
+                        
+                    }
+                    
+                            
+                    
                 }
+                
+               
+                // if (MapGrid[row, col] == Border)
+                // {
+                //     Console.BackgroundColor = Color;
+                //     Console.ForegroundColor = Color;
+                //     Console.Write($"{MapGrid[row, col]} ");
+                //     Console.ResetColor();
+                // }
+                // else if (row == persons.X && col == persons.Y) //TODO: Lägga in för att hålla koll om Thief är !InJail
+                // {
+                //     MapGrid[row, col] = persons.Character;
+                //     Console.BackgroundColor = ConsoleColor.Red;
+                //     Console.ForegroundColor = ConsoleColor.Red;
+                //     Console.Write($"{MapGrid[row, col]} ");
+                //     Console.ResetColor();
+                // }
+                
             }
 
             Console.WriteLine();

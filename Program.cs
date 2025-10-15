@@ -29,7 +29,10 @@ class Program
         int posX = -1;
         int posY = -1;
         Citizen citizen = new Citizen("Jonas", "Medborgare", 10,10, 'M');
-
+        List<Person> persons = new List<Person>();
+        persons.Add(citizen);
+        persons.Add(new Citizen("Kristofer", "Medborgare", 13,13,'M'));
+        persons.Add(new Citizen("Alexandra", "Medborgare", 8,8,'M'));
         
 
         city.GenerateLayout();
@@ -60,13 +63,13 @@ class Program
             if (!debugList)
             {
                 //city.PrintLayout(posX, posY, citizen, inJail);
-                city.PrintLayout(citizen);
+                city.PrintLayout(persons);
                 //prison.PrintLayout();
                 //prison.PrintLayout(posX, posY, citizen, inJail);
                 
                 //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
                 //Console.WriteLine($"{citizen.Name} Position: [{citizen.X,2},{citizen.Y,2}]");
-            }
+            }  
             else
             {
                 //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
@@ -122,7 +125,7 @@ class Program
             // }
             #endregion
             
-            citizen.Move(city);
+            //citizen.Move(city);
             Console.ReadKey(true);
             
         }
