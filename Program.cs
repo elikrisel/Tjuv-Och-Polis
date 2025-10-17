@@ -46,17 +46,23 @@ class Program
 
         for (int number = 0; number < numberOfCitizens; number++)
         {
-            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), 10, 10));
+            int positionX = Random.Shared.Next(1, cityRows - 1);
+            int positionY = Random.Shared.Next(1, cityCols - 1);
+            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), positionX, positionY));
         }
 
         for (int number = 0; number < numberOfThieves; number++)
         {
-            persons.Add(new Thief(Person.GenerateNamesOfPersons(), 10, 10));
+            int positionX = Random.Shared.Next(1, cityRows - 1);
+            int positionY = Random.Shared.Next(1, cityCols - 1);
+            persons.Add(new Thief(Person.GenerateNamesOfPersons(), positionX, positionY));
         }
 
         for (int number = 0; number < numberOfOfficers; number++)
         {
-            persons.Add(new Police(Person.GenerateNamesOfPersons(), 10, 10));
+            int positionX = Random.Shared.Next(1, cityRows - 1);
+            int positionY = Random.Shared.Next(1, cityCols - 1);
+            persons.Add(new Police(Person.GenerateNamesOfPersons(), positionX, positionY));
         }
 
         city.GenerateLayout();
@@ -209,11 +215,11 @@ class Program
             {
                 if (!person.InPrison)
                 {
-                    person.Move(city);
+                    person.MovementInCity(city);
                 }
                 else
                 {
-                    person.Move(prison);
+                    person.MovementInPrison(prison);
                 }
             }
 

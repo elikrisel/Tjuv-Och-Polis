@@ -60,7 +60,7 @@ public class Person
     //OPTIONAL:
     //public virtual ConsoleColor GetColor => ConsoleColor.Gray;
 
-    public void Move(City city)
+    public void MovementInCity(City city)
     {
 
         switch (Random.Shared.Next(0, 8))
@@ -77,7 +77,7 @@ public class Person
         }
     
     }
-    public void Move(Prison prison)
+    public void MovementInPrison(Prison prison)
     {
         
         
