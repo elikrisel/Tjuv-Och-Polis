@@ -20,6 +20,13 @@ class Program
         char border = '.';
         ConsoleColor color = ConsoleColor.White;
         #endregion
+        
+        #region NumberOfPersonsInCity
+
+        int numberOfCitizens = 5;
+        int numberOfThieves = 3;
+        int numberOfOfficers = 2;
+        #endregion
 
         
 
