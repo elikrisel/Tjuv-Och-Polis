@@ -137,9 +137,13 @@ class Program
                 case ConsoleKey.J:
                     foreach (Person person in persons)
                     {
-                        if (person is Thief)
+                        if (person is Thief && !person.InPrison)
                         {
-                            person.InPrison = !person.InPrison;
+                            ((Thief)person).MoveToJail(person,prison);
+                        }
+                        else if(person is Thief && person.InPrison)
+                        {
+                            ((Thief)person).MoveToCity(person,city);
                         }
                     }
 
