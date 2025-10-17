@@ -38,7 +38,22 @@ class Program
         Citizen citizen = new Citizen(Person.GenerateNamesOfPersons(), "Medborgare", 10,10);
         List<Person> persons = new List<Person>();
         persons.Add(citizen);
+
+        for(int number = 0; number < numberOfCitizens; number++)
+        {
+            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), "Medborgare", 10, 10));
+        }
         
+        for (int number = 0; number < numberOfThieves; number++)
+        {
+            persons.Add(new Tjuv(Person.GenerateNamesOfPersons(), "Tjuv", 10, 10));
+        }
+        
+        for (int number = 0; number < numberOfOfficers; number++)
+        {
+            persons.Add(new Police(Person.GenerateNamesOfPersons(), "Polis", 10, 10));
+        }
+
 
         city.GenerateLayout();
         prison.GenerateLayout();
@@ -69,11 +84,18 @@ class Program
             else
             {
                 //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
-                Console.WriteLine($"{citizen.Name} Position: [{citizen.X,2},{citizen.Y,2}]");
-                foreach(string inventory in citizen.InventorySystem)
+                foreach(Person person in persons)
                 {
-                    Console.WriteLine(inventory);
+                    Console.Write($"{person.Name} Position: [{person.X,2},{person.Y,2}]");
+                    foreach (string inventory in person.InventorySystem)
+                    {
+                        Console.Write(inventory + " ");
+                    }
+                    Console.WriteLine();
                 }
+                
+
+                
             }
 
 
@@ -125,7 +147,11 @@ class Program
             }
             #endregion
 
-            citizen.Move(city);
+            foreach(Person person in persons)
+            {
+                person.Move(city);
+            }
+            
             //Console.ReadKey(true);
             
         }

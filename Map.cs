@@ -96,9 +96,10 @@ public class Map
                             Console.BackgroundColor = person.Color;
                         }
 
-                        Console.Write($"{MapGrid[row, col]} ");
-                        Console.ResetColor();
+
                     }
+                    Console.Write($"{MapGrid[row, col]} ");
+                    Console.ResetColor();
                 }
             }
 
