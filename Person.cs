@@ -13,7 +13,7 @@ public class Person
     public int X { get; set; }
     public int Y { get; set; }
 
-    public bool InJail { get; set; }
+    public bool InPrison { get; set; }
 
     //public bool InAction { get; set; } // OM DE ÄR PÅ SAMMA PLATS?
 
@@ -72,6 +72,22 @@ public class Person
             case 5: X--; if (X == 0) X = city.Rows - 2; Y++; if (Y == city.Columns - 1) Y = 1; break;
             case 6: X++; if (X == city.Rows - 1) X = 1; Y--; if (Y == 0) Y = city.Columns - 2; break;
             case 7: X++; if (X == city.Rows - 1) X = 1; Y++; if (Y == city.Columns - 1) Y = 1; break;
+            
+        }
+    
+    }
+    public void Move(Prison prison)
+    {
+        switch (Random.Shared.Next(0, 8))
+        {
+            case 0: X--; if (X == 0) X = prison.Rows - 2; break;
+            case 1: X++; if (X == prison.Rows - 1) X = 1; break;
+            case 2: Y--; if (Y == 0) Y = prison.Columns - 2; break;
+            case 3: Y++; if (Y == prison.Columns - 1) Y = 1; break;
+            case 4: X--; if (X == 0) X = prison.Rows - 2; Y--; if (Y == 0) Y = prison.Columns - 2; break;
+            case 5: X--; if (X == 0) X = prison.Rows - 2; Y++; if (Y == prison.Columns - 1) Y = 1; break;
+            case 6: X++; if (X == prison.Rows - 1) X = 1; Y--; if (Y == 0) Y = prison.Columns - 2; break;
+            case 7: X++; if (X == prison.Rows - 1) X = 1; Y++; if (Y == prison.Columns - 1) Y = 1; break;
             
         }
 

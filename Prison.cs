@@ -1,6 +1,6 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-class Prison : Map
+public class Prison : Map
 {
     public Prison(int rows, int columns, char[,] mapGrid) : base(rows, columns, mapGrid)
     {
@@ -22,7 +22,7 @@ class Prison : Map
                 {
                     foreach (Person person in persons)
                     {
-                        if (person.X == row && person.Y == col && person.InJail)
+                        if (person.X == row && person.Y == col && person.InPrison)
                         {
                             MapGrid[row, col] = person.Character;
                             Console.ForegroundColor = person.Color;
