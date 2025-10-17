@@ -22,7 +22,7 @@ class Prison : Map
                 {
                     foreach (Person person in persons)
                     {
-                        if (person.X == row && person.Y == col && ((Tjuv) person).InJail)
+                        if (person.X == row && person.Y == col && person.InJail)
                         {
                             MapGrid[row, col] = person.Character;
                             Console.ForegroundColor = person.Color;

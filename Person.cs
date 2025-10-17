@@ -12,7 +12,9 @@ public class Person
 
     public int X { get; set; }
     public int Y { get; set; }
-    
+
+    public bool InJail { get; set; }
+
     //public bool InAction { get; set; } // OM DE ÄR PÅ SAMMA PLATS?
 
     public List<string> InventorySystem { get; set; }

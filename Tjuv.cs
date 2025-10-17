@@ -7,7 +7,6 @@ class Tjuv : Person
     {
         Description = "Tjuv";
         Character = 'T';
-        InJail = false;
         Color = ConsoleColor.Red;
     }
 
