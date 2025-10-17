@@ -93,7 +93,8 @@ public class Map
                         if (person.X == row && person.Y == col)
                         {
                             MapGrid[row, col] = person.Character;
-                            Console.BackgroundColor = person.Color;
+                            Console.ForegroundColor = person.Color;
+
                         }
 
 

@@ -6,5 +6,6 @@ class Police : Person
     {
         Description = "Polis";
         Character = 'P';
+        Color = ConsoleColor.Blue;
     }
 }
