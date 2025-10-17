@@ -21,10 +21,9 @@ public class Person
     
     public ConsoleColor Color { get; set; }
 
-    public Person(string name, string description,int startX,int startY)
+    public Person(string name,int startX,int startY)
     {
         Name = name;
-        Description = description;
         CoordinationSystem = new int[startX, startY];
         X = startX;
         Y = startY;

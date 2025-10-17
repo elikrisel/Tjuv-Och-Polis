@@ -35,23 +35,22 @@ class Program
 
         int posX = -1;
         int posY = -1;
-        Citizen citizen = new Citizen(Person.GenerateNamesOfPersons(), "Medborgare", 10,10);
+        
         List<Person> persons = new List<Person>();
-        persons.Add(citizen);
 
         for(int number = 0; number < numberOfCitizens; number++)
         {
-            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), "Medborgare", 10, 10));
+            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), 10, 10));
         }
         
         for (int number = 0; number < numberOfThieves; number++)
         {
-            persons.Add(new Tjuv(Person.GenerateNamesOfPersons(), "Tjuv", 10, 10));
+            persons.Add(new Tjuv(Person.GenerateNamesOfPersons(), 10, 10));
         }
         
         for (int number = 0; number < numberOfOfficers; number++)
         {
-            persons.Add(new Police(Person.GenerateNamesOfPersons(), "Polis", 10, 10));
+            persons.Add(new Police(Person.GenerateNamesOfPersons(), 10, 10));
         }
 
 
