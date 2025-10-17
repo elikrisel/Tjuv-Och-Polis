@@ -18,16 +18,23 @@ public class Person
     public List<string> InventorySystem { get; set; }
 
     public char Character { get; set; }
+    
+    public ConsoleColor Color { get; set; }
 
-    public Person(string name, string description,int startX,int startY, char character)
+    public Person(string name, string description,int startX,int startY)
     {
         Name = name;
         Description = description;
         CoordinationSystem = new int[startX, startY];
-        Character = character;
         X = startX;
         Y = startY;
     }
+    
+    //OPTIONAL:
+    //public virtual char GetCharacter() => '?';
+    
+    //OPTIONAL:
+    //public virtual ConsoleColor GetColor => ConsoleColor.Gray;
 
     public void Move(City city)
     {

@@ -2,7 +2,12 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 class Citizen : Person
 {
-    public Citizen(string name, string description, int startX, int startY, char character) : base(name, description, startX, startY, character)
+    
+    public Citizen(string name, string description, int startX, int startY) : base(name, description, startX, startY)
     {
+        Character = 'C';
+         Color = Console.BackgroundColor = ConsoleColor.Green;
     }
+    
+    
 }

@@ -28,8 +28,9 @@ class Program
 
         int posX = -1;
         int posY = -1;
-        Citizen citizen = new Citizen("Jonas", "Medborgare", 10,10, 'M');
-
+        Citizen citizen = new Citizen("Jonas", "Medborgare", 10,10);
+        List<Person> persons = new List<Person>();
+        persons.Add(citizen);
         
 
         city.GenerateLayout();
@@ -44,23 +45,14 @@ class Program
         while (true)
         {
             Console.SetCursorPosition(0, 0);
-            // Innan start sätter vi grundboarders på respektive PLACE
-
-            // Sätt respektive PLACE till tomma celler
-
-            // **Kalla på respektive PERSONS MOVE metoder
-
-            // Sätt dit alla PERSONS på sina POSITIONS
-
-            // Printar ut PLACES
-
-            //((Place)city).PrintLayout();
-                        
+            
+            city.SetBorder();
+            city.PrintLayout(persons);
+            
             
             if (!debugList)
             {
                 //city.PrintLayout(posX, posY, citizen, inJail);
-                city.PrintLayout(citizen);
                 //prison.PrintLayout();
                 //prison.PrintLayout(posX, posY, citizen, inJail);
                 
