@@ -21,50 +21,25 @@ class Program
         #endregion
 
         #region Other variables
-
-        int posX = -1;
-        int posY = -1;
-        //bool inJail = false;
+        
         bool debugList = false;
         Console.CursorVisible = false;
-
+        
         #endregion
 
         #region NumberOfPersonsInCity
-
+        //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
         int numberOfCitizens = 12;
         int numberOfThieves = 15;
         int numberOfOfficers = 10;
 
         #endregion
-
+        
+        
         City city = new City(cityRows, cityCols, cityGrid);
         Prison prison = new Prison(prisonRows, prisonCols, prisonGrid);
-
-
-        List<Person> persons = new List<Person>();
-
-        for (int number = 0; number < numberOfCitizens; number++)
-        {
-            int positionX = Random.Shared.Next(1, cityRows - 1);
-            int positionY = Random.Shared.Next(1, cityCols - 1);
-            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), positionX, positionY));
-        }
-
-        for (int number = 0; number < numberOfThieves; number++)
-        {
-            int positionX = Random.Shared.Next(1, cityRows - 1);
-            int positionY = Random.Shared.Next(1, cityCols - 1);
-            persons.Add(new Thief(Person.GenerateNamesOfPersons(), positionX, positionY));
-        }
-
-        for (int number = 0; number < numberOfOfficers; number++)
-        {
-            int positionX = Random.Shared.Next(1, cityRows - 1);
-            int positionY = Random.Shared.Next(1, cityCols - 1);
-            persons.Add(new Police(Person.GenerateNamesOfPersons(), positionX, positionY));
-        }
-
+        List<Person> persons = Helpers.PersonList(cityRows, cityCols, numberOfCitizens, numberOfThieves, numberOfOfficers);
+        
         city.GenerateLayout();
         prison.GenerateLayout();
 
@@ -78,9 +53,7 @@ class Program
                 city.PrintLayout(persons);
                 prison.SetBorder();
                 prison.PrintLayout(persons);
-                //city.PrintLayout(posX, posY, citizen, inJail);
-                //prison.PrintLayout();
-                //prison.PrintLayout(posX, posY, citizen, inJail);
+                
             }
             else
             {
@@ -95,50 +68,14 @@ class Program
                     Console.WriteLine();
                 }
             }
+            
 
-
-            #region TESTING: Random inputs med thread.sleep
-
-            //switch (Random.Shared.Next(0, 9))
-            //{
-            //    case 0: posX--; if (posX == 0) posX = cityRows - 2; break;
-            //    case 1: posX++; if (posX == cityRows - 1) posX = 1; break;
-            //    case 2: posY--; if (posY == 0) posY = cityCols - 2; break;
-            //    case 3: posY++; if (posY == cityCols - 1) posY = 1; break;
-            //    case 4: posX--; if (posX == 0) posX = cityRows - 2; posY--; if (posY == 0) posY = cityCols - 2; break;
-            //    case 5: posX--; if (posX == 0) posX = cityRows - 2; posY++; if (posY == cityCols - 1) posY = 1; break;
-            //    case 6: posX++; if (posX == cityRows - 1) posX = 1; posY--; if (posY == 0) posY = cityCols - 2; break;
-            //    case 7: posX++; if (posX == cityRows - 1) posX = 1; posY++; if (posY == cityCols - 1) posY = 1; break;
-            //    case 8: Console.WriteLine("Didnt move"); break;
-            //}
-            //int test = 500;
-            //Thread.Sleep(test);
-
-            #endregion
-
-            #region TESTING : WASD movement for debug
+            #region TESTING : Prison och Debug
 
             ConsoleKeyInfo key = Console.ReadKey(true);
 
             switch (key.Key)
             {
-                case ConsoleKey.W:
-                    posX--;
-                    if (posX == 0) posX = cityRows - 2;
-                    break; // !inJail på alla ifsatser
-                case ConsoleKey.S:
-                    posX++;
-                    if (posX == cityRows - 1) posX = 1;
-                    break;
-                case ConsoleKey.A:
-                    posY--;
-                    if (posY == 0) posY = cityCols - 2;
-                    break;
-                case ConsoleKey.D:
-                    posY++;
-                    if (posY == cityCols - 1) posY = 1;
-                    break;
-
 
                 case ConsoleKey.J:
                     foreach (Person person in persons)
@@ -152,63 +89,12 @@ class Program
                             ((Thief)person).MoveToCity(person,city);
                         }
                     }
-
                     break;
                 case ConsoleKey.L:
                     debugList = !debugList;
                     Console.Clear();
                     break;
-                case ConsoleKey.R:
-                {
-                    switch (Random.Shared.Next(0, 9))
-                    {
-                        case 0:
-                            posX--;
-                            if (posX == 0) posX = cityRows - 2;
-                            break;
-                        case 1:
-                            posX++;
-                            if (posX == cityRows - 1) posX = 1;
-                            break;
-                        case 2:
-                            posY--;
-                            if (posY == 0) posY = cityCols - 2;
-                            break;
-                        case 3:
-                            posY++;
-                            if (posY == cityCols - 1) posY = 1;
-                            break;
-                        case 4:
-                            posX--;
-                            if (posX == 0) posX = cityRows - 2;
-                            posY--;
-                            if (posY == 0) posY = cityCols - 2;
-                            break;
-                        case 5:
-                            posX--;
-                            if (posX == 0) posX = cityRows - 2;
-                            posY++;
-                            if (posY == cityCols - 1) posY = 1;
-                            break;
-                        case 6:
-                            posX++;
-                            if (posX == cityRows - 1) posX = 1;
-                            posY--;
-                            if (posY == 0) posY = cityCols - 2;
-                            break;
-                        case 7:
-                            posX++;
-                            if (posX == cityRows - 1) posX = 1;
-                            posY++;
-                            if (posY == cityCols - 1) posY = 1;
-                            break;
-                        case 8: Console.WriteLine("Didnt move"); break;
-                    }
-
-                    break;
-                }
             }
-
             #endregion
 
             foreach (Person person in persons)
