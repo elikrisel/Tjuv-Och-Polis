@@ -7,7 +7,13 @@ class Citizen : Person
     {
         Character = 'C';
          Color = Console.BackgroundColor = ConsoleColor.Green;
+        InventorySystem = new List<string>
+        {
+            "Nycklar", "Mobiltelefon", "Pengar", "Klocka"
+        };
     }
+
+
     
     
 }

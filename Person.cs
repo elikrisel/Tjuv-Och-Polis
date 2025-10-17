@@ -28,6 +28,7 @@ public class Person
         CoordinationSystem = new int[startX, startY];
         X = startX;
         Y = startY;
+        InventorySystem = new List<string>();
     }
     
     public static string GenerateNamesOfPersons()
