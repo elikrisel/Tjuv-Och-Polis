@@ -30,6 +30,28 @@ public class Person
         Y = startY;
     }
     
+    public static string GenerateNamesOfPersons()
+    {
+        List<string> names = new List<string>()
+        {
+            "Adam", "Agnes", "Alexander", "Alva", "Amanda",
+            "Anders", "Anna", "Anton", "Arvid", "Astrid",
+            "Axel", "Beatrice", "Benjamin", "Berit", "Bertil",
+            "Carl", "Caroline", "Charlotte", "Christoffer", "Clara",
+            "Daniel", "David", "Dennis", "Ebba", "Edvin",
+            "Elin", "Elisabeth", "Elliot", "Elsa", "Emil",
+            "Emma", "Erik", "Eva", "Filip", "Frida",
+            "Gabriel", "Gustav", "Hanna", "Henrik", "Hugo",
+            "Ida", "Isak", "Isabella", "Jakob", "Johanna",
+            "Johan", "Josefin", "Julia", "Karin", "Karl"
+        };
+
+        int randomIndex = Random.Shared.Next(0, names.Count);
+
+        return names[randomIndex];
+        
+    }
+
     //OPTIONAL:
     //public virtual char GetCharacter() => '?';
     
