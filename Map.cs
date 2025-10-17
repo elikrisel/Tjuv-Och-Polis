@@ -14,13 +14,13 @@ public class Map
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Map(int rows, int columns, char[,] mapGrid, char border, ConsoleColor color)
+    public Map(int rows, int columns, char[,] mapGrid)
     {
         Rows = rows;
         Columns = columns;
         MapGrid = mapGrid;
-        Border = border;
-        Color = color;
+        Border = '.';
+        Color = ConsoleColor.White;
         EmptySpace = ' ';
     }
 
@@ -73,7 +73,7 @@ public class Map
     }
 
 
-    public void PrintLayout(List<Person> persons)
+    public virtual void PrintLayout(List<Person> persons)
     {
         for (int row = 0; row < Rows; row++)
         {

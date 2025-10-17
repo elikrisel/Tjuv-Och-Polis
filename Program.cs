@@ -17,10 +17,14 @@ class Program
         #endregion
 
         #region Other variables
-        char border = '.';
-        ConsoleColor color = ConsoleColor.White;
+        int posX = -1;
+        int posY = -1;
+        bool inJail = false;
+        bool debugList = false;
+        Console.CursorVisible = false;
+
         #endregion
-        
+
         #region NumberOfPersonsInCity
 
         int numberOfCitizens = 5;
@@ -28,13 +32,9 @@ class Program
         int numberOfOfficers = 2;
         #endregion
 
-        
+        City city = new City(cityRows, cityCols, cityGrid);
+        Prison prison = new Prison(prisonRows, prisonCols, prisonGrid);
 
-        City city = new City(cityRows, cityCols, cityGrid, border, color);
-        Prison prison = new Prison(prisonRows, prisonCols, prisonGrid, border, color);
-
-        int posX = -1;
-        int posY = -1;
         
         List<Person> persons = new List<Person>();
 
@@ -53,36 +53,25 @@ class Program
             persons.Add(new Police(Person.GenerateNamesOfPersons(), 10, 10));
         }
 
-
         city.GenerateLayout();
         prison.GenerateLayout();
-
-        //cityGrid[posX, posY] = citizen.Character;
-
-
-        bool inJail = false;
-        bool debugList = false;
-        Console.CursorVisible = false;
+        
         while (true)
         {
             Console.SetCursorPosition(0, 0);
             
-            city.SetBorder();
-            city.PrintLayout(persons);
-            
-            
             if (!debugList)
             {
+                city.SetBorder();
+                city.PrintLayout(persons);
+                prison.SetBorder();
+                prison.PrintLayout(persons);
                 //city.PrintLayout(posX, posY, citizen, inJail);
                 //prison.PrintLayout();
                 //prison.PrintLayout(posX, posY, citizen, inJail);
-                
-                //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
-                //Console.WriteLine($"{citizen.Name} Position: [{citizen.X,2},{citizen.Y,2}]");
             }
             else
             {
-                //Console.WriteLine($"Player position: [{posX,2},{posY,2}]");
                 foreach(Person person in persons)
                 {
                     Console.Write($"{person.Name} Position: [{person.X,2},{person.Y,2}]");
@@ -92,11 +81,7 @@ class Program
                     }
                     Console.WriteLine();
                 }
-                
-
-                
             }
-
 
 
             #region TESTING: Random inputs med thread.sleep
