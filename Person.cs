@@ -83,7 +83,7 @@ public class Person
         
         switch (Random.Shared.Next(0, 8))
         {
-            case 0: X--; if (X == 0) X /= prison.Rows - 2; break;
+            case 0: X--; if (X == 0) X = prison.Rows - 2; break;
             case 1: X++; if (X == prison.Rows - 1) X = 1; break;
             case 2: Y--; if (Y == 0) Y = prison.Columns - 2; break;
             case 3: Y++; if (Y == prison.Columns - 1) Y = 1; break;
