@@ -29,9 +29,9 @@ class Program
 
         #region NumberOfPersonsInCity
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
-        int numberOfCitizens = 12;
+        int numberOfCitizens = 2;
         int numberOfThieves = 15;
-        int numberOfOfficers = 10;
+        int numberOfOfficers = 2;
 
         #endregion
         
@@ -42,17 +42,19 @@ class Program
         
         city.GenerateLayout();
         prison.GenerateLayout();
-
+        
         while (true)
         {
             Console.SetCursorPosition(0, 0);
 
             if (!debugList)
             {
-                city.SetBorder();
+                city.SetLayout(persons);
                 city.PrintLayout(persons);
-                prison.SetBorder();
+                city.ClearLayout(persons);
+                prison.SetLayout(persons);
                 prison.PrintLayout(persons);
+                prison.ClearLayout(persons);
                 
             }
             else
@@ -62,13 +64,25 @@ class Program
                     Console.Write($"{person.Name} Position: [{person.X,2},{person.Y,2}]");
                     foreach (string inventory in person.InventorySystem)
                     {
+                        
                         Console.Write(inventory + " ");
+                        
                     }
-
+                    
                     Console.WriteLine();
                 }
             }
-            
+            foreach (Person person in persons)
+            {
+                if (!person.InPrison)
+                {
+                    person.MovementInCity(city);
+                }
+                else
+                {
+                    person.MovementInPrison(prison);
+                }
+            } 
 
             #region TESTING : Prison och Debug
 
@@ -97,18 +111,9 @@ class Program
             }
             #endregion
 
-            foreach (Person person in persons)
-            {
-                if (!person.InPrison)
-                {
-                    person.MovementInCity(city);
-                }
-                else
-                {
-                    person.MovementInPrison(prison);
-                }
-            }
+           
 
+            Console.Clear();
             //Console.ReadKey(true);
         }
     }
