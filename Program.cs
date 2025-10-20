@@ -7,15 +7,15 @@ class Program
         #region City variables
 
         int cityRows = 15;
-        int cityCols = 25;
+        int cityCols = 15;
         char[,] cityGrid = new char[cityRows, cityCols];
 
         #endregion
 
         #region Prison variables
 
-        int prisonRows = 10;
-        int prisonCols = 10;
+        int prisonRows = 5;
+        int prisonCols = 5;
         char[,] prisonGrid = new char[prisonRows, prisonCols];
 
         #endregion
@@ -29,8 +29,8 @@ class Program
 
         #region NumberOfPersonsInCity
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
-        int numberOfCitizens = 2;
-        int numberOfThieves = 15;
+        int numberOfCitizens = 10;
+        int numberOfThieves = 10;
         int numberOfOfficers = 2;
 
         #endregion
@@ -38,6 +38,7 @@ class Program
         
         City city = new City(cityRows, cityCols, cityGrid);
         Prison prison = new Prison(prisonRows, prisonCols, prisonGrid);
+        
         List<Person> persons = Helpers.PersonList(cityRows, cityCols, numberOfCitizens, numberOfThieves, numberOfOfficers);
         
         city.GenerateLayout();
@@ -72,6 +73,10 @@ class Program
                     Console.WriteLine();
                 }
             }
+
+            Console.WriteLine("Press any key to move players");
+            Console.ReadKey(true);
+            PersonManager.HandleInteractions(persons);
             foreach (Person person in persons)
             {
                 if (!person.InPrison)
@@ -83,6 +88,7 @@ class Program
                     person.MovementInPrison(prison);
                 }
             } 
+            
 
             #region TESTING : Prison och Debug
 
