@@ -40,6 +40,10 @@ class Program
         Prison prison = new Prison(prisonRows, prisonCols, prisonGrid);
         
         List<Person> persons = Helpers.PersonList(cityRows, cityCols, numberOfCitizens, numberOfThieves, numberOfOfficers);
+        for (int i = 0; i < 5; i++)
+        {
+            persons.Add(new Citizen("test",5,5));
+        }  
         
         city.GenerateLayout();
         prison.GenerateLayout();
@@ -75,8 +79,7 @@ class Program
             }
 
             Console.WriteLine("Press any key to move players");
-            Console.ReadKey(true);
-            PersonManager.HandleInteractions(persons);
+            PersonManager.HandleInteractions(persons,prison);
             foreach (Person person in persons)
             {
                 if (!person.InPrison)
