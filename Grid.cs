@@ -4,7 +4,7 @@ public class Grid
 {
     public int Rows { get; set; }
     public int Columns { get; set; }
-    public char[,] MapGrid { get; set; }
+    public char[,] Matrix { get; set; }
 
     public char Border { get; set; } //HA FLER SENARE
 
@@ -14,11 +14,11 @@ public class Grid
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Grid(int rows, int columns, char[,] mapGrid)
+    public Grid(int rows, int columns, char[,] matrix)
     {
         Rows = rows;
         Columns = columns;
-        MapGrid = mapGrid;
+        Matrix = matrix;
         Border = '.';
         Color = ConsoleColor.White;
         EmptySpace = ' ';
@@ -34,11 +34,11 @@ public class Grid
             {
                 if (row == 0 || row == Rows - 1 || col == 0 || col == Columns - 1)
                 {
-                    MapGrid[row, col] = Border;
+                    Matrix[row, col] = Border;
                 }
                 else
                 {
-                    MapGrid[row, col] = EmptySpace;
+                    Matrix[row, col] = EmptySpace;
                 }
             }
         }
@@ -50,7 +50,7 @@ public class Grid
         {
             if (!person.InPrison)
             {
-                MapGrid[person.X, person.Y] = person.Character;
+                Matrix[person.X, person.Y] = person.Character;
             }
         }
     }
@@ -62,7 +62,7 @@ public class Grid
         {
             if (!person.InPrison)
             {
-                MapGrid[person.X, person.Y] = EmptySpace;
+                Matrix[person.X, person.Y] = EmptySpace;
             }
         }
     }
@@ -73,7 +73,7 @@ public class Grid
         {
             for (int col = 0; col < Columns; col++)
             {
-                if (MapGrid[row, col] == Border)
+                if (Matrix[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
@@ -84,16 +84,14 @@ public class Grid
                 //     {
                 //         if (person.X == row && person.Y == col && !person.InPrison)
                 //         {
-                //             MapGrid[row, col] = person.Character;
                 //             Console.ForegroundColor = person.Color;
-                //
                 //         }
                 //
                 //
                 //     }
                 //
                 // }
-                Console.Write($"{MapGrid[row, col]} ");
+                Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
 

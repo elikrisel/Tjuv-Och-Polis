@@ -2,7 +2,7 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class Prison : Grid
 {
-    public Prison(int rows, int columns, char[,] mapGrid) : base(rows, columns, mapGrid)
+    public Prison(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
     {
     }
     
@@ -12,7 +12,7 @@ public class Prison : Grid
         {
             for (int col = 0; col < Columns; col++)
             {
-                if (MapGrid[row, col] == Border)
+                if (Matrix[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
@@ -34,7 +34,7 @@ public class Prison : Grid
                 //     }
                     
                 //}
-                Console.Write($"{MapGrid[row, col]} ");
+                Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
             Console.WriteLine();
@@ -48,7 +48,7 @@ public class Prison : Grid
         {
             if (person.InPrison)
             {
-                MapGrid[person.X, person.Y] = person.Character;
+                Matrix[person.X, person.Y] = person.Character;
             }
         }   
     }
@@ -59,7 +59,7 @@ public class Prison : Grid
         {
             if (person.InPrison)
             {
-                MapGrid[person.X, person.Y] = EmptySpace;
+                Matrix[person.X, person.Y] = EmptySpace;
             }
         }
     }

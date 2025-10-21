@@ -13,6 +13,12 @@ public class Helpers
         prison.PrintLayout(persons);
         prison.ClearLayout(persons);
     }
+
+    public static void PrintNewsFeedList(NewsFeed newsFeed)
+    {
+        
+        
+    }
     
     public static void PrintDebugList(List<Person> persons)
     {
