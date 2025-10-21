@@ -39,13 +39,28 @@ public class NewsFeed : Grid
     public void PrintNewsList(City city, Prison prison)
     {
         Console.SetCursorPosition(0, city.Rows + prison.Rows + 1);
-        foreach (string news in NewsList)
+        //foreach (string news in NewsList)
+        //{
+        //    //TODO: ÄNDRA VARIABELN SENARE
+        //    Console.SetCursorPosition(2,Console.CursorTop);
+        //    Console.WriteLine(news);
+        //    //SKRIVA UT HUR BRED TEXTEN ÄR SOM SKA SKRIVAS UT
+        //}
+        int count = 0;
+        
+        for(int i = NewsList.Count - 1; i > 0; i--)
         {
-            //TODO: ÄNDRA VARIABELN SENARE
-            Console.SetCursorPosition(2,Console.CursorTop);
-            Console.WriteLine(news);
-            //SKRIVA UT HUR BRED TEXTEN ÄR SOM SKA SKRIVAS UT
+            Console.SetCursorPosition(2, Console.CursorTop);
+            Console.WriteLine(NewsList[i]);
+
+            count++;
+            if(count == 5)
+            {
+                break;
+            }
         }
+
+
     }
     
 }
