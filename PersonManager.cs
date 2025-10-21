@@ -100,4 +100,19 @@ public class PersonManager
                         
         }
     }
+
+    public static void MoveEachPerson(List<Person> persons, City city, Prison prison)
+    {
+        foreach (Person person in persons)
+        {
+            if (!person.InPrison)
+            {
+                person.MovementInCity(city);
+            }
+            else
+            {
+                person.MovementInPrison(prison);
+            }
+        }
+    }
 }

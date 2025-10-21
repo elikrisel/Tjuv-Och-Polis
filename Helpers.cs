@@ -2,8 +2,21 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class Helpers
 {
+    private static string BreakPoint(int number) => new('-', number);
+
+    public static void SetPrintAndClearLayouts(City city, Prison prison, List<Person> persons)
+    {
+        city.SetLayout(persons);
+        city.PrintLayout(persons);
+        city.ClearLayout(persons);
+        prison.SetLayout(persons);
+        prison.PrintLayout(persons);
+        prison.ClearLayout(persons);
+    }
+    
     public static void PrintDebugList(List<Person> persons)
     {
+        Console.WriteLine(BreakPoint(45));
         foreach (Person person in persons)
         {
             string descriptionName = $"{person.Description} {person.Name}";
@@ -15,10 +28,11 @@ public class Helpers
                         
             }
 
-            Console.WriteLine();        
-            //Console.WriteLine(new string('-',45));
+            Console.WriteLine();
             
+
         }
+        Console.WriteLine(BreakPoint(45));
     }
     
     public static List<Person> PersonList(int cityRows, int cityCols, int numberOfCitizens, int numberOfThieves,int numberOfOfficers)
