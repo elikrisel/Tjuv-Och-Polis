@@ -1,6 +1,6 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-public class Map
+public class Grid
 {
     public int Rows { get; set; }
     public int Columns { get; set; }
@@ -14,7 +14,7 @@ public class Map
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Map(int rows, int columns, char[,] mapGrid)
+    public Grid(int rows, int columns, char[,] mapGrid)
     {
         Rows = rows;
         Columns = columns;

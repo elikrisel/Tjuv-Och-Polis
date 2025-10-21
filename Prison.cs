@@ -1,6 +1,6 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-public class Prison : Map
+public class Prison : Grid
 {
     public Prison(int rows, int columns, char[,] mapGrid) : base(rows, columns, mapGrid)
     {
