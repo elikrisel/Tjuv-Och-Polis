@@ -6,7 +6,7 @@ public class PersonManager
 {
     
     
-    public static void HandleInteractions(List<Person> persons, Prison prison)
+    public static void HandleInteractions(List<Person> persons, Prison prison, NewsFeed newsFeed)
     {
         for (int i = 0; i < persons.Count - 1; i++)
         {
@@ -17,10 +17,10 @@ public class PersonManager
                 if (person1.X == person2.X && person1.Y == person2.Y)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{persons[i].Description} {persons[i].Name} and {persons[j].Description} {persons[j].Name} are at same place");
-                    HandleCitizenAndThiefInteraction(person1, person2);
-                    HandleThiefAndPoliceInteraction(person1, person2,prison);
-                    HandleCitizenAndPoliceInteraction(person1, person2);
+                    //Console.WriteLine($"{persons[i].Description} {persons[i].Name} and {persons[j].Description} {persons[j].Name} are at same place");
+                    HandleCitizenAndThiefInteraction(person1, person2, newsFeed);
+                    HandleThiefAndPoliceInteraction(person1, person2,prison, newsFeed);
+                    HandleCitizenAndPoliceInteraction(person1, person2, newsFeed);
                     
                 }
                 // else
@@ -38,19 +38,21 @@ public class PersonManager
         
     }
 
-    private static void HandleCitizenAndPoliceInteraction(Person person1, Person person2)
+    private static void HandleCitizenAndPoliceInteraction(Person person1, Person person2, NewsFeed newsFeed)
     {
         if (person1 is Citizen && person2 is Police)
         {
-            Console.WriteLine($"{person1.Description} {person1.Name} hälsar på: {person2.Description} {person2.Name}");
+            //Console.WriteLine($"{person1.Description} {person1.Name} hälsar på: {person2.Description} {person2.Name}");
+            newsFeed.NewsList.Add($"{person1.Description} {person1.Name} hälsar på {person2.Description} {person2.Name}");
         }
         else if (person1 is Police && person2 is Citizen)
         {
-            Console.WriteLine($"{person2.Description} {person2.Name} hälsar på: {person1.Description} {person1.Name}");
+            //Console.WriteLine($"{person2.Description} {person2.Name} hälsar på: {person1.Description} {person1.Name}");
+            newsFeed.NewsList.Add($"{person2.Description} {person2.Name} hälsar på {person1.Description} {person1.Name}");
         }
     }
 
-    private static void HandleThiefAndPoliceInteraction(Person person1, Person person2, Prison prison)
+    private static void HandleThiefAndPoliceInteraction(Person person1, Person person2, Prison prison, NewsFeed newsFeed)
     {
         if(person1 is Police && person2 is Thief)
         {
@@ -59,8 +61,9 @@ public class PersonManager
                 person1.InventorySystem.AddRange(person2.InventorySystem);
                 person2.InventorySystem.Clear();
                 ((Thief)person2).MoveToJail(person2,prison);
-                Console.WriteLine("Thief is getting send to prison!");
-                            
+                //Console.WriteLine("Thief is getting send to prison!");
+                newsFeed.NewsList.Add($"{person1.Description} {person1.Name} sätter {person2.Description} {person2.Name} i fängelset");
+
             }
         }
         else if (person1 is Thief && person2 is Police)
@@ -70,12 +73,13 @@ public class PersonManager
                 person2.InventorySystem.AddRange(person1.InventorySystem);
                 person1.InventorySystem.Clear();
                 ((Thief)person1).MoveToJail(person1,prison);
-                
+                newsFeed.NewsList.Add($"{person2.Description} {person2.Name} sätter {person1.Description} {person1.Name} i fängelset");
+
             }
         }
     }
 
-    private static void HandleCitizenAndThiefInteraction(Person person1, Person person2)
+    private static void HandleCitizenAndThiefInteraction(Person person1, Person person2, NewsFeed newsFeed)
     {
         if (person1 is Citizen && person2 is Thief)
         {
@@ -83,8 +87,9 @@ public class PersonManager
             if (person1.InventorySystem.Count > 0)
             {
                 person2.InventorySystem.Add(person1.InventorySystem[0]);
+                newsFeed.NewsList.Add($"{person2.Description} {person2.Name} tar {person1.InventorySystem[0]} från {person1.Description} {person1.Name}");
                 person1.InventorySystem.RemoveAt(0);
-                Console.WriteLine("Citizen losing an item");
+                //Console.WriteLine("Citizen losing an item");
             }  
                         
         }
@@ -94,8 +99,9 @@ public class PersonManager
             if (person2.InventorySystem.Count > 0)
             {
                 person1.InventorySystem.Add(person2.InventorySystem[0]);
+                newsFeed.NewsList.Add($"{person1.Description} {person1.Name} tar {person2.InventorySystem[0]} från {person2.Description} {person2.Name}");
                 person2.InventorySystem.RemoveAt(0);
-                Console.WriteLine("Citizen losing an item");
+                //Console.WriteLine("Citizen losing an item");
             }
                         
         }

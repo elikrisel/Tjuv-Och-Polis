@@ -12,8 +12,7 @@ public class NewsFeed : Grid
         //
         NewsList = new List<string>()
         {
-            "News1",
-            "News2",
+            
         };
     }
 

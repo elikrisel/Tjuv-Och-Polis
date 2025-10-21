@@ -65,7 +65,7 @@ class Program
             if (!debugList)
             {
                 Helpers.SetPrintAndClearLayouts(city, prison, persons);
-                newsFeed.PrintLayout();
+                //newsFeed.PrintLayout();
                 newsFeed.PrintNewsList(city, prison);
             }
             else
@@ -74,7 +74,7 @@ class Program
             }
 
             //Console.WriteLine("Press any key to move players");
-            //PersonManager.HandleInteractions(persons, prison);
+            PersonManager.HandleInteractions(persons, prison, newsFeed);
             PersonManager.MoveEachPerson(persons, city, prison);
 
 
