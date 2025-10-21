@@ -64,18 +64,9 @@ class Program
             }
             else
             {
-                foreach (Person person in persons)
-                {
-                    Console.Write($"{person.Name} Position: [{person.X,2},{person.Y,2}]");
-                    foreach (string inventory in person.InventorySystem)
-                    {
-                        
-                        Console.Write(inventory + " ");
-                        
-                    }
-                    
-                    Console.WriteLine();
-                }
+                
+                Helpers.PrintDebugList(persons);
+                
             }
 
             Console.WriteLine("Press any key to move players");

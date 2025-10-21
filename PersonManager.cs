@@ -8,16 +8,6 @@ public class PersonManager
     
     public static void HandleInteractions(List<Person> persons, Prison prison)
     {
-        // LÄGGA IN LISTA?
-        // KOLLA VÄRDERNA MED ROW OCH COLUMN OCH SPARA I LISTAN?
-
-
-        //JÄMFÖRA BÅDA PERSONERNAS KOORDINATER
-
-        //OM PERSON ÄR PÅ SAMMA KOORDINATVÄRDE SOM DEN ANDRA PERSONEN
-        //SÅ SKA JAG PRINTA UT DETTA
-        //JÄMFÖRA VÄRDERNA
-
         for (int i = 0; i < persons.Count - 1; i++)
         {
             Person person1 = persons[i];
@@ -31,7 +21,6 @@ public class PersonManager
                     HandleCitizenAndThiefInteraction(person1, person2);
                     HandleThiefAndPoliceInteraction(person1, person2,prison);
                     HandleCitizenAndPoliceInteraction(person1, person2);
-                   
                     
                 }
                 // else
@@ -81,7 +70,7 @@ public class PersonManager
                 person2.InventorySystem.AddRange(person1.InventorySystem);
                 person1.InventorySystem.Clear();
                 ((Thief)person1).MoveToJail(person1,prison);
-                Console.WriteLine("Thief is getting send to prison!"); 
+                
             }
         }
     }

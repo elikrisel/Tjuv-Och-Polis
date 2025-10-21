@@ -16,6 +16,7 @@ public class Thief : Person
     public void MoveToJail(Person person, Prison prison)
     {
         InPrison = true;
+        Console.WriteLine($"{person.Description} {person.Name} skickas till fängelset");
         person.X = Random.Shared.Next(1, prison.Rows - 1);
         person.Y = Random.Shared.Next(1, prison.Columns - 1);
         
