@@ -7,7 +7,7 @@ class Citizen : Person
     {
         Character = 'C';
         Description = "Medborgare";
-        Color = ConsoleColor.Green;
+        Color = PersonManager.CitizenColor();
         InventorySystem = new List<string>
         {
             "Nycklar", "Mobiltelefon", "Pengar", "Klocka"

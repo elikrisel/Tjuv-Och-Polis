@@ -4,6 +4,21 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class PersonManager
 {
+
+    public static ConsoleColor CitizenColor()
+    {
+        return ConsoleColor.Green;
+    }
+
+    public static ConsoleColor ThiefColor()
+    {
+        return ConsoleColor.Red;
+    }
+
+    public static ConsoleColor PoliceColor()
+    {
+        return ConsoleColor.Blue;
+    }
     
     
     public static void HandleInteractions(List<Person> persons, Prison prison, NewsFeed newsFeed)

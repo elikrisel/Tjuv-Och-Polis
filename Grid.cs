@@ -77,6 +77,19 @@ public class Grid
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
+                    
+                }
+                else if (Matrix[row, col] == 'C')
+                {
+                    Console.ForegroundColor = PersonManager.CitizenColor();
+                }
+                else if (Matrix[row, col] == 'T')
+                {
+                    Console.ForegroundColor = PersonManager.ThiefColor();
+                }
+                else if (Matrix[row, col] == 'P')
+                {
+                    Console.ForegroundColor = PersonManager.PoliceColor(); 
                 }
                 // else
                 // {

@@ -19,6 +19,10 @@ public class Prison : Grid
                     // Console.Write($"{MapGrid[row, col]} ");
                     // Console.ResetColor();
                 }
+                else if (Matrix[row, col] == 'T')
+                {
+                    Console.ForegroundColor = PersonManager.ThiefColor();
+                }  
                 // else
                 // {
                 //     foreach (Person person in persons)
