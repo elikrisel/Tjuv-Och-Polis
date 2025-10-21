@@ -10,7 +10,7 @@ class Program
         #region City variables
 
         int cityRows = 6;
-        int cityCols = 15;
+        int cityCols = 40;
         char[,] cityGrid = new char[cityRows, cityCols];
 
         #endregion
@@ -18,12 +18,12 @@ class Program
         #region Prison variables
 
         int prisonRows = 4;
-        int prisonCols = 15;  
+        int prisonCols = 30;  
         char[,] prisonGrid = new char[prisonRows, prisonCols];
         #endregion
 
-        int newsFeedRows = 6;
-        int newsFeedCols = 15;
+        int newsFeedRows = 11;
+        int newsFeedCols = 40; 
         char[,] newsFeedGrid = new char[newsFeedRows, newsFeedCols];
         
         #region Other variables
@@ -38,7 +38,7 @@ class Program
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
         int numberOfCitizens = 10;
         int numberOfThieves = 10;
-        int numberOfOfficers = 2;
+        int numberOfOfficers = 10; 
 
         #endregion
 
@@ -49,8 +49,8 @@ class Program
         
         List<Person> persons =
             Helpers.PersonList(cityRows, cityCols, numberOfCitizens, numberOfThieves, numberOfOfficers);
-        for (int i = 0; i < 5; i++) 
-            persons.Add(new Citizen("test", Random.Shared.Next(1,cityRows - 1), Random.Shared.Next(1, cityCols - 1)));
+        // for (int i = 0; i < 5; i++) 
+        //     persons.Add(new Citizen("test", Random.Shared.Next(1,cityRows - 1), Random.Shared.Next(1, cityCols - 1)));
         
 
         city.GenerateLayout();
@@ -59,13 +59,13 @@ class Program
 
         while (true)
         {
-            
             Console.SetCursorPosition(0, 0);
             
             if (!debugList)
             {
                 Helpers.SetPrintAndClearLayouts(city, prison, persons);
-                //newsFeed.PrintLayout();
+                newsFeed.PrintLayout();
+                newsFeed.Statistics(persons,numberOfCitizens,numberOfThieves,numberOfOfficers,city,prison) ;
                 newsFeed.PrintNewsList(city, prison);
             }
             else

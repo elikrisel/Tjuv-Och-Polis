@@ -2,7 +2,7 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class Helpers
 {
-    private static string BreakPoint(int number) => new('-', number);
+    public static string BreakPoint(int number) => new('-', number);
 
     public static void SetPrintAndClearLayouts(City city, Prison prison, List<Person> persons)
     {

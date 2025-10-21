@@ -6,14 +6,8 @@ public class NewsFeed : Grid
     
     public NewsFeed(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
     {
-        //ÄNDRA NEWS LIST
-        // NEWSLIST.ADD
-        //VARJE INTERACTION
-        //
-        NewsList = new List<string>()
-        {
-            
-        };
+        
+        NewsList = new List<string>();
     }
 
     public void PrintLayout()
@@ -36,9 +30,33 @@ public class NewsFeed : Grid
         }
     }
 
+    public void Statistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfOfficers,City city, Prison prison)
+    {
+        int thievesInPrison = 0;
+        foreach (Person person in persons)
+        {
+            if (person.InPrison)
+            {
+                thievesInPrison++;
+            }
+        }
+        Console.SetCursorPosition(2, city.Rows + prison.Rows + 1);
+        Console.WriteLine($"Medborgare i Staden: {numberOfCitizens}");
+        Console.SetCursorPosition(2, Console.CursorTop); 
+        Console.WriteLine($"Tjuvar i Staden: {numberOfThieves - thievesInPrison }. Tjuvar i Fängelse: {thievesInPrison}");
+        Console.SetCursorPosition(2, Console.CursorTop);
+        //TODO: Poliser mördade av tjuvar?
+        Console.WriteLine($"Poliser i Staden: {numberOfOfficers}");
+        Console.SetCursorPosition(2, Console.CursorTop);
+        Console.WriteLine(Helpers.BreakPoint(Columns * 2 - 4));
+
+        
+        
+    } 
+    
     public void PrintNewsList(City city, Prison prison)
     {
-        Console.SetCursorPosition(0, city.Rows + prison.Rows + 1);
+        //Console.SetCursorPosition(0, city.Rows + prison.Rows + 1);
         //foreach (string news in NewsList)
         //{
         //    //TODO: ÄNDRA VARIABELN SENARE
