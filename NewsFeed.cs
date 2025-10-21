@@ -51,8 +51,8 @@ public class NewsFeed : Grid
         for(int i = NewsList.Count - 1; i > 0; i--)
         {
             Console.SetCursorPosition(2, Console.CursorTop);
-            Console.WriteLine(NewsList[i]);
-
+            Console.WriteLine($"{i}: {NewsList[i]}");
+            //Console.WriteLine($"{NewsList.Count}. {NewsList[i]}");
             count++;
             if(count == 5)
             {
