@@ -1,12 +1,12 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-class Prison : Map
+public class Prison : Map
 {
-    public Prison(int rows, int columns, char[,] mapGrid, char border, ConsoleColor color) : base(rows, columns, mapGrid, border, color)
+    public Prison(int rows, int columns, char[,] mapGrid) : base(rows, columns, mapGrid)
     {
     }
-
-    public override void PrintLayout(int posX, int posY, Person citizen, bool inJail)
+    
+    public override void PrintLayout(List<Person> persons)
     {
         for (int row = 0; row < Rows; row++)
         {
@@ -16,25 +16,52 @@ class Prison : Map
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
+                    // Console.Write($"{MapGrid[row, col]} ");
+                    // Console.ResetColor();
                 }
-                else if (row == posX && col == posY && inJail) 
-                {
-                    MapGrid[row, col] = citizen.Character;
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    MapGrid[row, col] = ' ';
-                    Console.Write($"{MapGrid[row, col]} ");
-                }
+                // else
+                // {
+                //     foreach (Person person in persons)
+                //     {
+                //         if (person.X == row && person.Y == col && person.InPrison)
+                //         {
+                //             MapGrid[row, col] = person.Character;
+                //             Console.ForegroundColor = person.Color;
+                //
+                //         }
+                //
+                //
+                //     }
+                    
+                //}
+                Console.Write($"{MapGrid[row, col]} ");
+                Console.ResetColor();
             }
-
             Console.WriteLine();
+
         }
     }
+
+    public override void SetLayout(List<Person> persons)
+    {
+        foreach (Person person in persons)
+        {
+            if (person.InPrison)
+            {
+                MapGrid[person.X, person.Y] = person.Character;
+            }
+        }   
+    }
+    
+    public override void ClearLayout(List<Person> persons)
+    {
+        foreach (Person person in persons)
+        {
+            if (person.InPrison)
+            {
+                MapGrid[person.X, person.Y] = EmptySpace;
+            }
+        }
+    }
+    
 }

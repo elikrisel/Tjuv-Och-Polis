@@ -7,24 +7,27 @@ public class Map
     public char[,] MapGrid { get; set; }
 
     public char Border { get; set; } //HA FLER SENARE
-    
+
     public ConsoleColor Color { get; set; }
 
+    public char EmptySpace { get; set; }
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Map(int rows, int columns, char[,] mapGrid, char border, ConsoleColor color)
+    public Map(int rows, int columns, char[,] mapGrid)
     {
         Rows = rows;
         Columns = columns;
         MapGrid = mapGrid;
-        Border = border;
-        Color = color;
+        Border = '.';
+        Color = ConsoleColor.White;
+        EmptySpace = ' ';
     }
     
+
+
     public void GenerateLayout()
     {
-
         for (int row = 0; row < Rows; row++)
         {
             for (int col = 0; col < Columns; col++)
@@ -35,68 +38,35 @@ public class Map
                 }
                 else
                 {
-                    MapGrid[row, col] = ' ';
+                    MapGrid[row, col] = EmptySpace;
                 }
             }
         }
     }
 
-
-    public void PrintLayout()
+    public virtual void SetLayout(List<Person> persons)
     {
-        for (int row = 0; row < Rows; row++)
+        foreach (Person person in persons)
         {
-            for (int col = 0; col < Columns; col++)
+            if (!person.InPrison)
             {
-                if (MapGrid[row, col] == Border)
-                {
-                    Console.BackgroundColor = Color;
-                    Console.ForegroundColor = Color;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.Write($"{MapGrid[row, col]} ");
-                }
+                MapGrid[person.X, person.Y] = person.Character;
             }
-
-            Console.WriteLine();
         }
     }
-
-    // virtual / override f�r jail
-    public virtual void PrintLayout(int posX, int posY, Person citizen, bool inJail)
+    
+    
+    public virtual void ClearLayout(List<Person> persons)
     {
-        for (int row = 0; row < Rows; row++)
+        foreach (Person person in persons)
         {
-            for (int col = 0; col < Columns; col++)
+            if (!person.InPrison)
             {
-                if (MapGrid[row, col] == Border)
-                {
-                    Console.BackgroundColor = Color;
-                    Console.ForegroundColor = Color;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
-                }
-                else if (row == posX && col == posY && !inJail)
-                {
-                    MapGrid[row, col] = citizen.Character;
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    MapGrid[row, col] = ' ';
-                    Console.Write($"{MapGrid[row, col]} ");
-                }
+                MapGrid[person.X, person.Y] = EmptySpace;
             }
-
-            Console.WriteLine();
         }
     }
+    
     public virtual void PrintLayout(List<Person> persons)
     {
         for (int row = 0; row < Rows; row++)
@@ -107,59 +77,28 @@ public class Map
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    Console.Write($"{MapGrid[row, col]} ");
-                    Console.ResetColor();
                 }
-                else
-                {
-                    for (int i = 0; i < persons.Count; i++)
-                    {
-                        if (persons[i].X == row && persons[i].Y == col)
-                        {
-                            MapGrid[row, col] = persons[i].Character;
-                            //Console.BackgroundColor = ConsoleColor.Red;
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            
-                        }  
-                        else if(MapGrid[row, col] != persons[i].Character)
-                        {
-                            
-                            MapGrid[row, col] = ' ';
-                                  
-                        }
-                        
-                        
-                    }
-                    
-                    Console.Write($"{MapGrid[row, col]} ");
-                           
-
-                    
-                }
-                
-               
-                // if (MapGrid[row, col] == Border)
+                // else
                 // {
-                //     Console.BackgroundColor = Color;
-                //     Console.ForegroundColor = Color;
-                //     Console.Write($"{MapGrid[row, col]} ");
-                //     Console.ResetColor();
+                //     foreach (Person person in persons)
+                //     {
+                //         if (person.X == row && person.Y == col && !person.InPrison)
+                //         {
+                //             MapGrid[row, col] = person.Character;
+                //             Console.ForegroundColor = person.Color;
+                //
+                //         }
+                //
+                //
+                //     }
+                //
                 // }
-                // else if (row == persons.X && col == persons.Y) //TODO: Lägga in för att hålla koll om Thief är !InJail
-                // {
-                //     MapGrid[row, col] = persons.Character;
-                //     Console.BackgroundColor = ConsoleColor.Red;
-                //     Console.ForegroundColor = ConsoleColor.Red;
-                //     Console.Write($"{MapGrid[row, col]} ");
-                //     Console.ResetColor();
-                // }
-                
+                Console.Write($"{MapGrid[row, col]} ");
+                Console.ResetColor();
             }
 
             Console.WriteLine();
         }
     }
     
-    
-
 }
