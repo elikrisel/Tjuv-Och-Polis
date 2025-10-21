@@ -4,7 +4,21 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class PersonManager
 {
+    public static char CitizenCharacter()
+    {
+        return 'C';
+    }
 
+    public static char ThiefCharacter()
+    {
+        return 'T';
+    }
+
+    public static char PoliceCharacter()
+    {
+        return 'P';
+    }
+    
     public static ConsoleColor CitizenColor()
     {
         return ConsoleColor.Green;

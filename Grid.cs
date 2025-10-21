@@ -77,33 +77,20 @@ public class Grid
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    
                 }
-                else if (Matrix[row, col] == 'C')
+                else if (Matrix[row, col] == PersonManager.CitizenCharacter())
                 {
                     Console.ForegroundColor = PersonManager.CitizenColor();
                 }
-                else if (Matrix[row, col] == 'T')
+                else if (Matrix[row, col] == PersonManager.ThiefCharacter())
                 {
                     Console.ForegroundColor = PersonManager.ThiefColor();
                 }
-                else if (Matrix[row, col] == 'P')
+                else if (Matrix[row, col] == PersonManager.PoliceCharacter())
                 {
                     Console.ForegroundColor = PersonManager.PoliceColor(); 
                 }
-                // else
-                // {
-                //     foreach (Person person in persons)
-                //     {
-                //         if (person.X == row && person.Y == col && !person.InPrison)
-                //         {
-                //             Console.ForegroundColor = person.Color;
-                //         }
-                //
-                //
-                //     }
-                //
-                // }
+             
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }

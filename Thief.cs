@@ -9,7 +9,7 @@ public class Thief : Person
     {
         
         Description = "Tjuv";
-        Character = 'T';
+        Character = PersonManager.ThiefCharacter();
         Color = PersonManager.ThiefColor();
     }
 

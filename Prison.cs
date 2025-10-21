@@ -16,28 +16,12 @@ public class Prison : Grid
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    // Console.Write($"{MapGrid[row, col]} ");
-                    // Console.ResetColor();
+                    
                 }
-                else if (Matrix[row, col] == 'T')
+                else if (Matrix[row, col] == PersonManager.ThiefCharacter())
                 {
                     Console.ForegroundColor = PersonManager.ThiefColor();
                 }  
-                // else
-                // {
-                //     foreach (Person person in persons)
-                //     {
-                //         if (person.X == row && person.Y == col && person.InPrison)
-                //         {
-                //             MapGrid[row, col] = person.Character;
-                //             Console.ForegroundColor = person.Color;
-                //
-                //         }
-                //
-                //
-                //     }
-                    
-                //}
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }

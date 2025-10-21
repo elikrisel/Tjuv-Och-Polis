@@ -5,7 +5,7 @@ class Citizen : Person
     
     public Citizen(string name, int startX, int startY) : base(name, startX, startY)
     {
-        Character = 'C';
+        Character = PersonManager.CitizenCharacter();
         Description = "Medborgare";
         Color = PersonManager.CitizenColor();
         InventorySystem = new List<string>
