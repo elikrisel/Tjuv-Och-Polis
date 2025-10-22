@@ -1,8 +1,8 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-public class Prison : Map
+public class Prison : Grid
 {
-    public Prison(int rows, int columns, char[,] mapGrid) : base(rows, columns, mapGrid)
+    public Prison(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
     {
     }
     
@@ -12,29 +12,17 @@ public class Prison : Map
         {
             for (int col = 0; col < Columns; col++)
             {
-                if (MapGrid[row, col] == Border)
+                if (Matrix[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
-                    // Console.Write($"{MapGrid[row, col]} ");
-                    // Console.ResetColor();
-                }
-                // else
-                // {
-                //     foreach (Person person in persons)
-                //     {
-                //         if (person.X == row && person.Y == col && person.InPrison)
-                //         {
-                //             MapGrid[row, col] = person.Character;
-                //             Console.ForegroundColor = person.Color;
-                //
-                //         }
-                //
-                //
-                //     }
                     
-                //}
-                Console.Write($"{MapGrid[row, col]} ");
+                }
+                else if (Matrix[row, col] == PersonManager.ThiefCharacter())
+                {
+                    Console.ForegroundColor = PersonManager.ThiefColor();
+                }  
+                Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
             Console.WriteLine();
@@ -48,7 +36,7 @@ public class Prison : Map
         {
             if (person.InPrison)
             {
-                MapGrid[person.X, person.Y] = person.Character;
+                Matrix[person.X, person.Y] = person.Character;
             }
         }   
     }
@@ -59,7 +47,7 @@ public class Prison : Map
         {
             if (person.InPrison)
             {
-                MapGrid[person.X, person.Y] = EmptySpace;
+                Matrix[person.X, person.Y] = EmptySpace;
             }
         }
     }

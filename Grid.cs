@@ -1,10 +1,10 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
-public class Map
+public class Grid
 {
     public int Rows { get; set; }
     public int Columns { get; set; }
-    public char[,] MapGrid { get; set; }
+    public char[,] Matrix { get; set; }
 
     public char Border { get; set; } //HA FLER SENARE
 
@@ -14,11 +14,11 @@ public class Map
     //DELAY
     //public int DelayTimer { get; set; }
 
-    public Map(int rows, int columns, char[,] mapGrid)
+    public Grid(int rows, int columns, char[,] matrix)
     {
         Rows = rows;
         Columns = columns;
-        MapGrid = mapGrid;
+        Matrix = matrix;
         Border = '.';
         Color = ConsoleColor.White;
         EmptySpace = ' ';
@@ -34,11 +34,11 @@ public class Map
             {
                 if (row == 0 || row == Rows - 1 || col == 0 || col == Columns - 1)
                 {
-                    MapGrid[row, col] = Border;
+                    Matrix[row, col] = Border;
                 }
                 else
                 {
-                    MapGrid[row, col] = EmptySpace;
+                    Matrix[row, col] = EmptySpace;
                 }
             }
         }
@@ -50,7 +50,7 @@ public class Map
         {
             if (!person.InPrison)
             {
-                MapGrid[person.X, person.Y] = person.Character;
+                Matrix[person.X, person.Y] = person.Character;
             }
         }
     }
@@ -62,7 +62,7 @@ public class Map
         {
             if (!person.InPrison)
             {
-                MapGrid[person.X, person.Y] = EmptySpace;
+                Matrix[person.X, person.Y] = EmptySpace;
             }
         }
     }
@@ -73,27 +73,25 @@ public class Map
         {
             for (int col = 0; col < Columns; col++)
             {
-                if (MapGrid[row, col] == Border)
+                if (Matrix[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
                 }
-                // else
-                // {
-                //     foreach (Person person in persons)
-                //     {
-                //         if (person.X == row && person.Y == col && !person.InPrison)
-                //         {
-                //             MapGrid[row, col] = person.Character;
-                //             Console.ForegroundColor = person.Color;
-                //
-                //         }
-                //
-                //
-                //     }
-                //
-                // }
-                Console.Write($"{MapGrid[row, col]} ");
+                else if (Matrix[row, col] == PersonManager.CitizenCharacter())
+                {
+                    Console.ForegroundColor = PersonManager.CitizenColor();
+                }
+                else if (Matrix[row, col] == PersonManager.ThiefCharacter())
+                {
+                    Console.ForegroundColor = PersonManager.ThiefColor();
+                }
+                else if (Matrix[row, col] == PersonManager.PoliceCharacter())
+                {
+                    Console.ForegroundColor = PersonManager.PoliceColor(); 
+                }
+             
+                Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
 

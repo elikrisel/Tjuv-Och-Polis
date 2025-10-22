@@ -9,8 +9,8 @@ public class Thief : Person
     {
         
         Description = "Tjuv";
-        Character = 'T';
-        Color = ConsoleColor.Red;
+        Character = PersonManager.ThiefCharacter();
+        Color = PersonManager.ThiefColor();
     }
 
     public void MoveToJail(Person person, Prison prison)
