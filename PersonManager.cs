@@ -43,7 +43,7 @@ public class PersonManager
             for (int j = i + 1; j < persons.Count; j++)
             {
                 Person person2 = persons[j];
-                if (person1.X == person2.X && person1.Y == person2.Y)
+                if (person1.X == person2.X && person1.Y == person2.Y && !person1.InPrison && !person2.InPrison)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     //Console.WriteLine($"{persons[i].Description} {persons[i].Name} and {persons[j].Description} {persons[j].Name} are at same place");
@@ -59,7 +59,7 @@ public class PersonManager
                 // }
             }
             
-            Console.ResetColor();
+            
         }
         
         
