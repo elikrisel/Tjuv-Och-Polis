@@ -1,13 +1,12 @@
 namespace Tjuv_Och_Polis_Group_Project;
 
 public class Helpers
-{
+{ 
     public static string BreakPoint(int number)
     {
         return new string('-', number);
     }
-
-    public static void SetPrintAndClearLayouts(City city, Prison prison, List<Person> persons)
+    public static void SetPrintAndClearLayoutsForCityAndPrison(City city, Prison prison, List<Person> persons)
     {
         city.SetLayout(persons);
         city.PrintLayout(persons);
@@ -16,15 +15,21 @@ public class Helpers
         prison.PrintLayout(persons);
         prison.ClearLayout(persons);
     }
-
-    public static void PrintNewsFeedList(NewsFeed newsFeed)
+    public static void GenerateLayoutsForCityPrisonAndNewsFeed(City city, Prison prison, NewsFeed newsFeed)
     {
-        
-        
+        city.GenerateLayout();
+        prison.GenerateLayout();
+        newsFeed.GenerateLayout();   
     }
-    
+    public static void PrintStatisticsAndNewsFeed(List<Person> persons,int numberOfCitizens,int numberOfThieves,int numberOfPoliceOfficers,City city,Prison prison, NewsFeed newsFeed)
+    {
+        newsFeed.PrintLayout();
+        newsFeed.Statistics(persons,numberOfCitizens,numberOfThieves,numberOfPoliceOfficers,city,prison) ;
+        newsFeed.PrintNewsList(city, prison);   
+    }
     public static void PrintDebugList(List<Person> persons)
     {
+        Console.Clear();
         Console.WriteLine(BreakPoint(45));
         foreach (Person person in persons)
         {
@@ -32,18 +37,12 @@ public class Helpers
             Console.Write($"{descriptionName.PadRight(25)} {(person.InPrison ? "Prison" : "City").PadRight(10, ' ')}  [{person.X,2},{person.Y,2}]");
             foreach (string inventory in person.InventorySystem)
             {
-                        
                 Console.Write(" " + inventory + "");
-                        
             }
-
             Console.WriteLine();
-            
-
         }
         Console.WriteLine(BreakPoint(45));
     }
-
     public static List<Person> AddCitizensToPersonList(int cityRows, int cityCols, int numberOfCitizens)
     {
         List<Person> citizens = new List<Person>();
@@ -55,7 +54,6 @@ public class Helpers
         }
         return citizens;
     }
-
     public static List<Person> AddThievesToPersonList(int cityRows, int cityCols, int numberOfThieves)
     {
         List<Person> thieves = new List<Person>();
@@ -68,7 +66,6 @@ public class Helpers
         }
         return thieves;
     }
-
     public static List<Person> AddPoliceOfficersToPersonList(int cityRows, int cityCols, int numberOfPoliceOfficers)
     {
         List<Person> policeOfficers = new List<Person>();
@@ -81,7 +78,6 @@ public class Helpers
         }
         return policeOfficers;
     }
-    
     public static List<Person> PersonList(int cityRows, int cityCols, int numberOfCitizens, int numberOfThieves,int numberOfPoliceOfficers)
     {
         List<Person> persons = new List<Person>();
@@ -90,8 +86,5 @@ public class Helpers
         persons.AddRange(AddPoliceOfficersToPersonList(cityRows, cityCols, numberOfPoliceOfficers));
         
         return persons;
-        
     }
-    
-    
 }

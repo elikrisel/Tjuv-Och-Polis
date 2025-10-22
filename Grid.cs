@@ -1,18 +1,12 @@
 namespace Tjuv_Och_Polis_Group_Project;
-
 public class Grid
 {
     public int Rows { get; set; }
     public int Columns { get; set; }
     public char[,] Matrix { get; set; }
-
-    public char Border { get; set; } //HA FLER SENARE
-
+    public char Border { get; set; } 
     public ConsoleColor Color { get; set; }
-
     public char EmptySpace { get; set; }
-    //DELAY
-    //public int DelayTimer { get; set; }
 
     public Grid(int rows, int columns, char[,] matrix)
     {
@@ -94,7 +88,7 @@ public class Grid
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
-
+            
             Console.WriteLine();
         }
     }
