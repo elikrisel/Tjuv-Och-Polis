@@ -2,7 +2,10 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class Helpers
 {
-    public static string BreakPoint(int number) => new('-', number);
+    public static string BreakPoint(int number)
+    {
+        return new string('-', number);
+    }
 
     public static void SetPrintAndClearLayouts(City city, Prison prison, List<Person> persons)
     {
@@ -40,34 +43,53 @@ public class Helpers
         }
         Console.WriteLine(BreakPoint(45));
     }
-    
-    public static List<Person> PersonList(int cityRows, int cityCols, int numberOfCitizens, int numberOfThieves,int numberOfOfficers)
+
+    public static List<Person> AddCitizensToPersonList(int cityRows, int cityCols, int numberOfCitizens)
     {
-        List<Person> persons = new List<Person>();
-        
+        List<Person> citizens = new List<Person>();
         for (int number = 0; number < numberOfCitizens; number++)
         {
             int positionX = Random.Shared.Next(1, cityRows - 1);
             int positionY = Random.Shared.Next(1, cityCols - 1);
-            persons.Add(new Citizen(Person.GenerateNamesOfPersons(), positionX, positionY));
+            citizens.Add(new Citizen(Person.GenerateNamesOfPersons(), positionX, positionY));
         }
+        return citizens;
+    }
 
+    public static List<Person> AddThievesToPersonList(int cityRows, int cityCols, int numberOfThieves)
+    {
+        List<Person> thieves = new List<Person>();
+        
         for (int number = 0; number < numberOfThieves; number++)
         {
             int positionX = Random.Shared.Next(1, cityRows - 1);
             int positionY = Random.Shared.Next(1, cityCols - 1);
-            persons.Add(new Thief(Person.GenerateNamesOfPersons(), positionX, positionY));
+            thieves.Add(new Thief(Person.GenerateNamesOfPersons(), positionX, positionY));
         }
+        return thieves;
+    }
 
-        for (int number = 0; number < numberOfOfficers; number++)
+    public static List<Person> AddPoliceOfficersToPersonList(int cityRows, int cityCols, int numberOfPoliceOfficers)
+    {
+        List<Person> policeOfficers = new List<Person>();
+        
+        for (int number = 0; number < numberOfPoliceOfficers; number++)
         {
             int positionX = Random.Shared.Next(1, cityRows - 1);
             int positionY = Random.Shared.Next(1, cityCols - 1);
-            persons.Add(new Police(Person.GenerateNamesOfPersons(), positionX, positionY));
+            policeOfficers.Add(new Police(Person.GenerateNamesOfPersons(), positionX, positionY));
         }
+        return policeOfficers;
+    }
+    
+    public static List<Person> PersonList(int cityRows, int cityCols, int numberOfCitizens, int numberOfThieves,int numberOfPoliceOfficers)
+    {
+        List<Person> persons = new List<Person>();
+        persons.AddRange(AddCitizensToPersonList(cityRows, cityCols, numberOfCitizens));
+        persons.AddRange(AddThievesToPersonList(cityRows, cityCols, numberOfThieves));
+        persons.AddRange(AddPoliceOfficersToPersonList(cityRows, cityCols, numberOfPoliceOfficers));
         
         return persons;
-        
         
     }
     
