@@ -3,7 +3,7 @@ public class Thief : Person
 { 
     public Thief(string name, int startX, int startY) : base(name, startX, startY)
     {
-        Description = "Tjuv";
+        Description = PersonManager.ThiefDescription();
         Character = PersonManager.ThiefCharacter();
         Color = PersonManager.ThiefColor();
     }
