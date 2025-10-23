@@ -22,26 +22,6 @@ public class Person
         Y = startY;
         InventorySystem = new List<string>();
     }
-    public static string GenerateNamesOfPersons()
-    {
-        List<string> names = new List<string>()
-        {
-            "Adam", "Agnes", "Alexander", "Alva", "Amanda",
-            "Anders", "Anna", "Anton", "Arvid", "Astrid",
-            "Axel", "Beatrice", "Benjamin", "Berit", "Bertil",
-            "Carl", "Caroline", "Charlotte", "Christoffer", "Clara",
-            "Daniel", "David", "Dennis", "Ebba", "Edvin",
-            "Elin", "Elisabeth", "Elliot", "Elsa", "Emil",
-            "Emma", "Erik", "Eva", "Filip", "Frida",
-            "Gabriel", "Gustav", "Hanna", "Henrik", "Hugo",
-            "Ida", "Isak", "Isabella", "Jakob", "Johanna",
-            "Johan", "Josefin", "Julia", "Karin", "Karl"
-        };
-
-        int randomIndex = Random.Shared.Next(0, names.Count);
-
-        return names[randomIndex];
-    }
     public void MovementInCity(City city)
     {
         switch (Random.Shared.Next(0, 8))
@@ -56,7 +36,7 @@ public class Person
             case 7: X++; if (X == city.Rows - 1) X = 1; Y++; if (Y == city.Columns - 1) Y = 1; break;
         }
     }
-    public void MovementInPrison(Prison prison)
+    public void MovementInPrison(Prison prison) 
     {
         switch (Random.Shared.Next(0, 8))
         {

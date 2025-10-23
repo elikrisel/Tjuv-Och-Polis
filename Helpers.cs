@@ -61,7 +61,7 @@ public class Helpers
         {
             int positionX = Random.Shared.Next(1, cityRows - 1);
             int positionY = Random.Shared.Next(1, cityCols - 1);
-            citizens.Add(new Citizen(Person.GenerateNamesOfPersons(), positionX, positionY));
+            citizens.Add(new Citizen(NamesOfCitizens(number), positionX, positionY));
         }
         return citizens;
     }
@@ -73,7 +73,7 @@ public class Helpers
         {
             int positionX = Random.Shared.Next(1, cityRows - 1);
             int positionY = Random.Shared.Next(1, cityCols - 1);
-            thieves.Add(new Thief(Person.GenerateNamesOfPersons(), positionX, positionY));
+            thieves.Add(new Thief(NamesOfThieves(number), positionX, positionY));
         }
         return thieves;
     }
@@ -85,7 +85,7 @@ public class Helpers
         {
             int positionX = Random.Shared.Next(1, cityRows - 1);
             int positionY = Random.Shared.Next(1, cityCols - 1);
-            policeOfficers.Add(new Police(Person.GenerateNamesOfPersons(), positionX, positionY));
+            policeOfficers.Add(new Police(NamesOfPoliceOfficers(number), positionX, positionY));
         }
         return policeOfficers;
     }
@@ -119,5 +119,58 @@ public class Helpers
             Console.Write("City".PadLeft(7));
         }
     }
-
+    private static string NamesOfCitizens(int index)
+    {
+        List<string> names = new List<string>()
+        {
+            "Tilda", "Rasmus", "Matilda", "Oscar", "Ellen",
+            "Simon", "Lina", "Tobias", "Selma", "William",
+            "Lovisa", "Noah", "Maja", "Joel", "Felicia",
+            "Niklas", "Saga", "Patrik", "Sofia", "Emilia",
+            "Oliver", "Malin", "Leo", "Tilde", "Alfred",
+            "Pontus", "Lukas", "Vera", "Linnea", "Marcus",
+            "Sandra", "Sebastian", "Cornelia", "Erika", "Petra",
+            "Kevin", "Molly", "Hugo", "Oskar", "Vilma",
+            "Elias", "Amanda", "Jonathan", "Agnes", "Robin",
+            "Therese", "Anton", "Stina", "Casper", "Rebecka"
+        };
+        
+        return names[index % names.Count];
+    }
+    private static string NamesOfThieves(int index)
+    {
+        List<string> names = new List<string>()
+        {
+            "Natalie", "Victor", "Frans", "Ingrid", "Lucas",
+            "Madeleine", "Nora", "Alexander", "Elvira", "Benjamin",
+            "Josef", "Helena", "Michaela", "David", "Aron",
+            "Sanna", "Rickard", "Clara", "Henrik", "Joline",
+            "Viktoria", "Kasper", "Julia", "Dennis", "Felix",
+            "Gabriella", "Adam", "Kim", "Alma", "Isak",
+            "Theodor", "Emil", "Olle", "Filippa", "Kristian",
+            "Klara", "Hampus", "Tove", "Marcus", "Rebecca",
+            "Moa", "Philip", "Carl", "Nils", "Sara",
+            "Jakob", "Annie", "Tomas", "Lina", "Greta"
+        };
+        
+        return names[index % names.Count];
+    }
+    private static string NamesOfPoliceOfficers(int index)
+    {
+        List<string> names = new List<string>()
+        {
+            "Per", "Ebba", "Sven", "Linn", "Erica",
+            "Ture", "Alice", "Magnus", "Estelle", "Olof",
+            "Karin", "Harald", "Freja", "Rolf", "Nathalie",
+            "Ulf", "Elina", "Bo", "Miriam", "Göran",
+            "Astrid", "Björn", "Carina", "Lovis", "Jonas",
+            "Rut", "Algot", "Tanja", "Elise", "Kent",
+            "Birgitta", "Viggo", "Knut", "Ronja", "Siv",
+            "Jörgen", "Tina", "Egon", "Britta", "Hedda",
+            "Stig", "Anita", "Greger", "Åsa", "Wilma",
+            "Gösta", "Selina", "Veronica", "Leif", "Torsten"
+        };
+        
+        return names[index % names.Count];
+    }
 }

@@ -21,7 +21,7 @@ class Program
         Console.CursorVisible = false;
         
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
-        int numberOfCitizens = 10;
+        int numberOfCitizens = 51;
         int numberOfThieves = 10;
         int numberOfPoliceOfficers = 10; 
 
