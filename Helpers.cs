@@ -24,7 +24,7 @@ public class Helpers
     public static void PrintStatisticsAndNewsFeed(List<Person> persons,int numberOfCitizens,int numberOfThieves,int numberOfPoliceOfficers,City city,Prison prison, NewsFeed newsFeed)
     {
         newsFeed.PrintLayout();
-        newsFeed.Statistics(persons,numberOfCitizens,numberOfThieves,numberOfPoliceOfficers,city,prison) ;
+        newsFeed.Statistics(persons,numberOfCitizens,numberOfThieves,numberOfPoliceOfficers,city,prison);
         newsFeed.PrintNewsList(city, prison);   
     }
     public static void PrintDebugList(List<Person> persons)
@@ -98,14 +98,12 @@ public class Helpers
         
         return persons;
     }
-
     private static void PrintPersonDescriptionWithPersonsColor(Person person)
     {
         Console.ForegroundColor = person.Color;
         Console.Write($"{person.Description} ");
         Console.ResetColor();
     }
-
     private static void PrintLocationAndSetColorRedIfInPrison(Person person)
     {
         if (person.InPrison)
