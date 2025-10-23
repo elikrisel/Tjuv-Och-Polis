@@ -30,21 +30,29 @@ public class Helpers
     public static void PrintDebugList(List<Person> persons)
     {
         Console.Clear();
-        Console.WriteLine(PrintXNumberOfLines(45));
+
+        Console.WriteLine("Personbeskrivning och namn |   Koordinater | Inventarie");
+        Console.WriteLine(PrintXNumberOfLines(44));
+
         foreach (Person person in persons)
         {
-            Console.ForegroundColor = person.Color;
-            string descriptionName = $"{person.Description} {person.Name}";
-            
-            Console.Write($"{descriptionName.PadRight(25)} {(person.InPrison ? "Prison" : "City").PadRight(10, ' ')}  [{person.X,2},{person.Y,2}]");
-            Console.ResetColor();
+            PrintPersonDescriptionWithPersonsColor(person);
+
+            Console.Write($"{person.Name.PadRight(25 - person.Description.Length)} |");
+
+            PrintLocationAndSetColorRedIfInPrison(person);
+
+            Console.Write($"[{person.X,2},{person.Y,2}] |");
+
             foreach (string inventory in person.InventorySystem)
             {
-                Console.Write(" " + inventory);
+                Console.Write($" {inventory}");
             }
+
             Console.WriteLine();
         }
-        Console.WriteLine(PrintXNumberOfLines(45));
+
+        Console.WriteLine(PrintXNumberOfLines(44));
     }
     public static List<Person> AddCitizensToPersonList(int cityRows, int cityCols, int numberOfCitizens)
     {
@@ -90,4 +98,26 @@ public class Helpers
         
         return persons;
     }
+
+    private static void PrintPersonDescriptionWithPersonsColor(Person person)
+    {
+        Console.ForegroundColor = person.Color;
+        Console.Write($"{person.Description} ");
+        Console.ResetColor();
+    }
+
+    private static void PrintLocationAndSetColorRedIfInPrison(Person person)
+    {
+        if (person.InPrison)
+        {
+            Console.ForegroundColor = person.Color;
+            Console.Write("Prison".PadLeft(7));
+            Console.ResetColor();
+        }
+        else
+        {
+            Console.Write("City".PadLeft(7));
+        }
+    }
+
 }
