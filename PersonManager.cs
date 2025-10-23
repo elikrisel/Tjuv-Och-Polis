@@ -33,34 +33,14 @@ public class PersonManager
             for (int j = i + 1; j < persons.Count; j++)
             {
                 Person person2 = persons[j];
-                if (person1.X == person2.X && person1.Y == person2.Y && !person1.InPrison && !person2.InPrison)
+                if (IfTwoPersonsAreOnTheSameCoordinatesInCity(person1, person2))
                 {
-                    if (person1 is Citizen && person2 is Thief)
-                    {
-                        ThiefStealsRandomInventoryFromCitizen(person1, person2, newsFeed);
-                    }
-                    else if(person1 is Thief && person2 is Citizen)
-                    {
-                        ThiefStealsRandomInventoryFromCitizen(person2, person1, newsFeed);
-                    }
+                    IfPersonsAreThiefAndCitizen(person1, person2, newsFeed);
                     
-                    if (person1 is Police && person2 is Thief)
-                    {
-                        IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(person1, person2, prison, newsFeed);
-                    }
-                    else if (person1 is Thief && person2 is Police)
-                    {
-                        IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(person2, person1, prison, newsFeed);
-                    }
-                    
-                    if (person1 is Citizen && person2 is Police)
-                    {
-                        CitizenGreetsThePolice(person1, person2, newsFeed);
-                    }
-                    else if (person1 is Police && person2 is Citizen)
-                    {
-                        CitizenGreetsThePolice(person2, person1, newsFeed);
-                    }
+                    IfPersonsArePoliceAndThief(person1 , person2, prison, newsFeed);
+
+                    IfPersonsAreCitizenAndPolice(person1 , person2, newsFeed);
+
                 }
             }
         }
@@ -102,6 +82,49 @@ public class PersonManager
             {
                 person.MovementInPrison(prison);
             }
+        }
+    }
+
+    private static bool IfTwoPersonsAreOnTheSameCoordinatesInCity(Person person1, Person person2)
+    {
+        return person1.X == person2.X && person1.Y == person2.Y && !person1.InPrison && !person2.InPrison;
+
+    }
+
+    private static void IfPersonsAreThiefAndCitizen(Person person1, Person person2, NewsFeed newsFeed)
+    {
+        if (person1 is Citizen && person2 is Thief)
+        {
+            ThiefStealsRandomInventoryFromCitizen(person1, person2, newsFeed);
+        }
+        else if (person1 is Thief && person2 is Citizen)
+        {
+            ThiefStealsRandomInventoryFromCitizen(person2, person1, newsFeed);
+        }
+    }
+
+    private static void IfPersonsArePoliceAndThief(Person person1, Person person2, Prison prison, NewsFeed newsFeed)
+    {
+        //Om tjuven INTE har inventory, vad gör vi då? (Behöver justera If-satserna här för att kolla tjuvens inventory)
+        if (person1 is Police && person2 is Thief)
+        {
+            IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(person1, person2, prison, newsFeed);
+        }
+        else if (person1 is Thief && person2 is Police)
+        {
+            IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(person2, person1, prison, newsFeed);
+        }
+    }
+
+    private static void IfPersonsAreCitizenAndPolice(Person person1, Person person2, NewsFeed newsFeed)
+    {
+        if (person1 is Citizen && person2 is Police)
+        {
+            CitizenGreetsThePolice(person1, person2, newsFeed);
+        }
+        else if (person1 is Police && person2 is Citizen)
+        {
+            CitizenGreetsThePolice(person2, person1, newsFeed);
         }
     }
 }
