@@ -4,7 +4,7 @@ public class Prison : Grid
     public Prison(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
     {
     }
-    public override void PrintLayout(List<Person> persons)
+    public override void PrintLayout()
     {
         for (int row = 0; row < Rows; row++)
         {

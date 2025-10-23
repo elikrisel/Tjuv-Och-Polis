@@ -17,9 +17,6 @@ public class Grid
         Color = ConsoleColor.White;
         EmptySpace = ' ';
     }
-    
-
-
     public void GenerateLayout()
     {
         for (int row = 0; row < Rows; row++)
@@ -37,7 +34,6 @@ public class Grid
             }
         }
     }
-
     public virtual void SetLayout(List<Person> persons)
     {
         foreach (Person person in persons)
@@ -48,8 +44,6 @@ public class Grid
             }
         }
     }
-    
-    
     public virtual void ClearLayout(List<Person> persons)
     {
         foreach (Person person in persons)
@@ -60,8 +54,7 @@ public class Grid
             }
         }
     }
-    
-    public virtual void PrintLayout(List<Person> persons)
+    public virtual void PrintLayout()
     {
         for (int row = 0; row < Rows; row++)
         {
@@ -84,11 +77,9 @@ public class Grid
                 {
                     Console.ForegroundColor = PersonManager.PoliceColor(); 
                 }
-             
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
-            
             Console.WriteLine();
         }
     }

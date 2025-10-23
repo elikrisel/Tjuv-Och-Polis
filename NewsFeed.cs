@@ -42,7 +42,7 @@ public class NewsFeed : Grid
             $"Medborgare i Staden: {numberOfCitizens}",
             $"Tjuvar i Staden: {numberOfThieves - thievesInPrison}. Tjuvar i Fängelse: {thievesInPrison}",
             $"Poliser i Staden: {numberOfOfficers}",
-            Helpers.BreakPoint(Columns * 2 - 4)
+            Helpers.PrintXNumberOfLines(Columns * 2 - 4)
         };
         Console.SetCursorPosition(2, city.Rows + prison.Rows + 1);
         for (int i = 0; i < lines.Length; i++)

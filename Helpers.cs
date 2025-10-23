@@ -2,17 +2,17 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class Helpers
 { 
-    public static string BreakPoint(int number)
+    public static string PrintXNumberOfLines(int number)
     {
         return new string('-', number);
     }
     public static void SetPrintAndClearLayoutsForCityAndPrison(City city, Prison prison, List<Person> persons)
     {
         city.SetLayout(persons);
-        city.PrintLayout(persons);
+        city.PrintLayout();
         city.ClearLayout(persons);
         prison.SetLayout(persons);
-        prison.PrintLayout(persons);
+        prison.PrintLayout();
         prison.ClearLayout(persons);
     }
     public static void GenerateLayoutsForCityPrisonAndNewsFeed(City city, Prison prison, NewsFeed newsFeed)
@@ -30,18 +30,21 @@ public class Helpers
     public static void PrintDebugList(List<Person> persons)
     {
         Console.Clear();
-        Console.WriteLine(BreakPoint(45));
+        Console.WriteLine(PrintXNumberOfLines(45));
         foreach (Person person in persons)
         {
+            Console.ForegroundColor = person.Color;
             string descriptionName = $"{person.Description} {person.Name}";
+            
             Console.Write($"{descriptionName.PadRight(25)} {(person.InPrison ? "Prison" : "City").PadRight(10, ' ')}  [{person.X,2},{person.Y,2}]");
+            Console.ResetColor();
             foreach (string inventory in person.InventorySystem)
             {
-                Console.Write(" " + inventory + "");
+                Console.Write(" " + inventory);
             }
             Console.WriteLine();
         }
-        Console.WriteLine(BreakPoint(45));
+        Console.WriteLine(PrintXNumberOfLines(45));
     }
     public static List<Person> AddCitizensToPersonList(int cityRows, int cityCols, int numberOfCitizens)
     {
