@@ -1,5 +1,3 @@
-using System.Reflection.PortableExecutable;
-
 namespace Tjuv_Och_Polis_Group_Project;
 
 public class Person
@@ -36,6 +34,7 @@ public class Person
             case 7: X++; if (X == city.Rows - 1) X = 1; Y++; if (Y == city.Columns - 1) Y = 1; break;
         }
     }
+    //DIFFERENT TYPE OF MOVEMENT IN PRISON IN 4 AXIS - CHECK FURTHER ON MONDAY
     public void MovementInPrison(Prison prison) 
     {
         switch (Random.Shared.Next(0, 8))
