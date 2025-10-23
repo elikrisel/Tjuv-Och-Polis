@@ -26,20 +26,20 @@ public class NewsFeed : Grid
             Console.WriteLine();
         }
     }
-    public void Statistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfOfficers, City city, Prison  prison)
+    public void Statistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfPoliceOfficers, City city, Prison  prison)
     { 
         int thievesInPrison = CountThievesInPrison(persons);
         string[] lines =
         {
             $"Medborgare i Staden: {numberOfCitizens}",
             $"Tjuvar i Staden: {numberOfThieves - thievesInPrison}. Tjuvar i Fängelse: {thievesInPrison}",
-            $"Poliser i Staden: {numberOfOfficers}",
+            $"Poliser i Staden: {numberOfPoliceOfficers}",
             Helpers.PrintXNumberOfLines(Columns * 2 - 4)
         };
         PrintStatisticsWithinTheNewsFeedBorder(city, prison, lines);
         
     }
-    public void PrintNewsList(City city, Prison prison)
+    public void PrintNewsList()
     {
         int viableSpaceInNewsFeed = Rows - 6; 
         for (int i = NewsList.Count - 1; i > 0 && viableSpaceInNewsFeed > 0; i--)
