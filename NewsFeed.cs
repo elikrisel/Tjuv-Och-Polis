@@ -3,8 +3,7 @@ using System.Collections;
 namespace Tjuv_Och_Polis_Group_Project;
 public class NewsFeed : Grid
 { 
-    public List<string> NewsList { get; set; }
-    //public new int Rows { get; set; }
+    public List<string> NewsList { get; set; }       
     public NewsFeed(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
     {
         NewsList = new List<string>();
