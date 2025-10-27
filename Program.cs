@@ -73,27 +73,17 @@ class Program
             #endregion
             foreach(Person person in persons)
             {
-                if (person is Thief thief && thief.InPrison)
+                if (person is Thief && person.InPrison)
                 {
+                    Thief thief = (Thief)person;
                     thief.TimerInPrison--;
-                    Console.WriteLine($"{thief.TimerInPrison}");
-                    Console.ReadKey();
 
                     if (thief.TimerInPrison == 0)
                     {
                         thief.MoveToCity(city);
                     }
                 }
-
-                //if (person is Thief && person.InPrison)
-                //{
-                //    ((Thief)person).TimerInPrison--;
-                //}
                 
-                //if(person is Thief && person.InPrison && ((Thief)person).TimerInPrison <= 1)
-                //{
-
-                //}
             }
             // Console.Clear();
         }

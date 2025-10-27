@@ -44,11 +44,20 @@ public class Helpers
 
             Console.Write($"[{person.X,2},{person.Y,2}] |");
 
-            foreach (string inventory in person.InventorySystem)
+            if (!person.InPrison)
             {
-                Console.Write($" {inventory}");
+                foreach (string inventory in person.InventorySystem)
+                {
+                    
+                    Console.Write($" {inventory}");
+                    
+                }
             }
-
+            else
+            {
+                 
+                Console.Write($" Tid i fängelset: {((Thief)person).TimerInPrison}");
+            }
             Console.WriteLine();
         }
 

@@ -16,7 +16,6 @@ public class Thief : Person
     }
     public void MoveToCity(City city)
     {
-        TimerInPrison = 0;
         InPrison = false;
         X = Random.Shared.Next(1, city.Rows - 1);
         Y = Random.Shared.Next(1, city.Columns - 1);
