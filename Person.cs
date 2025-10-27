@@ -11,6 +11,7 @@ public class Person
     public List<string> InventorySystem { get; set; }
     public char Character { get; set; }
     public ConsoleColor Color { get; set; }
+    public int Direction { get; set; }
 
     public Person(string name,int startX,int startY)
     {
@@ -19,10 +20,11 @@ public class Person
         X = startX;
         Y = startY;
         InventorySystem = new List<string>();
+        Direction = Random.Shared.Next(0, 9);
     }
     public void MovementInCity(City city)
     {
-        switch (Random.Shared.Next(0, 8))
+        switch (Direction)
         {
             case 0: X--; if (X == 0) X = city.Rows - 2; break;
             case 1: X++; if (X == city.Rows - 1) X = 1; break;
@@ -32,12 +34,13 @@ public class Person
             case 5: X--; if (X == 0) X = city.Rows - 2; Y++; if (Y == city.Columns - 1) Y = 1; break;
             case 6: X++; if (X == city.Rows - 1) X = 1; Y--; if (Y == 0) Y = city.Columns - 2; break;
             case 7: X++; if (X == city.Rows - 1) X = 1; Y++; if (Y == city.Columns - 1) Y = 1; break;
+            case 8: break; //Stand still
         }
     }
     //DIFFERENT TYPE OF MOVEMENT IN PRISON IN 4 AXIS - CHECK FURTHER ON MONDAY
     public void MovementInPrison(Prison prison) 
     {
-        switch (Random.Shared.Next(0, 8))
+        switch (Direction)
         {
             case 0: X--; if (X == 0) X = prison.Rows - 2; break;
             case 1: X++; if (X == prison.Rows - 1) X = 1; break;
@@ -47,6 +50,7 @@ public class Person
             case 5: X--; if (X == 0) X = prison.Rows - 2; Y++; if (Y == prison.Columns - 1) Y = 1; break;
             case 6: X++; if (X == prison.Rows - 1) X = 1; Y--; if (Y == 0) Y = prison.Columns - 2; break;
             case 7: X++; if (X == prison.Rows - 1) X = 1; Y++; if (Y == prison.Columns - 1) Y = 1; break;
+            case 8: break; //Stand still
         }
     }
 }

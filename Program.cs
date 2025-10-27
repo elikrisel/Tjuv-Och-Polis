@@ -5,7 +5,7 @@ class Program
     {
         #region Variables
 
-        int cityRows = 6;
+        int cityRows = 14;
         int cityCols = 40;
         char[,] cityGrid = new char[cityRows, cityCols];
         
@@ -13,7 +13,7 @@ class Program
         int prisonCols = 30;  
         char[,] prisonGrid = new char[prisonRows, prisonCols];
 
-        int newsFeedRows = 15; // MUST BE ABOVE 6 TO SHOW STATISTICS AND 1 ROW FOR NEWSFEED - INSPECT FURTHER 
+        int newsFeedRows = 11; // MUST BE ABOVE 6 TO SHOW STATISTICS AND 1 ROW FOR NEWSFEED - INSPECT FURTHER 
         //newsFeedRows = newsFeedRows < 11 ? 11 : newsFeedRows; //ALWAYS MAKE SURE NEWSFEED ROWS  IS 11 OR ABOVE
         int newsFeedCols = 40; 
         char[,] newsFeedGrid = new char[newsFeedRows, newsFeedCols];
@@ -22,7 +22,7 @@ class Program
         Console.CursorVisible = false;
         
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
-        int numberOfCitizens = 51;
+        int numberOfCitizens = 10;
         int numberOfThieves = 10;
         int numberOfPoliceOfficers = 10; 
 
