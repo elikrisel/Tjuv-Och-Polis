@@ -71,6 +71,7 @@ public class PersonManager
     {
         if (thief.InventorySystem.Count > 0)
         {
+            ((Thief)thief).TimerInPrison = thief.InventorySystem.Count * 10;
             police.InventorySystem.AddRange(thief.InventorySystem);
             thief.InventorySystem.Clear();
             ((Thief)thief).MoveToJail(prison);
