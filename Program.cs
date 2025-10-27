@@ -24,7 +24,9 @@ class Program
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
         int numberOfCitizens = 10;
         int numberOfThieves = 10;
-        int numberOfPoliceOfficers = 10; 
+        int numberOfPoliceOfficers = 10;
+
+        int numberOfSteps = 0;
 
         #endregion
         City city = new City(cityRows, cityCols, cityGrid);
@@ -48,6 +50,16 @@ class Program
             }
             PersonManager.HandleInteractions(persons, prison, newsFeed);
             PersonManager.MoveEachPerson(persons, city, prison);
+            numberOfSteps++;
+            if (numberOfSteps == 20)
+            {
+                foreach (Person person in persons)
+                {
+                    person.Direction = Random.Shared.Next(0, 9);
+                }
+                numberOfSteps = 0;
+            }
+            
             #region TESTING : Prison och Debug
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (key.Key)
