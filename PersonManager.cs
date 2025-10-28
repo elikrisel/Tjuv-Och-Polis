@@ -92,14 +92,15 @@ public class PersonManager
     {
         foreach (Person person in persons)
         {
-            if (!person.InPrison)
-            {
-                person.MovementInCity(city);
-            }
-            else
-            {
-                person.MovementInPrison(prison);
-            }
+            // if (!person.InPrison)
+            // {
+            //     person.MovementInCity(city);
+            // }
+            // else
+            // {
+            //     person.MovementInPrison(prison);
+            // }
+            person.MoveInGrid(city,prison);
         }
     }
     private static bool IfTwoPersonsAreOnTheSameCoordinatesInCity(Person person1, Person person2)

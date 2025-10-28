@@ -21,65 +21,42 @@ public abstract class Person
         Y = startY;
         InventorySystem = new List<string>();
         Direction = SetNewRandomDirection();
-        StepsUntilNewDirection = Random.Shared.Next(10, 31);
+        StepsUntilNewDirection = SetNewStepsUntilNewDirection();
     }
-    public void MovementInCity(City city)
+    
+    public void MoveInGrid(City city, Prison prison)
     {
+        Grid personLocation = !InPrison ? city : prison;
+        
         switch (Direction)
         {
-            case 0: X--; if (X == 0) X = city.Rows - 2; break;
-            case 1: X++; if (X == city.Rows - 1) X = 1; break;
-            case 2: Y--; if (Y == 0) Y = city.Columns - 2; break;
-            case 3: Y++; if (Y == city.Columns - 1) Y = 1; break;
-            case 4: X--; if (X == 0) X = city.Rows - 2; Y--; if (Y == 0) Y = city.Columns - 2; break;
-            case 5: X--; if (X == 0) X = city.Rows - 2; Y++; if (Y == city.Columns - 1) Y = 1; break;
-            case 6: X++; if (X == city.Rows - 1) X = 1; Y--; if (Y == 0) Y = city.Columns - 2; break;
-            case 7: X++; if (X == city.Rows - 1) X = 1; Y++; if (Y == city.Columns - 1) Y = 1; break;
+            case 0: X--; if (X == 0) X = personLocation.Rows - 2; break;
+            case 1: X++; if (X == personLocation.Rows - 1) X = 1; break;
+            case 2: Y--; if (Y == 0) Y = personLocation.Columns - 2; break;
+            case 3: Y++; if (Y == personLocation.Columns - 1) Y = 1; break;
+            case 4: X--; if (X == 0) X = personLocation.Rows - 2; Y--; if (Y == 0) Y = personLocation.Columns - 2; break;
+            case 5: X--; if (X == 0) X = personLocation.Rows - 2; Y++; if (Y == personLocation.Columns - 1) Y = 1; break;
+            case 6: X++; if (X == personLocation.Rows - 1) X = 1; Y--; if (Y == 0) Y = personLocation.Columns - 2; break;
+            case 7: X++; if (X == personLocation.Rows - 1) X = 1; Y++; if (Y == personLocation.Columns - 1) Y = 1; break;
             case 8: break; //Stand still
         }
         CountStepsAndCheckIfStepsCounterIsMet();
-        // StepsTaken++;
-        // if(StepsTaken == StepsUntilNewDirection)
-        // {
-        //     Direction = Random.Shared.Next(0, 9);
-        //     StepsTaken = 0;
-        // }
-    }
-    //DIFFERENT TYPE OF MOVEMENT IN PRISON IN 4 AXIS - CHECK FURTHER ON MONDAY
-    public void MovementInPrison(Prison prison) 
-    {
-        switch (Direction)
-        {
-            case 0: X--; if (X == 0) X = prison.Rows - 2; break;
-            case 1: X++; if (X == prison.Rows - 1) X = 1; break;
-            case 2: Y--; if (Y == 0) Y = prison.Columns - 2; break;
-            case 3: Y++; if (Y == prison.Columns - 1) Y = 1; break;
-            case 4: X--; if (X == 0) X = prison.Rows - 2; Y--; if (Y == 0) Y = prison.Columns - 2; break;
-            case 5: X--; if (X == 0) X = prison.Rows - 2; Y++; if (Y == prison.Columns - 1) Y = 1; break;
-            case 6: X++; if (X == prison.Rows - 1) X = 1; Y--; if (Y == 0) Y = prison.Columns - 2; break;
-            case 7: X++; if (X == prison.Rows - 1) X = 1; Y++; if (Y == prison.Columns - 1) Y = 1; break;
-            case 8: break; //Stand still
-        }
-
-        CountStepsAndCheckIfStepsCounterIsMet();
-        // StepsTaken++;
-        // if (StepsTaken == StepsUntilNewDirection)
-        // {
-        //     Direction = Random.Shared.Next(0, 9);
-        //     StepsTaken = 0;
-        // }
     }
     private int SetNewRandomDirection()
     {
         return Random.Shared.Next(0, 9);
     }
-
+    private int SetNewStepsUntilNewDirection()
+    {
+        return Random.Shared.Next(10, 31);
+    }
     private void CountStepsAndCheckIfStepsCounterIsMet()
     {
         StepsTaken++;
         if (StepsTaken == StepsUntilNewDirection)
         {
             Direction = SetNewRandomDirection();
+            StepsUntilNewDirection = SetNewStepsUntilNewDirection(); 
             StepsTaken = 0;
         }
     }
