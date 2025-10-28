@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace Tjuv_Och_Polis_Group_Project;
 public class NewsFeed : Grid
 { 
