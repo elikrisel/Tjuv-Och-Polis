@@ -70,20 +70,8 @@ class Program
                     break;
             }
             #endregion
-            foreach(Person person in persons)
-            {
-                if (person is Thief && person.InPrison)
-                {
-                    Thief thief = (Thief)person;
-                    thief.TimerInPrison--;
-
-                    if (thief.TimerInPrison == 0)
-                    {
-                        thief.MoveToCity(city);
-                    }
-                }
-                
-            }
+            
+            PersonManager.TimerInPrisonCounter(persons, city);
             // Console.Clear();
         }
     }

@@ -141,4 +141,21 @@ public class PersonManager
             CitizenGreetsThePolice(person2, person1, newsFeed);
         }
     }
+
+    public static void TimerInPrisonCounter(List<Person> persons, City city)
+    {
+        foreach (Person person in persons)
+        {
+            if (person is Thief && person.InPrison)
+            {
+                Thief thief = (Thief)person;
+                thief.TimerInPrison--;
+
+                if (thief.TimerInPrison == 0)
+                {
+                    thief.MoveToCity(city);
+                }
+            }
+        }
+    }
 }
