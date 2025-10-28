@@ -4,19 +4,6 @@ class Program
     static void Main(string[] args)
     {
         #region Variables
-
-        //int cityRows = 14;
-        //int cityCols = 40;
-        //char[,] cityGrid = new char[cityRows, cityCols];
-        
-        int prisonRows = 4;
-        int prisonCols = 30;  
-        char[,] prisonGrid = new char[prisonRows, prisonCols];
-
-        int newsFeedRows = 11; // MUST BE ABOVE 6 TO SHOW STATISTICS AND 1 ROW FOR NEWSFEED - INSPECT FURTHER 
-        //newsFeedRows = newsFeedRows < 11 ? 11 : newsFeedRows; //ALWAYS MAKE SURE NEWSFEED ROWS  IS 11 OR ABOVE
-        int newsFeedCols = 40; 
-        char[,] newsFeedGrid = new char[newsFeedRows, newsFeedCols];
         
         bool debugList = false;
         Console.CursorVisible = false;
@@ -31,7 +18,7 @@ class Program
         #endregion
         City city = new City();
         Prison prison = new Prison();
-        NewsFeed newsFeed = new();
+        NewsFeed newsFeed = new NewsFeed();
         List<Person> persons = Helpers.PersonList(city, numberOfCitizens, numberOfThieves, numberOfPoliceOfficers);
         
         Helpers.GenerateLayoutsForCityPrisonAndNewsFeed(city,prison,newsFeed);

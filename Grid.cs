@@ -10,7 +10,6 @@ public abstract class Grid
 
     public Grid()
     {
-        //Matrix = new char[Rows, Columns];
         Border = '.';
         Color = ConsoleColor.White;
         EmptySpace = ' ';
