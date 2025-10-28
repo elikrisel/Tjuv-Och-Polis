@@ -9,11 +9,10 @@ class Program
         Console.CursorVisible = false;
         
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
-        int numberOfCitizens = 10;
-        int numberOfThieves = 10;
+        int numberOfCitizens = 30;
+        int numberOfThieves = 20;
         int numberOfPoliceOfficers = 10;
-
-
+        
         #endregion
         City city = new City();
         Prison prison = new Prison();

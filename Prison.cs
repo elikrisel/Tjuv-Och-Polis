@@ -3,8 +3,8 @@ public class Prison : Grid
 {
     public Prison()
     {
-        Rows = 4;
-        Columns = 30;
+        Rows = 11;
+        Columns = 20;
         Matrix = new char[Rows, Columns];
     }
     public override void PrintLayout()

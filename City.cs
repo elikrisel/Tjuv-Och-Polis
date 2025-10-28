@@ -3,8 +3,8 @@ public class City : Grid
 { 
     public City()
     {
-        Rows = 14;
-        Columns = 40;
+        Rows = 22;
+        Columns = 60;
         Matrix = new char[Rows, Columns];
 
     }
