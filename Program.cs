@@ -5,9 +5,9 @@ class Program
     {
         #region Variables
 
-        int cityRows = 14;
-        int cityCols = 40;
-        char[,] cityGrid = new char[cityRows, cityCols];
+        //int cityRows = 14;
+        //int cityCols = 40;
+        //char[,] cityGrid = new char[cityRows, cityCols];
         
         int prisonRows = 4;
         int prisonCols = 30;  
@@ -29,10 +29,10 @@ class Program
         int numberOfSteps = 0;
 
         #endregion
-        City city = new City(cityRows, cityCols, cityGrid);
-        Prison prison = new Prison(prisonRows, prisonCols, prisonGrid);
-        NewsFeed newsFeed = new(newsFeedRows, newsFeedCols, newsFeedGrid);
-        List<Person> persons = Helpers.PersonList(cityRows, cityCols, numberOfCitizens, numberOfThieves, numberOfPoliceOfficers);
+        City city = new City();
+        Prison prison = new Prison();
+        NewsFeed newsFeed = new();
+        List<Person> persons = Helpers.PersonList(city, numberOfCitizens, numberOfThieves, numberOfPoliceOfficers);
         
         Helpers.GenerateLayoutsForCityPrisonAndNewsFeed(city,prison,newsFeed);
         

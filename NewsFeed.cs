@@ -4,10 +4,13 @@ namespace Tjuv_Och_Polis_Group_Project;
 public class NewsFeed : Grid
 { 
     public List<string> NewsList { get; set; }       
-    public NewsFeed(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
+    public NewsFeed()
     {
         NewsList = new List<string>();
-        
+        Rows = 11;
+        Columns = 40;
+        Matrix = new char[Rows, Columns];
+
     }
     public override void PrintLayout()
     {

@@ -1,5 +1,5 @@
 namespace Tjuv_Och_Polis_Group_Project;
-public class Grid
+public abstract class Grid
 {
     public int Rows { get; set; }
     public int Columns { get; set; }
@@ -8,11 +8,9 @@ public class Grid
     public ConsoleColor Color { get; set; }
     public char EmptySpace { get; set; }
 
-    public Grid(int rows, int columns, char[,] matrix)
+    public Grid()
     {
-        Rows = rows;
-        Columns = columns;
-        Matrix = matrix;
+        //Matrix = new char[Rows, Columns];
         Border = '.';
         Color = ConsoleColor.White;
         EmptySpace = ' ';

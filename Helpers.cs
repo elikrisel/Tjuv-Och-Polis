@@ -63,47 +63,47 @@ public class Helpers
 
         Console.WriteLine(PrintXNumberOfLines(44));
     }
-    public static List<Person> AddCitizensToPersonList(int cityRows, int cityCols, int numberOfCitizens)
+    public static List<Person> AddCitizensToPersonList(City city, int numberOfCitizens)
     {
         List<Person> citizens = new List<Person>();
         for (int number = 0; number < numberOfCitizens; number++)
         {
-            int positionX = Random.Shared.Next(1, cityRows - 1);
-            int positionY = Random.Shared.Next(1, cityCols - 1);
+            int positionX = Random.Shared.Next(1, city.Rows - 1);
+            int positionY = Random.Shared.Next(1, city.Columns - 1);
             citizens.Add(new Citizen(NamesOfCitizens(number), positionX, positionY));
         }
         return citizens;
     }
-    public static List<Person> AddThievesToPersonList(int cityRows, int cityCols, int numberOfThieves)
+    public static List<Person> AddThievesToPersonList(City city, int numberOfThieves)
     {
         List<Person> thieves = new List<Person>();
         
         for (int number = 0; number < numberOfThieves; number++)
         {
-            int positionX = Random.Shared.Next(1, cityRows - 1);
-            int positionY = Random.Shared.Next(1, cityCols - 1);
+            int positionX = Random.Shared.Next(1, city.Rows - 1);
+            int positionY = Random.Shared.Next(1, city.Columns - 1);
             thieves.Add(new Thief(NamesOfThieves(number), positionX, positionY));
         }
         return thieves;
     }
-    public static List<Person> AddPoliceOfficersToPersonList(int cityRows, int cityCols, int numberOfPoliceOfficers)
+    public static List<Person> AddPoliceOfficersToPersonList(City city, int numberOfPoliceOfficers)
     {
         List<Person> policeOfficers = new List<Person>();
         
         for (int number = 0; number < numberOfPoliceOfficers; number++)
         {
-            int positionX = Random.Shared.Next(1, cityRows - 1);
-            int positionY = Random.Shared.Next(1, cityCols - 1);
+            int positionX = Random.Shared.Next(1, city.Rows - 1);
+            int positionY = Random.Shared.Next(1, city.Columns - 1);
             policeOfficers.Add(new Police(NamesOfPoliceOfficers(number), positionX, positionY));
         }
         return policeOfficers;
     }
-    public static List<Person> PersonList(int cityRows, int cityCols, int numberOfCitizens, int numberOfThieves,int numberOfPoliceOfficers)
+    public static List<Person> PersonList(City city, int numberOfCitizens, int numberOfThieves,int numberOfPoliceOfficers)
     {
         List<Person> persons = new List<Person>();
-        persons.AddRange(AddCitizensToPersonList(cityRows, cityCols, numberOfCitizens));
-        persons.AddRange(AddThievesToPersonList(cityRows, cityCols, numberOfThieves));
-        persons.AddRange(AddPoliceOfficersToPersonList(cityRows, cityCols, numberOfPoliceOfficers));
+        persons.AddRange(AddCitizensToPersonList(city, numberOfCitizens));
+        persons.AddRange(AddThievesToPersonList(city, numberOfThieves));
+        persons.AddRange(AddPoliceOfficersToPersonList(city, numberOfPoliceOfficers));
         
         return persons;
     }

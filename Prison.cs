@@ -1,8 +1,11 @@
 namespace Tjuv_Och_Polis_Group_Project;
 public class Prison : Grid
 {
-    public Prison(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
+    public Prison()
     {
+        Rows = 4;
+        Columns = 30;
+        Matrix = new char[Rows, Columns];
     }
     public override void PrintLayout()
     {
