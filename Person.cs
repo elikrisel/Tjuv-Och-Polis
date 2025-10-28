@@ -41,6 +41,7 @@ public abstract class Person
         if(StepsTaken == StepsUntilNewDirection)
         {
             Direction = Random.Shared.Next(0, 9);
+            StepsTaken = 0;
         }
     }
     //DIFFERENT TYPE OF MOVEMENT IN PRISON IN 4 AXIS - CHECK FURTHER ON MONDAY
@@ -62,6 +63,7 @@ public abstract class Person
         if (StepsTaken == StepsUntilNewDirection)
         {
             Direction = Random.Shared.Next(0, 9);
+            StepsTaken = 0;
         }
     }
 }
