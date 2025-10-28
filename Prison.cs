@@ -28,6 +28,10 @@ public class Prison : Grid
                     Console.ForegroundColor = PersonProperties.ThiefColor();
                 }
                 Console.Write($"{Matrix[row, col]}");
+                if (col != 0 && col != Columns - 1)
+                {
+                    Console.Write(' ');
+                }
                 Console.ResetColor();
                 if (col == Columns - 1)
                 {
