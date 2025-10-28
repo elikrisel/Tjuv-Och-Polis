@@ -1,49 +1,6 @@
 namespace Tjuv_Och_Polis_Group_Project;
 public class PersonManager
 {
-    public static List<string> CitizenStartingInventory()
-    {
-        return new List<string>
-        {
-            "Nycklar", "Mobil", "Pengar", "Klocka"
-        };
-    }
-    public static string CitizenDescription()
-    {
-        return "Medborgare";
-    }
-    public static string ThiefDescription()
-    {
-        return "Tjuv";
-    }
-    public static string PoliceDescription()
-    {
-        return "Polis";
-    }
-    public static char CitizenCharacter()
-    {
-        return 'C';
-    }
-    public static char ThiefCharacter()
-    {
-        return 'T';
-    }
-    public static char PoliceCharacter()
-    {
-        return 'P';
-    }
-    public static ConsoleColor CitizenColor()
-    {
-        return ConsoleColor.Green;
-    }
-    public static ConsoleColor ThiefColor()
-    {
-        return ConsoleColor.Red;
-    }
-    public static ConsoleColor PoliceColor()
-    {
-        return ConsoleColor.Blue;
-    }
     public static void HandleInteractions(List<Person> persons, Prison prison, NewsFeed newsFeed)
     {
         for (int i = 0; i < persons.Count - 1; i++)
@@ -92,21 +49,12 @@ public class PersonManager
     {
         foreach (Person person in persons)
         {
-            // if (!person.InPrison)
-            // {
-            //     person.MovementInCity(city);
-            // }
-            // else
-            // {
-            //     person.MovementInPrison(prison);
-            // }
             person.MoveInGrid(city,prison);
         }
     }
     private static bool IfTwoPersonsAreOnTheSameCoordinatesInCity(Person person1, Person person2)
     {
         return person1.X == person2.X && person1.Y == person2.Y && !person1.InPrison && !person2.InPrison;
-
     }
     private static void IfPersonsAreThiefAndCitizen(Person person1, Person person2, NewsFeed newsFeed)
     {
@@ -142,7 +90,6 @@ public class PersonManager
             CitizenGreetsThePolice(person2, person1, newsFeed);
         }
     }
-
     public static void TimerInPrisonCounter(List<Person> persons, City city)
     {
         foreach (Person person in persons)

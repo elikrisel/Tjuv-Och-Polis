@@ -4,9 +4,9 @@ public class Thief : Person
     public int TimerInPrison { get; set; }
     public Thief(string name, int startX, int startY) : base(name, startX, startY)
     {
-        Description = PersonManager.ThiefDescription();
-        Character = PersonManager.ThiefCharacter();
-        Color = PersonManager.ThiefColor();
+        Description = PersonProperties.ThiefDescription();
+        Character = PersonProperties.ThiefCharacter();
+        Color = PersonProperties.ThiefColor();
     }
     public void MoveToJail(Prison prison)
     { 

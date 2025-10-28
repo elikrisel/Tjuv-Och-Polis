@@ -4,9 +4,9 @@ public class Citizen : Person
 {
     public Citizen(string name, int startX, int startY) : base(name, startX, startY)
     {
-        Character = PersonManager.CitizenCharacter();
-        Description = PersonManager.CitizenDescription();
-        Color = PersonManager.CitizenColor();
-        InventorySystem = PersonManager.CitizenStartingInventory();
+        Character = PersonProperties.CitizenCharacter();
+        Description = PersonProperties.CitizenDescription();
+        Color = PersonProperties.CitizenColor();
+        InventorySystem = PersonProperties.CitizenStartingInventory();
     }
 }

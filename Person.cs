@@ -13,7 +13,6 @@ public abstract class Person
     public int Direction { get; set; }
     public int StepsUntilNewDirection { get; set; }
     public int StepsTaken { get; set; }
-
     public Person(string name,int startX,int startY)
     {
         Name = name;
@@ -23,7 +22,6 @@ public abstract class Person
         Direction = SetNewRandomDirection();
         StepsUntilNewDirection = SetNewStepsUntilNewDirection();
     }
-    
     public void MoveInGrid(City city, Prison prison)
     {
         Grid personLocation = !InPrison ? city : prison;
@@ -60,5 +58,4 @@ public abstract class Person
             StepsTaken = 0;
         }
     }
-    
 }

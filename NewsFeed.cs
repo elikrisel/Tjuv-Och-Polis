@@ -38,7 +38,6 @@ public class NewsFeed : Grid
             Helpers.PrintXNumberOfLines(Columns * 2 - 4)
         };
         PrintStatisticsWithinTheNewsFeedBorder(city, prison, lines);
-        
     }
     public void PrintNewsList()
     {
@@ -71,5 +70,4 @@ public class NewsFeed : Grid
             Console.WriteLine(lines[i]);
         }
     }
-    
 }

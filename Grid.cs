@@ -7,7 +7,6 @@ public abstract class Grid
     public char Border { get; set; } 
     public ConsoleColor Color { get; set; }
     public char EmptySpace { get; set; }
-
     public Grid()
     {
         Border = '.';
@@ -62,17 +61,17 @@ public abstract class Grid
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
                 }
-                else if (Matrix[row, col] == PersonManager.CitizenCharacter())
+                else if (Matrix[row, col] == PersonProperties.CitizenCharacter())
                 {
-                    Console.ForegroundColor = PersonManager.CitizenColor();
+                    Console.ForegroundColor = PersonProperties.CitizenColor();
                 }
-                else if (Matrix[row, col] == PersonManager.ThiefCharacter())
+                else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
                 {
-                    Console.ForegroundColor = PersonManager.ThiefColor();
+                    Console.ForegroundColor = PersonProperties.ThiefColor();
                 }
-                else if (Matrix[row, col] == PersonManager.PoliceCharacter())
+                else if (Matrix[row, col] == PersonProperties.PoliceCharacter())
                 {
-                    Console.ForegroundColor = PersonManager.PoliceColor(); 
+                    Console.ForegroundColor = PersonProperties.PoliceColor(); 
                 }
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();

@@ -18,9 +18,9 @@ public class Prison : Grid
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
                 }
-                else if (Matrix[row, col] == PersonManager.ThiefCharacter())
+                else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
                 {
-                    Console.ForegroundColor = PersonManager.ThiefColor();
+                    Console.ForegroundColor = PersonProperties.ThiefColor();
                 }
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
