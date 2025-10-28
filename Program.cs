@@ -8,7 +8,6 @@ class Program
         bool debugList = false;
         Console.CursorVisible = false;
         
-        //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
         int numberOfCitizens = 30;
         int numberOfThieves = 20;
         int numberOfPoliceOfficers = 10;

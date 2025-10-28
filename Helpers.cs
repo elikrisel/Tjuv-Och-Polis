@@ -23,9 +23,9 @@ public class Helpers
     }
     public static void PrintStatisticsAndNewsFeed(List<Person> persons,int numberOfCitizens,int numberOfThieves,int numberOfPoliceOfficers,City city,Prison prison, NewsFeed newsFeed)
     {
-        newsFeed.PrintLayout();
+        newsFeed.PrintLayout(prison,city);
         newsFeed.Statistics(persons,numberOfCitizens,numberOfThieves,numberOfPoliceOfficers,city,prison);
-        newsFeed.PrintNewsList();   
+        newsFeed.PrintNewsList(prison);   
     }
     public static void PrintDebugList(List<Person> persons)
     {

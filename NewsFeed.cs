@@ -10,8 +10,9 @@ public class NewsFeed : Grid
         Matrix = new char[Rows, Columns];
 
     }
-    public override void PrintLayout()
+    public void PrintLayout(Prison prison, City city)
     {
+        Console.SetCursorPosition((prison.Columns * 2), city.Rows);
         for (int row = 0; row < Rows; row++)
         {
             for (int col = 0; col < Columns; col++)
@@ -21,6 +22,7 @@ public class NewsFeed : Grid
                     Console.BackgroundColor = Color;
                     Console.ForegroundColor = Color;
                 }
+                Console.SetCursorPosition((prison.Columns * 2) + (col * 2), Console.CursorTop);
                 Console.Write($"{Matrix[row, col]} ");
                 Console.ResetColor();
             }
@@ -29,6 +31,7 @@ public class NewsFeed : Grid
     }
     public void Statistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfPoliceOfficers, City city, Prison  prison)
     { 
+        Console.SetCursorPosition(0, 0);
         int thievesInPrison = CountThievesInPrison(persons);
         string[] lines =
         {
@@ -39,12 +42,13 @@ public class NewsFeed : Grid
         };
         PrintStatisticsWithinTheNewsFeedBorder(city, prison, lines);
     }
-    public void PrintNewsList()
+    public void PrintNewsList(Prison prison)
     {
+        Console.SetCursorPosition((prison.Columns * 2) + 2, Console.CursorTop);
         int viableSpaceInNewsFeed = Rows - 6; 
         for (int i = NewsList.Count - 1; i > 0 && viableSpaceInNewsFeed > 0; i--)
         {
-            Console.SetCursorPosition(2, Console.CursorTop);
+            Console.SetCursorPosition((prison.Columns * 2) + 2, Console.CursorTop);
             Console.WriteLine($"{i}: {NewsList[i]}");
             viableSpaceInNewsFeed--;
         }
@@ -63,10 +67,10 @@ public class NewsFeed : Grid
     }
     private void PrintStatisticsWithinTheNewsFeedBorder(City city, Prison prison, string[] lines)
     {
-        Console.SetCursorPosition(2, city.Rows + prison.Rows + 1);
+        Console.SetCursorPosition((prison.Columns * 2),city.Rows + 1);
         for (int i = 0; i < lines.Length; i++)
         {
-            Console.SetCursorPosition(2, Console.CursorTop);
+            Console.SetCursorPosition((prison.Columns * 2) + 2, Console.CursorTop);
             Console.WriteLine(lines[i]);
         }
     }
