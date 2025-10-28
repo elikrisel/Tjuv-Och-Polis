@@ -1,9 +1,10 @@
 namespace Tjuv_Och_Polis_Group_Project;
 public class Thief : Person
-{ 
+{
+    public int TimerInPrison { get; set; }
     public Thief(string name, int startX, int startY) : base(name, startX, startY)
     {
-        Description = "Tjuv";
+        Description = PersonManager.ThiefDescription();
         Character = PersonManager.ThiefCharacter();
         Color = PersonManager.ThiefColor();
     }

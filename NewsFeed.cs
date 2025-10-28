@@ -3,12 +3,13 @@ using System.Collections;
 namespace Tjuv_Och_Polis_Group_Project;
 public class NewsFeed : Grid
 { 
-    public List<string> NewsList { get; set; }
+    public List<string> NewsList { get; set; }       
     public NewsFeed(int rows, int columns, char[,] matrix) : base(rows, columns, matrix)
     {
         NewsList = new List<string>();
+        
     }
-    public void PrintLayout()
+    public override void PrintLayout()
     {
         for (int row = 0; row < Rows; row++)
         {
@@ -25,9 +26,30 @@ public class NewsFeed : Grid
             Console.WriteLine();
         }
     }
-
-    public void Statistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfOfficers,
-        City city, Prison prison)
+    public void Statistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfPoliceOfficers, City city, Prison  prison)
+    { 
+        int thievesInPrison = CountThievesInPrison(persons);
+        string[] lines =
+        {
+            $"Medborgare i Staden: {numberOfCitizens}",
+            $"Tjuvar i Staden: {numberOfThieves - thievesInPrison}. Tjuvar i Fängelse: {thievesInPrison}",
+            $"Poliser i Staden: {numberOfPoliceOfficers}",
+            Helpers.PrintXNumberOfLines(Columns * 2 - 4)
+        };
+        PrintStatisticsWithinTheNewsFeedBorder(city, prison, lines);
+        
+    }
+    public void PrintNewsList()
+    {
+        int viableSpaceInNewsFeed = Rows - 6; 
+        for (int i = NewsList.Count - 1; i > 0 && viableSpaceInNewsFeed > 0; i--)
+        {
+            Console.SetCursorPosition(2, Console.CursorTop);
+            Console.WriteLine($"{i}: {NewsList[i]}");
+            viableSpaceInNewsFeed--;
+        }
+    }
+    private int CountThievesInPrison(List<Person> persons)
     {
         int thievesInPrison = 0;
         foreach (Person person in persons)
@@ -36,34 +58,17 @@ public class NewsFeed : Grid
             {
                 thievesInPrison++;
             }
-        }
-        string[] lines =
-        {
-            $"Medborgare i Staden: {numberOfCitizens}",
-            $"Tjuvar i Staden: {numberOfThieves - thievesInPrison}. Tjuvar i Fängelse: {thievesInPrison}",
-            $"Poliser i Staden: {numberOfOfficers}",
-            Helpers.BreakPoint(Columns * 2 - 4)
-        };
+        }       
+        return thievesInPrison;
+    }
+    private void PrintStatisticsWithinTheNewsFeedBorder(City city, Prison prison, string[] lines)
+    {
         Console.SetCursorPosition(2, city.Rows + prison.Rows + 1);
         for (int i = 0; i < lines.Length; i++)
         {
             Console.SetCursorPosition(2, Console.CursorTop);
             Console.WriteLine(lines[i]);
         }
-        
     }
-    public void PrintNewsList(City city, Prison prison)
-    {
-        int count = 0;
-        for (int i = NewsList.Count - 1; i > 0; i--)
-        {
-            Console.SetCursorPosition(2, Console.CursorTop);
-            Console.WriteLine($"{i}: {NewsList[i]}");
-            count++;
-            if (count == 5)
-            {
-                break;
-            }
-        }
-    }
+    
 }

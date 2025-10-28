@@ -5,7 +5,7 @@ class Program
     {
         #region Variables
 
-        int cityRows = 6;
+        int cityRows = 14;
         int cityCols = 40;
         char[,] cityGrid = new char[cityRows, cityCols];
         
@@ -13,7 +13,8 @@ class Program
         int prisonCols = 30;  
         char[,] prisonGrid = new char[prisonRows, prisonCols];
 
-        int newsFeedRows = 11;
+        int newsFeedRows = 11; // MUST BE ABOVE 6 TO SHOW STATISTICS AND 1 ROW FOR NEWSFEED - INSPECT FURTHER 
+        //newsFeedRows = newsFeedRows < 11 ? 11 : newsFeedRows; //ALWAYS MAKE SURE NEWSFEED ROWS  IS 11 OR ABOVE
         int newsFeedCols = 40; 
         char[,] newsFeedGrid = new char[newsFeedRows, newsFeedCols];
         
@@ -23,7 +24,9 @@ class Program
         //TODO: SÄTT VÄRDERNA ENLIGT DOKUMENTET
         int numberOfCitizens = 10;
         int numberOfThieves = 10;
-        int numberOfPoliceOfficers = 10; 
+        int numberOfPoliceOfficers = 10;
+
+        int numberOfSteps = 0;
 
         #endregion
         City city = new City(cityRows, cityCols, cityGrid);
@@ -33,7 +36,7 @@ class Program
         
         Helpers.GenerateLayoutsForCityPrisonAndNewsFeed(city,prison,newsFeed);
         
-        while (true)
+        while (true) 
         {
             Console.SetCursorPosition(0, 0);
             if (!debugList)
@@ -47,6 +50,16 @@ class Program
             }
             PersonManager.HandleInteractions(persons, prison, newsFeed);
             PersonManager.MoveEachPerson(persons, city, prison);
+            numberOfSteps++;
+            if (numberOfSteps == 20)
+            {
+                foreach (Person person in persons)
+                {
+                    person.Direction = Random.Shared.Next(0, 9);
+                }
+                numberOfSteps = 0;
+            }
+            
             #region TESTING : Prison och Debug
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (key.Key)
@@ -70,6 +83,20 @@ class Program
                     break;
             }
             #endregion
+            foreach(Person person in persons)
+            {
+                if (person is Thief && person.InPrison)
+                {
+                    Thief thief = (Thief)person;
+                    thief.TimerInPrison--;
+
+                    if (thief.TimerInPrison == 0)
+                    {
+                        thief.MoveToCity(city);
+                    }
+                }
+                
+            }
             // Console.Clear();
         }
     }

@@ -3,7 +3,7 @@ class Police : Person
 {
     public Police(string name, int startX, int startY) : base(name, startX, startY)
     { 
-        Description = "Polis";
+        Description = PersonManager.PoliceDescription();
         Character = PersonManager.PoliceCharacter();
         Color = PersonManager.PoliceColor();
     }
