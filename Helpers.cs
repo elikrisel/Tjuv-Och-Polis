@@ -180,4 +180,39 @@ public class Helpers
         
         return names[index % names.Count];
     }
+    public static bool ShowDebug(List<Person> persons,Prison prison, City city, bool debugList)
+    {
+        if (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            
+            switch (key.Key)
+            {
+                // case ConsoleKey.J:
+                //     DebugToggleAllThievesInPrison(persons,prison,city);
+                //     break;     
+                case ConsoleKey.L:
+                    debugList = !debugList;
+                    Console.Clear();
+                    break;
+            }
+    
+        }
+        
+        return debugList;
+    }
+    private static void DebugToggleAllThievesInPrison(List<Person> persons, Prison prison, City city)
+    {
+        foreach (Person person in persons)
+        {
+            if (person is Thief && !person.InPrison)
+            {
+                ((Thief)person).MoveToJail(prison);
+            }
+            else if (person is Thief && person.InPrison)
+            {
+                ((Thief)person).MoveToCity(city);
+            }
+        }
+    }
 }

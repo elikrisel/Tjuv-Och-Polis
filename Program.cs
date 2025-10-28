@@ -34,34 +34,15 @@ class Program
             }
             PersonManager.HandleInteractions(persons, prison, newsFeed);
             PersonManager.MoveEachPerson(persons, city, prison);
-            
-            
-            #region TESTING : Prison och Debug
-            ConsoleKeyInfo key = Console.ReadKey(true);
-            switch (key.Key)
-            {
-                case ConsoleKey.J:
-                    foreach (Person person in persons)
-                    {
-                        if (person is Thief && !person.InPrison)
-                        {
-                            ((Thief)person).MoveToJail(prison);
-                        }
-                        else if (person is Thief && person.InPrison)
-                        {
-                            ((Thief)person).MoveToCity(city);
-                        }
-                    }
-                    break;     
-                case ConsoleKey.L:
-                    debugList = !debugList;
-                    Console.Clear();
-                    break;
-            }
-            #endregion
-            
             PersonManager.TimerInPrisonCounter(persons, city);
+            debugList = Helpers.ShowDebug(persons, prison, city, debugList);
+            
+            Thread.Sleep(1000);
             // Console.Clear();
         }
     }
+
 }
+
+
+
