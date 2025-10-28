@@ -3,16 +3,21 @@ public class Prison : Grid
 {
     public Prison()
     {
-        Rows = 11;
+        Rows = 9;
         Columns = 20;
         Matrix = new char[Rows, Columns];
     }
     public override void PrintLayout()
     {
+        Console.WriteLine(new string('x', Columns * 2));
         for (int row = 0; row < Rows; row++)
         {
             for (int col = 0; col < Columns; col++)
             {
+                if (col == 0)
+                {
+                    Console.Write('x');
+                }
                 if (Matrix[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
@@ -22,11 +27,16 @@ public class Prison : Grid
                 {
                     Console.ForegroundColor = PersonProperties.ThiefColor();
                 }
-                Console.Write($"{Matrix[row, col]} ");
+                Console.Write($"{Matrix[row, col]}");
                 Console.ResetColor();
+                if (col == Columns - 1)
+                {
+                    Console.Write('x');
+                }
             }
             Console.WriteLine();
         }
+        Console.WriteLine(new string('x', Columns * 2));
     }
     public override void SetLayout(List<Person> persons)
     {
