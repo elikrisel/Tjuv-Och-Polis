@@ -48,9 +48,7 @@ public class Helpers
             {
                 foreach (string inventory in person.InventorySystem)
                 {
-                    
                     Console.Write($" {inventory}");
-                    
                 }
             }
             else
@@ -60,7 +58,6 @@ public class Helpers
             }
             Console.WriteLine();
         }
-
         Console.WriteLine(PrintXNumberOfLines(44));
     }
     public static List<Person> AddCitizensToPersonList(City city, int numberOfCitizens)
@@ -192,6 +189,7 @@ public class Helpers
         return names[index];
     }
     
+    #region DEBUGMODE
     public static bool ShowDebug(List<Person> persons,Prison prison, City city, bool debugList)
     {
         if (Console.KeyAvailable)
@@ -227,4 +225,5 @@ public class Helpers
             }
         }
     }
+    #endregion
 }

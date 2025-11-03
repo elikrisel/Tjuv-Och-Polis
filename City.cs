@@ -6,7 +6,6 @@ public class City : Grid
         Rows = 22;
         Columns = 60;
         Matrix = new char[Rows, Columns];
-
     }
 }
     

@@ -27,7 +27,6 @@ public class PersonManager
         {
             Thread.Sleep(1000);
         }
-        //ANY INTERACTIONS?
     }
     private static void CitizenGreetsThePolice(Person citizen, Person police, NewsFeed newsFeed)
     {
@@ -88,7 +87,6 @@ public class PersonManager
     }
     private static void IfPersonsArePoliceAndThief(Person person1, Person person2, Prison prison, NewsFeed newsFeed)
     {
-        
         if (person1 is Police && person2 is Thief)
         {
             IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(person1, person2, prison, newsFeed);
