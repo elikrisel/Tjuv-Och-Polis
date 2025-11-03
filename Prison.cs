@@ -9,15 +9,12 @@ public class Prison : Grid
     }
     public override void PrintLayout()
     {
-        Console.WriteLine(new string('x', Columns * 2));
+        PrintBarbwire("top");
         for (int row = 0; row < Rows; row++)
         {
+            PrintBarbwire("left");
             for (int col = 0; col < Columns; col++)
             {
-                if (col == 0)
-                {
-                    Console.Write('x');
-                }
                 if (Matrix[row, col] == Border)
                 {
                     Console.BackgroundColor = Color;
@@ -33,14 +30,11 @@ public class Prison : Grid
                     Console.Write(' ');
                 }
                 Console.ResetColor();
-                if (col == Columns - 1)
-                {
-                    Console.Write('x');
-                }
             }
+            PrintBarbwire("right");
             Console.WriteLine();
         }
-        Console.WriteLine(new string('x', Columns * 2));
+        PrintBarbwire("bottom");
     }
     public override void SetLayout(List<Person> persons)
     {
@@ -60,6 +54,17 @@ public class Prison : Grid
             {
                 Matrix[person.X, person.Y] = EmptySpace;
             }
+        }
+    }
+    private void PrintBarbwire(string position)
+    {
+        if (position == "top" || position == "bottom")
+        {
+            Console.WriteLine(new string('x', Columns * 2));
+        }
+        else if (position == "left" || position == "right")
+        {
+            Console.Write('x');
         }
     }
 }
