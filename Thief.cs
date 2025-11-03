@@ -11,13 +11,20 @@ public class Thief : Person
     public void MoveToJail(Prison prison)
     { 
         InPrison = true;
-        X = Random.Shared.Next(1, prison.Rows - 1);
-        Y = Random.Shared.Next(1, prison.Columns - 1);
+        SetPositionBasedOnPersonLocation(prison);
+        //X = Random.Shared.Next(1, prison.Rows - 1);
+        //Y = Random.Shared.Next(1, prison.Columns - 1);
     }
     public void MoveToCity(City city)
     {
         InPrison = false;
-        X = Random.Shared.Next(1, city.Rows - 1);
-        Y = Random.Shared.Next(1, city.Columns - 1);
+        SetPositionBasedOnPersonLocation(city);
+        //X = Random.Shared.Next(1, city.Rows - 1);
+        //Y = Random.Shared.Next(1, city.Columns - 1);
     } 
+    private void SetPositionBasedOnPersonLocation(Grid personLocation)
+    {
+        X = Random.Shared.Next(1, personLocation.Rows - 1);
+        Y = Random.Shared.Next(1, personLocation.Columns - 1);
+    }
 }
