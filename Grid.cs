@@ -56,28 +56,32 @@ public abstract class Grid
         {
             for (int col = 0; col < Columns; col++)
             {
-                if (Matrix[row, col] == Border)
-                {
-                    Console.BackgroundColor = Color;
-                    Console.ForegroundColor = Color;
-                }
-                else if (Matrix[row, col] == PersonProperties.CitizenCharacter())
-                {
-                    Console.ForegroundColor = PersonProperties.CitizenColor();
-                }
-                else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
-                {
-                    Console.ForegroundColor = PersonProperties.ThiefColor();
-                }
-                else if (Matrix[row, col] == PersonProperties.PoliceCharacter())
-                {
-                    Console.ForegroundColor = PersonProperties.PoliceColor(); 
-                }
-                Console.Write($"{Matrix[row, col]} ");
-                Console.ResetColor();
+                SetColorBasedOnCharacterAndPrint(row, col);
             }
             Console.WriteLine();
         }
+    }
+    private void SetColorBasedOnCharacterAndPrint(int row, int col)
+    {
+        if (Matrix[row, col] == Border)
+        {
+            Console.BackgroundColor = Color;
+            Console.ForegroundColor = Color;
+        }
+        else if (Matrix[row, col] == PersonProperties.CitizenCharacter())
+        {
+            Console.ForegroundColor = PersonProperties.CitizenColor();
+        }
+        else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
+        {
+            Console.ForegroundColor = PersonProperties.ThiefColor();
+        }
+        else if (Matrix[row, col] == PersonProperties.PoliceCharacter())
+        {
+            Console.ForegroundColor = PersonProperties.PoliceColor(); 
+        }
+        Console.Write($"{Matrix[row, col]} ");
+        Console.ResetColor();
     }
     
 }

@@ -25,7 +25,7 @@ public class Prison : Grid
                 }
                 else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
                 {
-                    Console.ForegroundColor = PersonProperties.ThiefColor();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                 }
                 Console.Write($"{Matrix[row, col]}");
                 if (col != 0 && col != Columns - 1)
