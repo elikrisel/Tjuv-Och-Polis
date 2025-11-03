@@ -1,8 +1,11 @@
 namespace Tjuv_Och_Polis_Group_Project;
 public class PersonManager
 {
+    private static bool interactionOccured;
+    
     public static void HandleInteractions(List<Person> persons, Prison prison, NewsFeed newsFeed)
     {
+        interactionOccured = false;
         for (int i = 0; i < persons.Count - 1; i++)
         {
             Person person1 = persons[i];
@@ -19,25 +22,36 @@ public class PersonManager
                 }
             }
         }
+
+        if (interactionOccured)
+        {
+            Thread.Sleep(1000);
+        }
+        //ANY INTERACTIONS?
     }
     private static void CitizenGreetsThePolice(Person citizen, Person police, NewsFeed newsFeed)
     {
         newsFeed.NewsList.Add($"{citizen.Description} {citizen.Name} hälsar på {police.Description} {police.Name}");
+        interactionOccured = true;
     }
     private static void IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(Person police, Person thief, Prison prison, NewsFeed newsFeed)
     {
+        int prisonTimePerItem = 30;
         if (thief.InventorySystem.Count > 0)
         {
-            ((Thief)thief).TimerInPrison = thief.InventorySystem.Count * 30;
+            ((Thief)thief).TimerInPrison = thief.InventorySystem.Count * prisonTimePerItem;
             police.InventorySystem.AddRange(thief.InventorySystem);
             thief.InventorySystem.Clear();
             ((Thief)thief).MoveToJail(prison);
             newsFeed.NewsList.Add($"{police.Description} {police.Name} sätter {thief.Description} {thief.Name} i fängelset");
+            interactionOccured = true;
         }
         else
         {
             newsFeed.NewsList.Add($"{Helpers.GetThiefAdjective()} {thief.Name} hälsar på {police.Description} {police.Name}");
+            interactionOccured = true;
         }
+        
     }
     private static void ThiefStealsRandomInventoryFromCitizen(Person citizen, Person thief, NewsFeed newsFeed)
     {
@@ -47,6 +61,7 @@ public class PersonManager
             thief.InventorySystem.Add(citizen.InventorySystem[randomIndex]);
             newsFeed.NewsList.Add($"{thief.Description} {thief.Name} tar {citizen.InventorySystem[randomIndex]} från {citizen.Description} {citizen.Name}");
             citizen.InventorySystem.RemoveAt(randomIndex);
+            interactionOccured = true;
         }
     }
     public static void MoveEachPerson(List<Person> persons, City city, Prison prison)

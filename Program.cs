@@ -37,7 +37,7 @@ class Program
             PersonManager.TimerInPrisonCounter(persons, city);
             debugList = Helpers.ShowDebug(persons, prison, city, debugList);
             
-            Thread.Sleep(1000);
+            Thread.Sleep(300);
             // Console.Clear();
         }
     }

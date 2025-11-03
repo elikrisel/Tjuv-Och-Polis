@@ -83,5 +83,4 @@ public abstract class Grid
         Console.Write($"{Matrix[row, col]} ");
         Console.ResetColor();
     }
-    
 }
