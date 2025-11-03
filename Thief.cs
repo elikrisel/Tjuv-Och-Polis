@@ -12,15 +12,11 @@ public class Thief : Person
     { 
         InPrison = true;
         SetPositionBasedOnPersonLocation(prison);
-        //X = Random.Shared.Next(1, prison.Rows - 1);
-        //Y = Random.Shared.Next(1, prison.Columns - 1);
     }
     public void MoveToCity(City city)
     {
         InPrison = false;
         SetPositionBasedOnPersonLocation(city);
-        //X = Random.Shared.Next(1, city.Rows - 1);
-        //Y = Random.Shared.Next(1, city.Columns - 1);
     } 
     private void SetPositionBasedOnPersonLocation(Grid personLocation)
     {
