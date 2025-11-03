@@ -15,26 +15,31 @@ public class Prison : Grid
             PrintBarbwire("left");
             for (int col = 0; col < Columns; col++)
             {
-                if (Matrix[row, col] == Border)
-                {
-                    Console.BackgroundColor = Color;
-                    Console.ForegroundColor = Color;
-                }
-                else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                }
-                Console.Write($"{Matrix[row, col]}");
-                if (col != 0 && col != Columns - 1)
-                {
-                    Console.Write(' ');
-                }
-                Console.ResetColor();
+                SetColorBasedOnCharacterAndPrint(row,col);
             }
             PrintBarbwire("right");
             Console.WriteLine();
         }
         PrintBarbwire("bottom");
+    }
+    protected override void SetColorBasedOnCharacterAndPrint(int row, int col)
+    {
+        if (Matrix[row, col] == Border)
+        {
+            Console.BackgroundColor = Color;
+            Console.ForegroundColor = Color;
+        }
+        else if (Matrix[row, col] == PersonProperties.ThiefCharacter())
+        {
+            Console.ForegroundColor = PersonProperties.ThiefColor();
+        }
+        Console.Write($"{Matrix[row, col]}");
+        //ADDING EXTRA EMPTY SPACE WITHIN THE BORDER
+        if (col != 0 && col != Columns - 1)
+        {
+            Console.Write(' ');
+        }
+        Console.ResetColor();
     }
     public override void SetLayout(List<Person> persons)
     {

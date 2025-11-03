@@ -61,7 +61,7 @@ public abstract class Grid
             Console.WriteLine();
         }
     }
-    private void SetColorBasedOnCharacterAndPrint(int row, int col)
+    protected virtual void SetColorBasedOnCharacterAndPrint(int row, int col)
     {
         if (Matrix[row, col] == Border)
         {
