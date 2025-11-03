@@ -34,6 +34,10 @@ public class PersonManager
             ((Thief)thief).MoveToJail(prison);
             newsFeed.NewsList.Add($"{police.Description} {police.Name} sätter {thief.Description} {thief.Name} i fängelset");
         }
+        else
+        {
+            newsFeed.NewsList.Add($"{Helpers.GetThiefAdjective()} {thief.Name} hälsar på {police.Description} {police.Name}");
+        }
     }
     private static void ThiefStealsRandomInventoryFromCitizen(Person citizen, Person thief, NewsFeed newsFeed)
     {
@@ -69,7 +73,7 @@ public class PersonManager
     }
     private static void IfPersonsArePoliceAndThief(Person person1, Person person2, Prison prison, NewsFeed newsFeed)
     {
-        //Om tjuven INTE har inventory, vad gör vi då? (Behöver justera If-satserna här för att kolla tjuvens inventory)
+        
         if (person1 is Police && person2 is Thief)
         {
             IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(person1, person2, prison, newsFeed);

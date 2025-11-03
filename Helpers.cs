@@ -180,6 +180,18 @@ public class Helpers
         
         return names[index % names.Count];
     }
+
+    public static string GetThiefAdjective()
+    {
+        List<string> names = new List<string>()
+        {
+            "Listiga", "Luriga", "Misstänksamma"
+        };
+        int index = Random.Shared.Next(0, names.Count);
+
+        return names[index];
+    }
+    
     public static bool ShowDebug(List<Person> persons,Prison prison, City city, bool debugList)
     {
         if (Console.KeyAvailable)
