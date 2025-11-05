@@ -47,7 +47,6 @@ public class NewsFeed : Grid
     }
     public void PrintStatistics(List<Person> persons, int numberOfCitizens, int numberOfThieves, int numberOfPoliceOfficers, City city, Prison prison)
     { 
-        int thievesInPrison = CountThievesInPrison(persons);
         string[] statistics = Statistics(persons, numberOfCitizens, numberOfThieves, numberOfPoliceOfficers);
 
         WriteEachStatisticsLineWithinNewsFeedBorder(city, prison, statistics);
