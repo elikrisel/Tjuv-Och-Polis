@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Tjuv_Och_Polis_Group_Project;
 public class PersonManager
 {
@@ -89,11 +91,13 @@ public class PersonManager
 
         if (thief.InventorySystem.Count > 0)
         {
-            ((Thief)thief).TimerInPrison = thief.InventorySystem.Count * prisonTimePerItem;
+            int confiscatedItemsCount = thief.InventorySystem.Count;
+
+            ((Thief)thief).TimerInPrison = confiscatedItemsCount * prisonTimePerItem;
             police.InventorySystem.AddRange(thief.InventorySystem);
             thief.InventorySystem.Clear();
             ((Thief)thief).MoveToJail(prison);
-            newsFeed.NewsList.Add($"{police.Description} {police.Name} sätter {thief.Description} {thief.Name} i fängelset");
+            newsFeed.NewsList.Add($"{police.Description} {police.Name} beslagtar {confiscatedItemsCount} föremål och fänglsar {thief.Description} {thief.Name}");
             NewsFeed.interactionOccured = true;
         }
         else
