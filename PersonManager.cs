@@ -34,6 +34,22 @@ public class PersonManager
             }
         }
     }
+    public static void TimerInPrisonCounter(List<Person> persons, City city)
+    {
+        foreach (Person person in persons)
+        {
+            if (person is Thief && person.InPrison)
+            {
+                Thief thief = (Thief)person;
+                thief.TimerInPrison--;
+
+                if (thief.TimerInPrison == 0)
+                {
+                    thief.MoveToCity(city);
+                }
+            }
+        }
+    }
 
 
     // Collision check
@@ -119,23 +135,4 @@ public class PersonManager
         }
     }
     
-
-    // Prison timer
-    public static void TimerInPrisonCounter(List<Person> persons, City city)
-    {
-        foreach (Person person in persons)
-        {
-            if (person is Thief && person.InPrison)
-            {
-                Thief thief = (Thief)person;
-                thief.TimerInPrison--;
-
-                if (thief.TimerInPrison == 0)
-                {
-                    thief.MoveToCity(city);
-                }
-            }
-        }
-    }
-
 }
