@@ -23,6 +23,7 @@ class Program
         while (true) 
         {
             Console.SetCursorPosition(0, 0);
+
             if (!debugList)
             { 
                 Helpers.SetPrintAndClearLayoutsForCityAndPrison(city, prison, persons);
@@ -32,16 +33,17 @@ class Program
             {
                 Helpers.PrintDebugList(persons);
             }
+
             PersonManager.HandleInteractions(persons, prison, newsFeed);
             PersonManager.MoveEachPerson(persons, city, prison);
             PersonManager.TimerInPrisonCounter(persons, city);
+
             debugList = Helpers.ShowDebug(persons, prison, city, debugList);
             
             Thread.Sleep(300);
             // Console.Clear();
         }
     }
-
 }
 
 

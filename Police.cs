@@ -7,4 +7,5 @@ class Police : Person
         Character = PersonProperties.PoliceCharacter();
         Color = PersonProperties.PoliceColor();
     }
+
 }

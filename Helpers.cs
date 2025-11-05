@@ -1,10 +1,15 @@
+using System;
+
 namespace Tjuv_Och_Polis_Group_Project;
 
 public class Helpers
-{ 
-    public static string PrintXNumberOfLines(int number)
+{
+    // Combined methods to handle simulation
+    public static void GenerateLayoutsForCityPrisonAndNewsFeed(City city, Prison prison, NewsFeed newsFeed)
     {
-        return new string('-', number);
+        city.GenerateLayout();
+        prison.GenerateLayout();
+        newsFeed.GenerateLayout();
     }
     public static void SetPrintAndClearLayoutsForCityAndPrison(City city, Prison prison, List<Person> persons)
     {
@@ -15,50 +20,23 @@ public class Helpers
         prison.PrintLayout();
         prison.ClearLayout(persons);
     }
-    public static void GenerateLayoutsForCityPrisonAndNewsFeed(City city, Prison prison, NewsFeed newsFeed)
-    {
-        city.GenerateLayout();
-        prison.GenerateLayout();
-        newsFeed.GenerateLayout();   
-    }
     public static void PrintStatisticsAndNewsFeed(List<Person> persons,int numberOfCitizens,int numberOfThieves,int numberOfPoliceOfficers,City city,Prison prison, NewsFeed newsFeed)
     {
         newsFeed.PrintLayout(prison,city);
-        newsFeed.Statistics(persons,numberOfCitizens,numberOfThieves,numberOfPoliceOfficers,city,prison);
+        newsFeed.PrintStatistics(persons,numberOfCitizens,numberOfThieves,numberOfPoliceOfficers,city,prison);
         newsFeed.PrintNewsList(prison);   
     }
-    public static void PrintDebugList(List<Person> persons)
+    
+
+    // Persons
+    public static List<Person> PersonList(City city, int numberOfCitizens, int numberOfThieves, int numberOfPoliceOfficers)
     {
-        Console.Clear();
+        List<Person> persons = new List<Person>();
+        persons.AddRange(AddCitizensToPersonList(city, numberOfCitizens));
+        persons.AddRange(AddThievesToPersonList(city, numberOfThieves));
+        persons.AddRange(AddPoliceOfficersToPersonList(city, numberOfPoliceOfficers));
 
-        Console.WriteLine("Personbeskrivning och namn |   Koordinater | Inventarie");
-        Console.WriteLine(PrintXNumberOfLines(44));
-
-        foreach (Person person in persons)
-        {
-            PrintPersonDescriptionWithPersonsColor(person);
-
-            Console.Write($"{person.Name.PadRight(25 - person.Description.Length)} |");
-
-            PrintLocationAndSetColorRedIfInPrison(person);
-
-            Console.Write($"[{person.X,2},{person.Y,2}] |");
-
-            if (!person.InPrison)
-            {
-                foreach (string inventory in person.InventorySystem)
-                {
-                    Console.Write($" {inventory}");
-                }
-            }
-            else
-            {
-                 
-                Console.Write($" Tid i fängelset: {((Thief)person).TimerInPrison}");
-            }
-            Console.WriteLine();
-        }
-        Console.WriteLine(PrintXNumberOfLines(44));
+        return persons;
     }
     public static List<Person> AddCitizensToPersonList(City city, int numberOfCitizens)
     {
@@ -74,7 +52,7 @@ public class Helpers
     public static List<Person> AddThievesToPersonList(City city, int numberOfThieves)
     {
         List<Person> thieves = new List<Person>();
-        
+
         for (int number = 0; number < numberOfThieves; number++)
         {
             int positionX = Random.Shared.Next(1, city.Rows - 1);
@@ -86,7 +64,7 @@ public class Helpers
     public static List<Person> AddPoliceOfficersToPersonList(City city, int numberOfPoliceOfficers)
     {
         List<Person> policeOfficers = new List<Person>();
-        
+
         for (int number = 0; number < numberOfPoliceOfficers; number++)
         {
             int positionX = Random.Shared.Next(1, city.Rows - 1);
@@ -95,34 +73,9 @@ public class Helpers
         }
         return policeOfficers;
     }
-    public static List<Person> PersonList(City city, int numberOfCitizens, int numberOfThieves,int numberOfPoliceOfficers)
-    {
-        List<Person> persons = new List<Person>();
-        persons.AddRange(AddCitizensToPersonList(city, numberOfCitizens));
-        persons.AddRange(AddThievesToPersonList(city, numberOfThieves));
-        persons.AddRange(AddPoliceOfficersToPersonList(city, numberOfPoliceOfficers));
-        
-        return persons;
-    }
-    private static void PrintPersonDescriptionWithPersonsColor(Person person)
-    {
-        Console.ForegroundColor = person.Color;
-        Console.Write($"{person.Description} ");
-        Console.ResetColor();
-    }
-    private static void PrintLocationAndSetColorRedIfInPrison(Person person)
-    {
-        if (person.InPrison)
-        {
-            Console.ForegroundColor = person.Color;
-            Console.Write("Prison".PadLeft(7));
-            Console.ResetColor();
-        }
-        else
-        {
-            Console.Write("City".PadLeft(7));
-        }
-    }
+    
+
+    // Person names
     private static string NamesOfCitizens(int index)
     {
         List<string> names = new List<string>()
@@ -177,25 +130,34 @@ public class Helpers
         
         return names[index % names.Count];
     }
-
     public static string GetThiefAdjective()
     {
-        List<string> names = new List<string>()
+        string[] names =
         {
             "Listiga", "Luriga", "Misstänksamma"
         };
-        int index = Random.Shared.Next(0, names.Count);
 
-        return names[index];
+        int randomIndex = Random.Shared.Next(0, names.Length);
+
+        return names[randomIndex];
     }
-    
+
+
+    // Text
+    public static string PrintXNumberOfLines(int number)
+    {
+        return new string('-', number);
+    }
+
+
+    // Debugging table [L]
     #region DEBUGMODE
-    public static bool ShowDebug(List<Person> persons,Prison prison, City city, bool debugList)
+    public static bool ShowDebug(List<Person> persons, Prison prison, City city, bool debugList)
     {
         if (Console.KeyAvailable)
         {
             ConsoleKeyInfo key = Console.ReadKey(true);
-            
+
             switch (key.Key)
             {
                 // case ConsoleKey.J:
@@ -206,11 +168,68 @@ public class Helpers
                     Console.Clear();
                     break;
             }
-    
         }
-        
+
         return debugList;
     }
+
+    public static void PrintDebugList(List<Person> persons)
+    {
+        Console.Clear();
+
+        Console.WriteLine("Personbeskrivning och namn |   Koordinater | Inventarie");
+        Console.WriteLine(PrintXNumberOfLines(44));
+
+        foreach (Person person in persons)
+        {
+            PrintPersonDescriptionWithPersonsColor(person);
+
+            PrintLocationAndSetColorRedIfInPrison(person);
+
+            PrintInventoryOrTimeInPrison(person);
+
+            Console.WriteLine();
+        }
+
+        Console.WriteLine(PrintXNumberOfLines(44));
+    }
+    private static void PrintPersonDescriptionWithPersonsColor(Person person)
+    {
+        Console.ForegroundColor = person.Color;
+        Console.Write($"{person.Description} ");
+        Console.ResetColor();
+        Console.Write($"{person.Name.PadRight(25 - person.Description.Length)} |");
+    }
+    private static void PrintLocationAndSetColorRedIfInPrison(Person person)
+    {
+        if (person.InPrison)
+        {
+            Console.ForegroundColor = person.Color;
+            Console.Write("Prison".PadLeft(7));
+            Console.ResetColor();
+        }
+        else
+        {
+            Console.Write("City".PadLeft(7));
+        }
+
+        Console.Write($"[{person.X,2},{person.Y,2}] |");
+    }
+    private static void PrintInventoryOrTimeInPrison(Person person)
+    {
+        if (!person.InPrison)
+        {
+            foreach (string inventory in person.InventorySystem)
+            {
+                Console.Write($" {inventory}");
+            }
+        }
+        else
+        {
+            Console.Write($" Tid i fängelset: {((Thief)person).TimerInPrison}");
+        }
+    }
+
     private static void DebugToggleAllThievesInPrison(List<Person> persons, Prison prison, City city)
     {
         foreach (Person person in persons)
@@ -226,4 +245,5 @@ public class Helpers
         }
     }
     #endregion
+
 }

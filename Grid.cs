@@ -13,6 +13,7 @@ public abstract class Grid
         Color = ConsoleColor.White;
         EmptySpace = ' ';
     }
+
     public void GenerateLayout()
     {
         for (int row = 0; row < Rows; row++)
@@ -40,6 +41,18 @@ public abstract class Grid
             }
         }
     }
+    public virtual void PrintLayout()
+    {
+        for (int row = 0; row < Rows; row++)
+        {
+            for (int col = 0; col < Columns; col++)
+            {
+                SetColorBasedOnCharacterAndPrint(row, col);
+            }
+
+            Console.WriteLine();
+        }
+    }
     public virtual void ClearLayout(List<Person> persons)
     {
         foreach (Person person in persons)
@@ -50,17 +63,7 @@ public abstract class Grid
             }
         }
     }
-    public virtual void PrintLayout()
-    {
-        for (int row = 0; row < Rows; row++)
-        {
-            for (int col = 0; col < Columns; col++)
-            {
-                SetColorBasedOnCharacterAndPrint(row, col);
-            }
-            Console.WriteLine();
-        }
-    }
+    
     protected virtual void SetColorBasedOnCharacterAndPrint(int row, int col)
     {
         if (Matrix[row, col] == Border)
@@ -83,4 +86,5 @@ public abstract class Grid
         Console.Write($"{Matrix[row, col]} ");
         Console.ResetColor();
     }
+
 }

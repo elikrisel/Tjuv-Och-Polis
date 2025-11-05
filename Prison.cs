@@ -7,21 +7,47 @@ public class Prison : Grid
         Columns = 20;
         Matrix = new char[Rows, Columns];
     }
+
+    public override void SetLayout(List<Person> persons)
+    {
+        foreach (Person person in persons)
+        {
+            if (person.InPrison)
+            {
+                Matrix[person.X, person.Y] = person.Character;
+            }
+        }
+    }
     public override void PrintLayout()
     {
-        PrintBarbwire("top");
+        PrintBarbedWire("top");
+
         for (int row = 0; row < Rows; row++)
         {
-            PrintBarbwire("left");
+            PrintBarbedWire("left");
+
             for (int col = 0; col < Columns; col++)
             {
                 SetColorBasedOnCharacterAndPrint(row,col);
             }
-            PrintBarbwire("right");
+
+            PrintBarbedWire("right");
             Console.WriteLine();
         }
-        PrintBarbwire("bottom");
+
+        PrintBarbedWire("bottom");
     }
+    public override void ClearLayout(List<Person> persons)
+    {
+        foreach (Person person in persons)
+        {
+            if (person.InPrison)
+            {
+                Matrix[person.X, person.Y] = EmptySpace;
+            }
+        }
+    }
+
     protected override void SetColorBasedOnCharacterAndPrint(int row, int col)
     {
         if (Matrix[row, col] == Border)
@@ -34,6 +60,7 @@ public class Prison : Grid
             Console.ForegroundColor = PersonProperties.ThiefColor();
         }
         Console.Write($"{Matrix[row, col]}");
+
         //ADDING EXTRA EMPTY SPACE WITHIN THE BORDER
         if (col != 0 && col != Columns - 1)
         {
@@ -41,27 +68,7 @@ public class Prison : Grid
         }
         Console.ResetColor();
     }
-    public override void SetLayout(List<Person> persons)
-    {
-        foreach (Person person in persons)
-        {
-            if (person.InPrison)
-            {
-                Matrix[person.X, person.Y] = person.Character;
-            }
-        }
-    }
-    public override void ClearLayout(List<Person> persons)
-    {
-        foreach (Person person in persons)
-        {
-            if (person.InPrison)
-            {
-                Matrix[person.X, person.Y] = EmptySpace;
-            }
-        }
-    }
-    private void PrintBarbwire(string position)
+    private void PrintBarbedWire(string position)
     {
         if (position == "top" || position == "bottom")
         {
@@ -72,4 +79,5 @@ public class Prison : Grid
             Console.Write('x');
         }
     }
+
 }

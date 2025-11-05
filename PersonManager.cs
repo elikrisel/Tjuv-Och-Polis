@@ -1,17 +1,26 @@
 namespace Tjuv_Och_Polis_Group_Project;
 public class PersonManager
 {
-    private static bool interactionOccured;
-    
+    // Called from main
+    public static void MoveEachPerson(List<Person> persons, City city, Prison prison)
+    {
+        foreach (Person person in persons)
+        {
+            person.MoveInGrid(city, prison);
+        }
+    }
     public static void HandleInteractions(List<Person> persons, Prison prison, NewsFeed newsFeed)
     {
-        interactionOccured = false;
+        NewsFeed.interactionOccured = false;
+
         for (int i = 0; i < persons.Count - 1; i++)
         {
             Person person1 = persons[i];
+
             for (int j = i + 1; j < persons.Count; j++)
             {
                 Person person2 = persons[j];
+
                 if (IfTwoPersonsAreOnTheSameCoordinatesInCity(person1, person2))
                 {
                     IfPersonsAreThiefAndCitizen(person1, person2, newsFeed);
@@ -22,58 +31,17 @@ public class PersonManager
                 }
             }
         }
+    }
 
-        if (interactionOccured)
-        {
-            Thread.Sleep(1000);
-        }
-    }
-    private static void CitizenGreetsThePolice(Person citizen, Person police, NewsFeed newsFeed)
-    {
-        newsFeed.NewsList.Add($"{citizen.Description} {citizen.Name} hälsar på {police.Description} {police.Name}");
-        interactionOccured = true;
-    }
-    private static void IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(Person police, Person thief, Prison prison, NewsFeed newsFeed)
-    {
-        int prisonTimePerItem = 30;
-        if (thief.InventorySystem.Count > 0)
-        {
-            ((Thief)thief).TimerInPrison = thief.InventorySystem.Count * prisonTimePerItem;
-            police.InventorySystem.AddRange(thief.InventorySystem);
-            thief.InventorySystem.Clear();
-            ((Thief)thief).MoveToJail(prison);
-            newsFeed.NewsList.Add($"{police.Description} {police.Name} sätter {thief.Description} {thief.Name} i fängelset");
-            interactionOccured = true;
-        }
-        else
-        {
-            newsFeed.NewsList.Add($"{Helpers.GetThiefAdjective()} {thief.Name} hälsar på {police.Description} {police.Name}");
-            interactionOccured = true;
-        }
-        
-    }
-    private static void ThiefStealsRandomInventoryFromCitizen(Person citizen, Person thief, NewsFeed newsFeed)
-    {
-        if (citizen.InventorySystem.Count > 0)
-        {
-            int randomIndex = Random.Shared.Next(0,citizen.InventorySystem.Count);
-            thief.InventorySystem.Add(citizen.InventorySystem[randomIndex]);
-            newsFeed.NewsList.Add($"{thief.Description} {thief.Name} tar {citizen.InventorySystem[randomIndex]} från {citizen.Description} {citizen.Name}");
-            citizen.InventorySystem.RemoveAt(randomIndex);
-            interactionOccured = true;
-        }
-    }
-    public static void MoveEachPerson(List<Person> persons, City city, Prison prison)
-    {
-        foreach (Person person in persons)
-        {
-            person.MoveInGrid(city,prison);
-        }
-    }
+
+    // Collision check
     private static bool IfTwoPersonsAreOnTheSameCoordinatesInCity(Person person1, Person person2)
     {
         return person1.X == person2.X && person1.Y == person2.Y && !person1.InPrison && !person2.InPrison;
     }
+
+
+    // Combined methods to handle person collision
     private static void IfPersonsAreThiefAndCitizen(Person person1, Person person2, NewsFeed newsFeed)
     {
         if (person1 is Citizen && person2 is Thief)
@@ -107,6 +75,48 @@ public class PersonManager
             CitizenGreetsThePolice(person2, person1, newsFeed);
         }
     }
+
+
+    // Person interactions
+    private static void CitizenGreetsThePolice(Person citizen, Person police, NewsFeed newsFeed)
+    {
+        newsFeed.NewsList.Add($"{citizen.Description} {citizen.Name} hälsar på {police.Description} {police.Name}");
+        NewsFeed.interactionOccured = true;
+    }
+    private static void IfThiefHasInventoryPoliceConfiscateAllItemsAndPutTheThiefInPrison(Person police, Person thief, Prison prison, NewsFeed newsFeed)
+    {
+        int prisonTimePerItem = 30;
+
+        if (thief.InventorySystem.Count > 0)
+        {
+            ((Thief)thief).TimerInPrison = thief.InventorySystem.Count * prisonTimePerItem;
+            police.InventorySystem.AddRange(thief.InventorySystem);
+            thief.InventorySystem.Clear();
+            ((Thief)thief).MoveToJail(prison);
+            newsFeed.NewsList.Add($"{police.Description} {police.Name} sätter {thief.Description} {thief.Name} i fängelset");
+            NewsFeed.interactionOccured = true;
+        }
+        else
+        {
+            newsFeed.NewsList.Add($"{Helpers.GetThiefAdjective()} {thief.Name} hälsar på {police.Description} {police.Name}");
+            NewsFeed.interactionOccured = true;
+        }
+    }
+    private static void ThiefStealsRandomInventoryFromCitizen(Person citizen, Person thief, NewsFeed newsFeed)
+    {
+        if (citizen.InventorySystem.Count > 0)
+        {
+            int randomIndex = Random.Shared.Next(0,citizen.InventorySystem.Count);
+
+            thief.InventorySystem.Add(citizen.InventorySystem[randomIndex]);
+            newsFeed.NewsList.Add($"{thief.Description} {thief.Name} tar {citizen.InventorySystem[randomIndex]} från {citizen.Description} {citizen.Name}");
+            citizen.InventorySystem.RemoveAt(randomIndex);
+            NewsFeed.interactionOccured = true;
+        }
+    }
+    
+
+    // Prison timer
     public static void TimerInPrisonCounter(List<Person> persons, City city)
     {
         foreach (Person person in persons)
@@ -123,4 +133,5 @@ public class PersonManager
             }
         }
     }
+
 }

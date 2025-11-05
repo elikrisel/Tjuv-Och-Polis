@@ -9,4 +9,5 @@ public class Citizen : Person
         Color = PersonProperties.CitizenColor();
         InventorySystem = PersonProperties.CitizenStartingInventory();
     }
+
 }

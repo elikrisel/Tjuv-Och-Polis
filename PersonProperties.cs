@@ -2,6 +2,7 @@ namespace Tjuv_Och_Polis_Group_Project;
 
 public class PersonProperties
 {
+    // Person inventories
     public static List<string> CitizenStartingInventory()
     {
         return new List<string>
@@ -9,6 +10,9 @@ public class PersonProperties
             "Nycklar", "Mobil", "Pengar", "Klocka"
         };
     }
+    
+    
+    // Person descriptions
     public static string CitizenDescription()
     {
         return "Medborgare";
@@ -21,6 +25,9 @@ public class PersonProperties
     {
         return "Polis";
     }
+    
+    
+    // Person characters
     public static char CitizenCharacter()
     {
         return 'C';
@@ -33,6 +40,9 @@ public class PersonProperties
     {
         return 'P';
     }
+    
+    
+    // Person colors
     public static ConsoleColor CitizenColor()
     {
         return ConsoleColor.Green;
@@ -45,4 +55,5 @@ public class PersonProperties
     {
         return ConsoleColor.Blue;
     }
+
 }

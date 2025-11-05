@@ -8,6 +8,7 @@ public class Thief : Person
         Character = PersonProperties.ThiefCharacter();
         Color = PersonProperties.ThiefColor();
     }
+
     public void MoveToJail(Prison prison)
     { 
         InPrison = true;
@@ -23,4 +24,5 @@ public class Thief : Person
         X = Random.Shared.Next(1, personLocation.Rows - 1);
         Y = Random.Shared.Next(1, personLocation.Columns - 1);
     }
+
 }
